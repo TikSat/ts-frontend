@@ -4,7 +4,7 @@ module.exports = {
     [
       'postcss-custom-media',
       {
-        importFrom: './styles/media.css',
+        importFrom: './src/styles/media.css',
       },
     ],
   ],
