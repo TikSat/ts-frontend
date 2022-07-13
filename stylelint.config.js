@@ -1,13 +1,14 @@
 module.exports = {
   extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
   plugins: ['stylelint-order'],
-  customSyntax: 'postcss',
+  customSyntax: 'postcss-scss',
   rules: {
     'selector-class-pattern': null,
     'at-rule-no-unknown': null,
     'declaration-empty-line-before': null,
     'declaration-block-no-redundant-longhand-properties': null,
     'no-descending-specificity': null,
+    'selector-nested-pattern': null,
     'order/properties-order': [
       {
         groupName: 'pseudo',
