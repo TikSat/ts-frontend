@@ -1,0 +1,72 @@
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 105px;
+  padding: 0;
+  margin: 0;
+
+  font-weight: 500;
+  line-height: 20px;
+
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+
+  transition: all linear 0.2s;
+}
+
+.root.sm {
+  height: 36px;
+}
+
+.root.md {
+  height: 40px;
+}
+
+.root.lg {
+  height: 44px;
+
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.root.xl {
+  height: 48px;
+
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.root.primary {
+  color: var(--white);
+
+  background-color: var(--brand-primary-600);
+}
+
+.root.primary:hover {
+  background-color: var(--brand-primary-700);
+}
+
+.root.secondary {
+  color: var(--brand-primary-700);
+
+  background-color: var(--brand-primary-50);
+}
+
+.root.secondary:hover {
+  background-color: var(--brand-primary-100);
+}
+
+.root.silent {
+  color: var(--gray-700);
+
+  border-color: var(--gray-300);
+}
+
+.root.silent:hover {
+  color: var(--gray-800);
+
+  background-color: var(--gray-50);
+}
