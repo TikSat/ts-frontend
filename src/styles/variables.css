@@ -1,4 +1,5 @@
 :root {
+  /* COLORS */
   --white: #fff;
   --black: #000;
   --gray-25: #fcfcfd;
@@ -23,4 +24,22 @@
   --brand-primary-700: #6927da;
   --brand-primary-800: #5720b7;
   --brand-primary-900: #491c96;
+
+  /* Sizes */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+
+  /* Spacings */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
 }
