@@ -1,8 +1,13 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "baseUrl": "./",
     "lib": ["dom", "dom.iterable", "esnext"],
     "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "paths": {
+      "@core/*": ["src/core/*"],
+      "src/*": ["src/*"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
