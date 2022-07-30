@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { Button } from '../Button';
 import { Container } from '../Container';
+import { Link } from '../Link';
 
 import s from './Header.module.css';
 
@@ -11,19 +12,31 @@ export const Header = () => {
       <Container>
         <div className={s.secondary}>
           <div className={s.options}>
-            <div className={s.optionsList}>
+            <div className={s.optionItem}>
               Language:
-              <span>English</span>
+              <Link href="/">English</Link>
             </div>
-            <div className={s.optionsList}>
+            <div className={s.optionItem}>
               Location:
-              <span>Moscow, Russia</span>
+              <Link href="/">Moscow, Russia</Link>
             </div>
           </div>
           <div className={s.options}>
-            <div className={s.optionsList}>Help</div>
-            <div className={s.optionsList}>For business</div>
-            <div className={s.optionsList}>Ads</div>
+            <div className={s.optionItem}>
+              <Link href="/" theme="silent">
+                Help
+              </Link>
+            </div>
+            <div className={s.optionItem}>
+              <Link href="/" theme="silent">
+                For business
+              </Link>
+            </div>
+            <div className={s.optionItem}>
+              <Link href="/" theme="silent">
+                Advertising
+              </Link>
+            </div>
           </div>
         </div>
         <div className={s.main}>
@@ -54,9 +67,16 @@ export const Header = () => {
             </div>
           </div>
           <div className={s.right}>
-            <div>Favorite</div>
-            <div>Messages</div>
-            <div>My profile</div>
+            <Link href="/" theme="silent">
+              Favorite
+            </Link>
+            <Link href="/" theme="silent">
+              Messages
+            </Link>
+            <Link href="/" theme="silent">
+              My profile
+            </Link>
+
             <Button>Post Free Ad</Button>
           </div>
         </div>
