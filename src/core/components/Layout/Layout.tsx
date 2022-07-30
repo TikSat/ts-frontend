@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { Button } from '../Button';
 import { Container } from '../Container';
+import { Header } from '../Header';
 
 import s from './Layout.module.css';
 
@@ -12,11 +13,7 @@ interface LayoutProps {
 export const Layout = ({ children }: LayoutProps) => {
   return (
     <div className={s.root}>
-      <header>
-        <Container>
-          <Button theme="silent">Sign up</Button>
-        </Container>
-      </header>
+      <Header />
       <main>
         <Container>{children}</Container>
       </main>
