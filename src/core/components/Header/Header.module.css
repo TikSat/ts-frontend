@@ -1,4 +1,4 @@
-.level1 {
+.secondary {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -6,7 +6,7 @@
   padding: 12px 0 4px;
 }
 
-.level2 {
+.main {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -33,11 +33,6 @@
   font-size: 34px;
   font-weight: bold;
   text-transform: uppercase;
-
-  background: linear-gradient(268.65deg, #4e46b4 1.44%, #746ce1 89.18%);
-
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .searchContainer {
@@ -70,16 +65,16 @@
   /* Light/Beerus/Beerus */
 
   border: 1px solid #ebebeb;
-}
 
-.searchInput:first-child {
-  border-right: 0;
-  border-radius: 8px 0 0 8px;
-}
+  &:first-child {
+    border-right: 0;
+    border-radius: 8px 0 0 8px;
+  }
 
-.searchInput:last-child {
-  border-left: 0;
-  border-radius: 0 8px 8px 0;
+  &:last-child {
+    border-left: 0;
+    border-radius: 0 8px 8px 0;
+  }
 }
 
 .right {

@@ -27,11 +27,11 @@ button {
 
 input {
   border: 0;
-}
 
-input:focus {
-  border: 0;
-  outline: none;
+  &:focus {
+    border: 0;
+    outline: none;
+  }
 }
 
 a {

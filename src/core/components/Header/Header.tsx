@@ -9,7 +9,7 @@ export const Header = () => {
   return (
     <header>
       <Container>
-        <div className={s.level1}>
+        <div className={s.secondary}>
           <div className={s.options}>
             <div className={s.optionsList}>
               Language:
@@ -26,7 +26,7 @@ export const Header = () => {
             <div className={s.optionsList}>Ads</div>
           </div>
         </div>
-        <div className={s.level2}>
+        <div className={s.main}>
           <div className={s.logo}>
             <span className={s.icon}>
               -----
