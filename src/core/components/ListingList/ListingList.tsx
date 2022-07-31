@@ -3,12 +3,12 @@ import { ListingPreview } from '@core/components/ListingPreview';
 import { ListingType } from '@core/components/ListingPreview/ListingPreview';
 
 export type ListingListType = {
-  listings: ListingType[];
+  data: ListingType[];
 };
-export const ListingList = ({ listings }: ListingListType) => {
+export const ListingList = ({ data }: ListingListType) => {
   return (
     <div className={s.root}>
-      {listings?.map((listing) => (
+      {data?.map((listing) => (
         <ListingPreview key={`${listing.id}`} {...listing}></ListingPreview>
       ))}
     </div>
