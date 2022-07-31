@@ -51,7 +51,9 @@ export const Header = () => {
               ----
               <br />
             </span>
-            <span className={s.companyName}>Tiksat</span>
+            <span className={s.companyName}>
+              <Link href="/">Tiksat</Link>
+            </span>
           </div>
           <div className={s.searchContainer}>
             <div className={s.search}>

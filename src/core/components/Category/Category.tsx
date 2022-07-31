@@ -2,12 +2,12 @@ import s from './Category.module.css';
 import { Link } from '../Link';
 import Image from 'next/image';
 
-export type CategoryType = {
+export interface CategoryType {
   id: string;
   name: string;
   slug: string;
   image_small: string;
-};
+}
 
 export const Category = (category: CategoryType) => {
   return (

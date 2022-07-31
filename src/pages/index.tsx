@@ -1,13 +1,10 @@
 import type { NextPage } from 'next';
 import { GetServerSideProps } from 'next';
 import { CategoryList } from '@core/components/CategoryList';
+import { CategoryListType } from '@core/components/CategoryList/CategoryList';
 
-const Home: NextPage = ({ categories }) => {
-  return (
-    <div>
-      <CategoryList categories={categories}></CategoryList>
-    </div>
-  );
+const Home: NextPage<CategoryListType> = ({ categories }) => {
+  return <CategoryList categories={categories}></CategoryList>;
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
