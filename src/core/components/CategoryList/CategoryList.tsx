@@ -9,10 +9,9 @@ export type CategoryListType = {
 export const CategoryList = ({ categories }: CategoryListType) => {
   return (
     <div className={s.root}>
-      {categories &&
-        categories.map((category: CategoryType) => {
-          return <Category key={`${category.id}`} {...category}></Category>;
-        })}
+      {categories?.map((category: CategoryType) => (
+        <Category key={`${category.id}`} {...category}></Category>
+      ))}
     </div>
   );
 };

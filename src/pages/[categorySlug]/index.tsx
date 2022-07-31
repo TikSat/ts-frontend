@@ -1,7 +1,7 @@
 import { GetServerSideProps, NextPage } from 'next';
 import { CategoryType } from '@core/components/Category/Category';
 
-const CategoryPage: NextPage<CategoryType> = ({ category }) => {
+const CategoryPage: NextPage<CategoryType> = (category) => {
   return <h1>{category.name}</h1>;
 };
 
@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  return { props: { category: data } };
+  return { props: data };
 };
 
 export default CategoryPage;
