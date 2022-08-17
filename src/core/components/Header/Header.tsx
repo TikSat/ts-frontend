@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { Button } from '../Button';
 import { Container } from '../Container';
 import { Link } from '../Link';
