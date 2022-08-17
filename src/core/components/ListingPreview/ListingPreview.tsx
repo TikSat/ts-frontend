@@ -1,17 +1,18 @@
-import s from './ListingPreview.module.css';
 import Image from 'next/image';
 import { Link } from '@core/components/Link';
-import { CategoryType } from '@core/components/Category/Category';
+import { CategoryProps } from '@core/components/Category/Category';
+import s from './ListingPreview.module.css';
 
-export type ListingType = {
+export interface ListingProps {
   id: string;
   title: string;
   slug: string;
-  category: CategoryType;
-};
-export const ListingPreview = (listing: ListingType) => {
+  category: CategoryProps;
+}
+
+export const ListingPreview = (listing: ListingProps) => {
   return (
-    <Link href={`${listing.category.slug}/${listing.id}`}>
+    <Link href={`${listing.category.id}/${listing.id}`}>
       <div className={s.root}>
         <div className={s.image}>
           <Image src="/img_1.png" width="218" height="164" layout="fixed"></Image>

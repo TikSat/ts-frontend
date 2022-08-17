@@ -1,15 +1,15 @@
 import { ListingPreview } from '@core/components/ListingPreview';
-import { ListingType } from '@core/components/ListingPreview/ListingPreview';
+import { ListingProps } from '@core/components/ListingPreview/ListingPreview';
 import s from '@core/components/ListingList/ListingList.module.css';
 
-export interface ListingListType {
-  data: ListingType[];
+export interface ListingListProps {
+  listings: ListingProps[];
 }
 
-export const ListingList = ({ data }: ListingListType) => {
+export const ListingList = ({ listings }: ListingListProps) => {
   return (
     <div className={s.root}>
-      {data?.map((listing) => (
+      {listings?.map((listing) => (
         <ListingPreview key={`${listing.id}`} {...listing}></ListingPreview>
       ))}
     </div>

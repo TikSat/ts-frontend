@@ -1,21 +1,20 @@
 import { GetServerSideProps, NextPage } from 'next';
 import { ListingList } from '@core/components/ListingList';
-import { ListingListType } from '@core/components/ListingList/ListingList';
 import { fetchApi } from '@core/helpers';
 
-const CategoryPage: NextPage<ListingListType> = ({ data }) => {
-  return <ListingList data={data}></ListingList>;
+const CategoryPage: NextPage = ({ data: listings }) => {
+  return <ListingList listings={listings}></ListingList>;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const slug = context.params?.categoryId;
-  if (!slug) {
+  const id = context.params?.categoryId;
+  if (!id) {
     return {
       notFound: true,
     };
   }
 
-  return await fetchApi(`http://localhost:3000/api/categories/${slug}/listings`);
+  return await fetchApi(`http://localhost:3000/api/categories/${id}/listings`);
 };
 
 export default CategoryPage;

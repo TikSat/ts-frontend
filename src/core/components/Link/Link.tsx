@@ -8,13 +8,14 @@ interface LinkProps {
   children: React.ReactNode;
 
   className?: string;
-  href?: string;
+  href: string;
+  as?: string;
   theme?: 'primary' | 'secondary' | 'silent';
 }
 
-export const Link = ({ children, className, theme = 'primary', href }: LinkProps) => {
+export const Link = ({ children, className, theme = 'primary', href, as }: LinkProps) => {
   return (
-    <NextLink href={href}>
+    <NextLink href={href} as={as}>
       <a className={cn(s.root, s[theme], className)}>{children}</a>
     </NextLink>
   );

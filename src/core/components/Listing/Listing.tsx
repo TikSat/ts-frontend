@@ -4,10 +4,10 @@ export interface ListingProps {
   title: string;
 }
 
-export const Listing = ({ ...data }: ListingProps) => {
+export const Listing = ({ title }: ListingProps) => {
   return (
     <React.Fragment>
-      <h1>{data.title}</h1>
+      <h1>{title}</h1>
     </React.Fragment>
   );
 };

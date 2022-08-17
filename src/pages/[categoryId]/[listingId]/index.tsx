@@ -1,10 +1,10 @@
 import { GetServerSideProps, NextPage } from 'next';
-import { ListingType } from '@core/components/ListingPreview/ListingPreview';
+import { ListingProps } from '@core/components/ListingPreview/ListingPreview';
 import { Listing } from '@core/components/Listing';
 import { fetchApi } from '@core/helpers';
 
-const ListingPage: NextPage<ListingType> = (data) => {
-  return <Listing {...data}></Listing>;
+const ListingPage: NextPage<ListingProps> = ({ data: listing }) => {
+  return <Listing {...listing}></Listing>;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
