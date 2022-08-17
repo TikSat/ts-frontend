@@ -4,7 +4,7 @@ export const serverUrl = 'http://localhost:3000';
 
 export const ApiRoutes = (data: ParsedUrlQuery | undefined) => {
   return {
-    categories: '/api/categories',
+    categories: '/api/categories?root=true',
     recommended: '/api/listings/recommended',
     profile: '/api/me',
     listings: `/api/categories/${data?.categoryId}/listings`,
