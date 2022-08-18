@@ -1,0 +1,85 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $.Values.appType }}-default-env
+data: {}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ $.Values.appType }}-{{ include "apps-frontend.branch" . }}"
+  labels:
+    service: "{{ $.Values.appType }}-{{ include "apps-frontend.branch" . }}"
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+  minReadySeconds: 15
+  selector:
+    matchLabels:
+      service: "{{ $.Values.appType }}-{{ include "apps-frontend.branch" . }}"
+  template:
+    metadata:
+      labels:
+        service: "{{ $.Values.appType }}-{{ include "apps-frontend.branch" . }}"
+        appType: "{{ $.Values.appType }}"
+    spec:
+      containers:
+        - name: service
+          image: "{{ $.Values.image }}"
+          livenessProbe:
+            exec:
+              command:
+                - "/bin/sh"
+                - "/app/bin/liveness.sh"
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 30
+          readinessProbe:
+            exec:
+              command:
+                - "/bin/sh"
+                - "/app/bin/readiness.sh"
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 30
+          ports:
+            - name: "http"
+              containerPort: 3000
+          env:
+            - name: RUN_ENV
+              value: "{{ include "apps-frontend.branch" . }}"
+            - name: DOMAIN
+              value: "{{ $.Values.branch }}.backend.{{ $.Values.backendDomain }}"
+          envFrom:
+            - configMapRef:
+                name: {{ $.Values.appType }}-default-env
+                optional: false
+            - secretRef:
+                name: {{ $.Values.appType }}-env
+                optional: false
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "50m"
+              ephemeral-storage: "256Mi"
+            limits:
+              memory: "768Mi"
+              cpu: "1000m"
+              ephemeral-storage: "256Mi"
+
+---
+apiVersion: 'v1'
+kind: 'Service'
+metadata:
+  name: "{{ $.Values.appType }}-{{ include "apps-frontend.branch" . }}"
+spec:
+  type: ClusterIP
+  selector:
+    service: "{{ $.Values.appType }}-{{ include "apps-frontend.branch" . }}"
+  ports:
+    - port: 80
+      targetPort: 3000

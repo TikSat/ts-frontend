@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cn from 'classnames';
-import * as NextLink from 'next/link';
+import { default as NextLink } from 'next/link';
 
 import s from './Link.module.css';
 
