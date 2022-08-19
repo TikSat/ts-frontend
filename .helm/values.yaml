@@ -1,0 +1,7 @@
+domain: frontend.tiksat.bid
+backendDomain: backend.tiksat.bid
+appType: frontend
+
+# Should be provided from cmd
+branch: production
+image: ""
