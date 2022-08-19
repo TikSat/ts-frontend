@@ -1,6 +1,6 @@
 import { ParsedUrlQuery } from 'querystring';
 
-export const serverUrl = 'http://localhost:3000';
+export const serverUrl = process.env.SERVER_URL;
 
 export const ApiRoutes = (data: ParsedUrlQuery | undefined) => {
   return {
