@@ -1,6 +1,6 @@
 import { Button } from '../Button';
 import { Container } from '../Container';
-import { Link } from '../Link';
+import { NavLink } from '../NavLink';
 
 import s from './Header.module.css';
 
@@ -12,28 +12,28 @@ export const Header = () => {
           <div className={s.options}>
             <div className={s.optionItem}>
               Language:
-              <Link href="/">English</Link>
+              <NavLink href="/">English</NavLink>
             </div>
             <div className={s.optionItem}>
               Location:
-              <Link href="/">Moscow, Russia</Link>
+              <NavLink href="/">Moscow, Russia</NavLink>
             </div>
           </div>
           <div className={s.options}>
             <div className={s.optionItem}>
-              <Link href="/" theme="silent">
+              <NavLink href="/" theme="silent">
                 Help
-              </Link>
+              </NavLink>
             </div>
             <div className={s.optionItem}>
-              <Link href="/" theme="silent">
+              <NavLink href="/" theme="silent">
                 For business
-              </Link>
+              </NavLink>
             </div>
             <div className={s.optionItem}>
-              <Link href="/" theme="silent">
+              <NavLink href="/" theme="silent">
                 Advertising
-              </Link>
+              </NavLink>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@ export const Header = () => {
               <br />
             </span>
             <span className={s.companyName}>
-              <Link href="/">Tiksat</Link>
+              <NavLink href="/">Tiksat</NavLink>
             </span>
           </div>
           <div className={s.searchContainer}>
@@ -67,15 +67,15 @@ export const Header = () => {
             </div>
           </div>
           <div className={s.right}>
-            <Link href="/" theme="silent">
+            <NavLink href="/" theme="silent">
               Favorite
-            </Link>
-            <Link href="/" theme="silent">
+            </NavLink>
+            <NavLink href="/" theme="silent">
               Messages
-            </Link>
-            <Link href="/" theme="silent">
+            </NavLink>
+            <NavLink href="/" theme="silent">
               My profile
-            </Link>
+            </NavLink>
 
             <Button>Post Free Ad</Button>
           </div>

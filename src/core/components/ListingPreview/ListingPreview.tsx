@@ -1,28 +1,21 @@
 import Image from 'next/image';
-import { Link } from '@core/components/Link';
-import { CategoryProps } from '@core/components/Category/Category';
+import { NavLink } from '@core/components/NavLink';
 import s from './ListingPreview.module.css';
+import { ListingProps } from '@core/components/Listing/Listing';
 
-export interface ListingProps {
-  id: string;
-  title: string;
-  slug: string;
-  category: CategoryProps;
-}
-
-export const ListingPreview = (listing: ListingProps) => {
+export const ListingPreview = ({ category, id, title }: ListingProps) => {
   return (
-    <Link href={`${listing.category.id}/${listing.id}`}>
+    <NavLink href={`${category.id}/${id}`}>
       <div className={s.root}>
         <div className={s.image}>
           <Image src="/img_1.png" width="218" height="164" layout="fixed"></Image>
         </div>
         <div className={s.text}>
           <span className={s.price}>$100 000</span>
-          <span className={s.title}>{listing.title}</span>
+          <span className={s.title}>{title}</span>
           <span className={s.location}>Moscow, Tchaikovskogo street</span>
         </div>
       </div>
-    </Link>
+    </NavLink>
   );
 };
