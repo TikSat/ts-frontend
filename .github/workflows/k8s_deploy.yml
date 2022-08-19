@@ -1,10 +1,10 @@
-name: k8s_deploy_production
+name: k8s_deploy
 
 on:
   push:
     branches:
-      - feature/TS-26-kubernetes
       - master
+      - '**'
 
 jobs:
   build_and_deploy:
