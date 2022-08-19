@@ -52,8 +52,8 @@ spec:
           env:
             - name: RUN_ENV
               value: "{{ include "apps-frontend.branch" . }}"
-            - name: DOMAIN
-              value: "{{ $.Values.branch }}.backend.{{ $.Values.backendDomain }}"
+            - name: SERVER_URL
+              value: "https://{{ $.Values.branch }}.backend.{{ $.Values.backendDomain }}"
           envFrom:
             - configMapRef:
                 name: {{ $.Values.appType }}-default-env
