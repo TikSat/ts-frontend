@@ -2,11 +2,11 @@ import { Category } from '@core/components/Category';
 import type { CategoryProps } from '@core/components/Category/Category';
 import s from './CategoryList.module.css';
 
-export interface CategoryListProps {
+export type CategoryListType = {
   categories: CategoryProps[];
-}
+};
 
-export const CategoryList = ({ categories }: CategoryListProps) => {
+export const CategoryList = ({ categories }: CategoryListType) => {
   return (
     <div className={s.root}>
       {categories?.map((category: CategoryProps) => (
