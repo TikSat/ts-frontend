@@ -1,17 +1,15 @@
-// This file configures the initialization of Sentry on the browser.
-// The config you add here will be used whenever a page is visited.
-// https://docs.sentry.io/platforms/javascript/guides/nextjs/
-
-import * as Sentry from '@sentry/nextjs';
+import * as Sentry from "@sentry/nextjs";
+import { BrowserTracing } from "@sentry/tracing";
 
 const SENTRY_DSN = process.env.FRONT_SENTRY_DSN || process.env.FRONT_PUBLIC_SENTRY_DSN;
 
 Sentry.init({
-  dsn: SENTRY_DSN || 'https://9c58ffe772f04d56928df29b7dcc6303@o1367671.ingest.sentry.io/6668634',
-  // Adjust this value in production, or use tracesSampler for greater control
-  tracesSampleRate: 1.0,
-  // ...
-  // Note: if you want to override the automatic release value, do not set a
-  // `release` value here - use the environment variable `SENTRY_RELEASE`, so
-  // that it will also get attached to your source maps
+  dsn: SENTRY_DSN || "https://9c58ffe772f04d56928df29b7dcc6303@o1367671.ingest.sentry.io/6668634",
+
+  // This enables automatic instrumentation (highly recommended), but is not
+  // necessary for purely manual usage
+  integrations: [new BrowserTracing()],
+
+  // To set a uniform sample rate
+  tracesSampleRate: 0.2
 });
