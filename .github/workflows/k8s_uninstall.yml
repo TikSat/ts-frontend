@@ -5,6 +5,7 @@ on:
 
 jobs:
   uninstall:
+    if: github.event.ref_type == "branch"
 #    if: github.event.ref != "refs/heads/master"
     runs-on: ubuntu-latest
     env:
@@ -36,10 +37,6 @@ jobs:
       - name: Uninstall release
         shell: bash
         run: |
-          printenv
-          echo "${{ toJson(github.event) }}"
-          fail
-          
           doctl registry login
           doctl kubernetes cluster kubeconfig save main
 
