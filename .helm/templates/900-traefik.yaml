@@ -3,7 +3,6 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: "{{ $.Values.appType }}-{{ include "apps-frontend.branch" . }}-retry"
-  namespace: "apps"
 spec:
   retry:
     attempts: 10
@@ -15,7 +14,6 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: "{{ $.Values.appType }}-{{ include "apps-frontend.branch" . }}"
-  namespace: "apps"
 spec:
   entryPoints:
     - websecure
@@ -28,8 +26,6 @@ spec:
         - name: "{{ $.Values.appType }}-{{ include "apps-frontend.branch" . }}"
           port: 80
   tls:
-    domains:
-      - main: tiksat.bid
     secretName: traefik-cloudflare-cert
 {{ else }}
 ---
@@ -37,7 +33,6 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: "{{ $.Values.appType }}-{{ include "apps-frontend.branch" . }}"
-  namespace: "apps"
 spec:
   entryPoints:
     - websecure

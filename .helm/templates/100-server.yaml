@@ -51,7 +51,7 @@ spec:
               containerPort: 3000
           env:
             - name: RUN_ENV
-              value: "{{ include "apps-frontend.branch" . }}"
+              value: "{{ $.Values.branch }}"
             - name: SERVER_URL
               value: "https://{{ $.Values.branch }}.{{ $.Values.backendDomain }}"
           envFrom:
