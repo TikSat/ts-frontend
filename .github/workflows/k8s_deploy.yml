@@ -33,6 +33,16 @@ jobs:
           GIT_BRANCH=${GIT_BRANCH//_/-} # Replace _ with -
           GIT_BRANCH=${GIT_BRANCH,,} # Lower case
           echo "GIT_BRANCH=$GIT_BRANCH" >> $GITHUB_ENV
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: tiksat
+          SENTRY_PROJECT: frontend
+        with:
+          environment: ${{ env.branch }}
+          version: ${{ github.sha }}
+          ignore_missing: true
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
         with:
