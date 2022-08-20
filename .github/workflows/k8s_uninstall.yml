@@ -5,7 +5,7 @@ on:
 
 jobs:
   uninstall:
-    if: github.event.ref != "master"
+#    if: github.event.ref != "refs/heads/master"
     runs-on: ubuntu-latest
     env:
       # Bot environment. Supported: apps
@@ -22,11 +22,13 @@ jobs:
       - name: Set environment variables
         run: |
           # Short name for current branch. For PRs, use target branch (base ref)
-          GIT_BRANCH=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}
+          GIT_BRANCH=${GITHUB_BASE_REF:-${REF#refs/heads/}}
           GIT_BRANCH=${GIT_BRANCH//\//-} # Replace / with -
           GIT_BRANCH=${GIT_BRANCH//_/-} # Replace _ with -
           GIT_BRANCH=${GIT_BRANCH,,} # Lower case
           echo "GIT_BRANCH=$GIT_BRANCH" >> $GITHUB_ENV
+        env:
+          REF: ${{ github.event.ref }}
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
         with:
@@ -34,6 +36,10 @@ jobs:
       - name: Uninstall release
         shell: bash
         run: |
+          printenv
+          echo "${{ toJson(github.event) }}"
+          fail
+          
           doctl registry login
           doctl kubernetes cluster kubeconfig save main
 
