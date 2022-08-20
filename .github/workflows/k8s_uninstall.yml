@@ -5,8 +5,7 @@ on:
 
 jobs:
   uninstall:
-    if: github.event.ref_type == "branch"
-#    if: github.event.ref != "refs/heads/master"
+    if: (github.event.ref_type == 'branch') && (github.event.ref != 'master')
     runs-on: ubuntu-latest
     env:
       # Bot environment. Supported: apps
