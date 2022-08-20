@@ -3,5 +3,6 @@ backendDomain: backend.tiksat.bid
 appType: frontend
 
 # Should be provided from cmd
-branch: production
+branch: master
 image: ""
+namespace: apps
