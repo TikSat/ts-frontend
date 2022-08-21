@@ -1,7 +1,7 @@
 import { Button } from '../Button';
 import { Container } from '../Container';
 import { NavLink } from '../NavLink';
-
+import { Icon } from '@core/components/Icon';
 import s from './Header.module.css';
 
 export const Header = () => {
@@ -11,12 +11,15 @@ export const Header = () => {
         <div className={s.secondary}>
           <div className={s.options}>
             <div className={s.optionItem}>
-              <dd className={s.muted}>Language:</dd>
+              Language:
               <NavLink href="/">English</NavLink>
             </div>
             <div className={s.optionItem}>
-              <dd className={s.muted}>Your Location:</dd>
-              <NavLink href="/">Moscow, Russia</NavLink>
+              Location:
+              <NavLink href="/">
+                <span>Moscow, Russia</span>
+                <Icon name="location" size={'xs'} theme={'secondary'} />
+              </NavLink>
             </div>
           </div>
           <div className={s.options}>
@@ -39,19 +42,12 @@ export const Header = () => {
         </div>
         <div className={s.main}>
           <div className={s.logo}>
-            <span className={s.icon}>
-              -----
-              <br />
-              ---
-              <br />
-              -----
-              <br />
-              ----
-              <br />
-            </span>
-            <span className={s.companyName}>
-              <NavLink href="/">Tiksat</NavLink>
-            </span>
+            <NavLink href={'/'}>
+              <Icon size={'lg'} theme={'secondary'} name={'menu'} />
+            </NavLink>
+            <NavLink href="/">
+              <Icon name={'logo'} size={'logo'} />
+            </NavLink>
           </div>
           <div className={s.searchContainer}>
             <div className={s.search}>
@@ -67,13 +63,16 @@ export const Header = () => {
             </div>
           </div>
           <div className={s.right}>
-            <NavLink href="/" theme="silent">
+            <NavLink href="/" theme="silent" withIcon>
+              <Icon name="heart"></Icon>
               Favorite
             </NavLink>
-            <NavLink href="/" theme="silent">
+            <NavLink href="/" theme="silent" withIcon>
+              <Icon name="message"></Icon>
               Messages
             </NavLink>
-            <NavLink href="/" theme="silent">
+            <NavLink href="/" theme="silent" withIcon>
+              <Icon name="user"></Icon>
               My profile
             </NavLink>
 
