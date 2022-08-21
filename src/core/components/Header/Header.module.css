@@ -6,6 +6,10 @@
   padding: 12px 0 4px;
 }
 
+.muted {
+  color: var(--gray-400);
+}
+
 .main {
   display: flex;
   flex-direction: row;

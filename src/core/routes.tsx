@@ -9,5 +9,7 @@ export const ApiRoutes = (data: ParsedUrlQuery | undefined) => {
     profile: '/api/me',
     listings: `/api/categories/${data?.categoryId}/listings`,
     listing: `/api/categories/${data?.categoryId}/listings/${data?.listingId}`,
+    signIn: '/api/sign_in',
+    signUp: '/api/sign_up',
   };
 };
