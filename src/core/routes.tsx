@@ -5,6 +5,8 @@ export const serverUrl = process.env.SERVER_URL;
 export const ApiRoutes = (data: ParsedUrlQuery | undefined) => {
   return {
     categories: '/api/categories?root=true',
+    category: `/api/categories/${data?.categoryId}`,
+    subcategories: `/api/categories/${data?.categoryId}/subcategories?root=true`,
     recommended: '/api/listings/recommended',
     profile: '/api/me',
     listings: `/api/categories/${data?.categoryId}/listings`,
