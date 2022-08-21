@@ -7,25 +7,25 @@
   }
 
   &.sm {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
   }
 
   &.md {
     svg {
-      width: 32px;
-      height: 32px;
+      width: 26px;
+      height: 26px;
     }
   }
 
   &.lg {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
   }
 
   &.xl {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
   }
 
   &.logo {

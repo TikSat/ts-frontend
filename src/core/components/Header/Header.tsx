@@ -43,7 +43,7 @@ export const Header = () => {
         <div className={s.main}>
           <div className={s.logo}>
             <NavLink href={'/'}>
-              <Icon size={'md'} theme={'secondary'} name={'menu'} />
+              <Icon size={'lg'} theme={'secondary'} name={'menu'} />
             </NavLink>
             <NavLink href="/">
               <Icon name={'logo'} size={'logo'} />
