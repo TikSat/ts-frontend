@@ -11,11 +11,11 @@ export const Header = () => {
         <div className={s.secondary}>
           <div className={s.options}>
             <div className={s.optionItem}>
-              Language:
+              <dd className={s.muted}>Language:</dd>
               <NavLink href="/">English</NavLink>
             </div>
             <div className={s.optionItem}>
-              Location:
+              <dd className={s.muted}>Your Location:</dd>
               <NavLink href="/">Moscow, Russia</NavLink>
             </div>
           </div>

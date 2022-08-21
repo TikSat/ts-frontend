@@ -1,0 +1,17 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    color: #202026;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 28px;
+  }
+}

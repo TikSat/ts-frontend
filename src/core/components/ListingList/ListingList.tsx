@@ -1,4 +1,4 @@
-import { ListingPreview } from '@core/components/ListingPreview';
+import { ListingCardPreview } from '@core/components/ListingCardPreview';
 import s from '@core/components/ListingList/ListingList.module.css';
 import { ListingProps } from '@core/components/Listing/Listing';
 
@@ -10,7 +10,7 @@ export const ListingList = ({ listings }: ListingListProps) => {
   return (
     <div className={s.root}>
       {listings?.map((listing) => (
-        <ListingPreview key={`${listing.id}`} {...listing}></ListingPreview>
+        <ListingCardPreview key={`${listing.id}`} {...listing}></ListingCardPreview>
       ))}
     </div>
   );

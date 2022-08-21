@@ -1,0 +1,53 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.image {
+  position: relative;
+
+  display: flex;
+  width: 67px;
+  height: 50px;
+  flex: 1 0 auto;
+
+  span {
+    border-radius: 4px;
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  overflow: clip;
+}
+
+.title {
+  color: #000;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+
+  color: #000;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.location {
+  color: var(--gray-400);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16px;
+  word-wrap: break-word;
+}

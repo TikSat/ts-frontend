@@ -7,6 +7,11 @@ import { CategoryProps } from '@core/components/Category/Category';
 import { ListingProps } from '@core/components/Listing/Listing';
 import { fetchApi } from '@core/helpers';
 import { ApiRoutes } from '@core/routes';
+import { ListingsContainer } from '@core/components/ListingsContainer';
+import { Sidebar } from '@core/components/Sidebar';
+import { FavoritesListPreview } from '@core/components/FavoritesListPreview';
+
+import s from '/src/styles/HomePage.module.css';
 
 export interface HomePage {
   categories: CategoryProps[];
@@ -17,7 +22,15 @@ const Home: NextPage<HomePage> = ({ categories, listings }) => {
   return (
     <React.Fragment>
       <CategoryList categories={categories}></CategoryList>
-      <ListingList listings={listings}></ListingList>
+      <div className={s.root}>
+        <ListingsContainer>
+          <h2 className={s.header}>Your recommendations</h2>
+          <ListingList listings={listings}></ListingList>
+        </ListingsContainer>
+        <Sidebar>
+          <FavoritesListPreview listings={listings}></FavoritesListPreview>
+        </Sidebar>
+      </div>
     </React.Fragment>
   );
 };

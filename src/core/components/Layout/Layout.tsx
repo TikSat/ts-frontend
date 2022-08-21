@@ -17,9 +17,6 @@ export const Layout = ({ children }: LayoutProps) => {
       <main>
         <Container>{children}</Container>
       </main>
-      <footer className={s.footer}>
-        <Container>footer</Container>
-      </footer>
     </div>
   );
 };
