@@ -20,10 +20,11 @@
   --brand-primary-300: #c3b5fd;
   --brand-primary-400: #a48afb;
   --brand-primary-500: #875bf7;
-  --brand-primary-600: #7839ee;
+  --brand-primary-600: #5a51c2;
   --brand-primary-700: #6927da;
   --brand-primary-800: #5720b7;
   --brand-primary-900: #491c96;
+  --brand-logo: #5a51c2;
 
   /* Sizes */
   --container-sm: 640px;

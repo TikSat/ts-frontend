@@ -5,17 +5,26 @@ import s from './NavLink.module.css';
 
 interface LinkProps {
   children: React.ReactNode;
-
+  withIcon?: boolean;
   className?: string;
   href: string;
   as?: string;
   theme?: 'primary' | 'secondary' | 'silent';
 }
 
-export const NavLink = ({ children, className, theme = 'primary', href, as }: LinkProps) => {
+export const NavLink = ({
+  children,
+  className,
+  withIcon = false,
+  theme = 'primary',
+  href,
+  as,
+}: LinkProps) => {
+  const icon = withIcon ? s.withIcon : s.withoutIcon;
+
   return (
     <Link href={href} as={as}>
-      <a className={cn(s.root, s[theme], className)}>{children}</a>
+      <a className={cn(s.root, s[theme], className, icon)}>{children}</a>
     </Link>
   );
 };

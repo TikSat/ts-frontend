@@ -1,0 +1,50 @@
+.root {
+  display: inline-flex;
+
+  &.xs {
+    width: 14px;
+    height: 14px;
+  }
+
+  &.sm {
+    width: 24px;
+    height: 24px;
+  }
+
+  &.md {
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  &.lg {
+    width: 40px;
+    height: 40px;
+  }
+
+  &.xl {
+    width: 48px;
+    height: 48px;
+  }
+
+  &.logo {
+    width: 158px;
+    height: 40px;
+  }
+
+  &.primary {
+    color: var(--white);
+    stroke: var(--white);
+  }
+
+  &.secondary {
+    color: var(--brand-primary-600);
+    stroke: var(--brand-primary-600);
+  }
+
+  &.silent {
+    color: var(--gray-700);
+    stroke: var(--gray-700);
+  }
+}
