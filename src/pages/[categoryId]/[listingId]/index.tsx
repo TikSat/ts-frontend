@@ -1,9 +1,10 @@
+import React from 'react';
+import Head from 'next/head';
 import { GetServerSideProps, NextPage } from 'next';
 import { Listing } from '@core/components/Listing';
 import { fetchApi } from '@core/helpers';
 import { ApiRoutes } from '@core/routes';
 import { ListingProps } from '@core/components/Listing/Listing';
-import React from 'react';
 import { CategoryProps } from '@core/components/Category/Category';
 import { BreadcrumbProps } from '@core/components/Breadcrumb/Breadcrumb';
 import { BreadcrumbList } from '@core/components/BreadcrumbList';

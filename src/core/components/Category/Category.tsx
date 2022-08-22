@@ -1,6 +1,6 @@
-import s from './Category.module.css';
-import { NavLink } from '../NavLink';
 import Image from 'next/image';
+import { NavLink } from '../NavLink';
+import s from './Category.module.css';
 
 export interface CategoryProps {
   id: string;

@@ -12,6 +12,7 @@ import { Sidebar } from '@core/components/Sidebar';
 import { FavoritesListPreview } from '@core/components/FavoritesListPreview';
 import { BreadcrumbList } from '@core/components/BreadcrumbList';
 import { BreadcrumbProps } from '@core/components/Breadcrumb/Breadcrumb';
+import Head from 'next/head';
 import s from '/src/styles/HomePage.module.css';
 
 export interface HomePage {
@@ -23,11 +24,16 @@ export interface HomePage {
 const Home: NextPage<HomePage> = ({ categories, listings, breadcrumbs }) => {
   return (
     <React.Fragment>
+      {/*Injects to head*/}
+      <Head>
+        <title>Home | Istanbul</title>
+      </Head>
+
       <CategoryList categories={categories}></CategoryList>
       <div className={s.root}>
         <ListingsContainer>
           <BreadcrumbList breadcrumbs={breadcrumbs} />
-          <h2 className={s.header}>Your recommendations</h2>
+          <h1 className={s.header}>Your recommendations</h1>
           <ListingList listings={listings}></ListingList>
         </ListingsContainer>
         <Sidebar>

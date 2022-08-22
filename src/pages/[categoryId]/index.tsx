@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import { GetServerSideProps, NextPage } from 'next';
 import { ListingList } from '@core/components/ListingList';
 import { fetchApi } from '@core/helpers';
@@ -28,11 +29,15 @@ const CategoryPage: NextPage<CategoryPageProps> = ({
 }) => {
   return (
     <React.Fragment>
+      <Head>
+        <title>{category.name}</title>
+      </Head>
+
       <CategoryList categories={categories}></CategoryList>
       <div className={s.root}>
         <ListingsContainer>
           <BreadcrumbList breadcrumbs={breadcrumbs} />
-          <h2 className={s.header}>{category.name}</h2>
+          <h1 className={s.header}>{category.name}</h1>
           <ListingList listings={listings}></ListingList>
         </ListingsContainer>
         <Sidebar>
