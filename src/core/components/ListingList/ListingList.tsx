@@ -1,6 +1,7 @@
 import { ListingCardPreview } from '@core/components/ListingCardPreview';
 import s from '@core/components/ListingList/ListingList.module.css';
 import { ListingProps } from '@core/components/Listing/Listing';
+import Head from 'next/head';
 
 export interface ListingListProps {
   listings: ListingProps[];

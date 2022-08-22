@@ -10,6 +10,7 @@ interface LinkProps {
   href: string;
   as?: string;
   theme?: 'primary' | 'secondary' | 'silent';
+  props?: {};
 }
 
 export const NavLink = ({
@@ -19,12 +20,15 @@ export const NavLink = ({
   theme = 'primary',
   href,
   as,
+  props = {},
 }: LinkProps) => {
   const icon = withIcon ? s.withIcon : s.withoutIcon;
 
   return (
     <Link href={href} as={as}>
-      <a className={cn(s.root, s[theme], className, icon)}>{children}</a>
+      <a className={cn(s.root, s[theme], className, icon)} {...props}>
+        {children}
+      </a>
     </Link>
   );
 };
