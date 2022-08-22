@@ -1,5 +1,4 @@
 import React from 'react';
-import Head from 'next/head';
 import { GetServerSideProps, NextPage } from 'next';
 import { Listing } from '@core/components/Listing';
 import { fetchApi } from '@core/helpers';
@@ -29,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const listing = await fetchApi(routes.listing);
   const category = await fetchApi(routes.category);
   let parentCategory = null;
-
+  // TODO: create category tree endpoint on backend
   if (category.parent_id) {
     parentCategory = await fetchApi(ApiRoutes({ categoryId: category.parent_id }).category);
   }
