@@ -1,6 +1,6 @@
 import { BreadcrumbProps } from '@core/components/Breadcrumb/Breadcrumb';
-import { serverUrl } from '@core/routes';
 import { ListingProps } from '@core/components/Listing/Listing';
+const DOMAIN = 'https://tiksat.bid';
 
 class SchemaGenerator {
   generateBreadcrumbsSchema = (breadcrumbs: BreadcrumbProps[]) => {
@@ -11,7 +11,7 @@ class SchemaGenerator {
           '@type': 'ListItem',
           position: index,
           name: breadcrumb.title,
-          item: serverUrl + breadcrumb.url,
+          item: DOMAIN + breadcrumb.url,
         };
       });
     return JSON.stringify({

@@ -1,4 +1,4 @@
-export const serverUrl = process.env.SERVER_URL || 'http://localhost:3000';
+export const serverUrl = process.env.SERVER_URL;
 
 interface ApiProps {
   categoryId?: string | string[];
