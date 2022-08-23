@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchApi } from '@core/helpers';
 import { ApiRoutes } from '@core/routes';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 const ProfilePage: NextPage = () => {
   const router = useRouter();
@@ -33,6 +34,9 @@ const ProfilePage: NextPage = () => {
 
   return (
     <React.Fragment>
+      <Head>
+        <title>My profile</title>
+      </Head>
       <h1 className={'header'}>Profile</h1>
       <h2>{user.email}</h2>
     </React.Fragment>
