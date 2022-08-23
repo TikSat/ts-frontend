@@ -44,13 +44,18 @@ const Home: NextPage<HomePage> = ({ categories, listings, breadcrumbs }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   let routes = ApiRoutes({});
   const categories = await fetchApi(routes.categories);
   const listings = await fetchApi(routes.recommended);
   const breadcrumbs = [{ title: 'Istanbul', url: '/', current: true }];
 
-  return { props: { categories, listings, breadcrumbs } };
+  if (!categories || !listings || !breadcrumbs) {
+    res.statusCode = 500;
+    throw new Error('Internal Server Error');
+  } else {
+    return { props: { categories, listings, breadcrumbs } };
+  }
 };
 
 export default Home;

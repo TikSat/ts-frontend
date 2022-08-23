@@ -70,7 +70,7 @@ export const Header = () => {
             <Icon name="message"></Icon>
             Messages
           </NavLink>
-          <NavLink href="/" theme="silent" withIcon>
+          <NavLink href="/sign_up" theme="silent" withIcon>
             <Icon name="user"></Icon>
             My profile
           </NavLink>
