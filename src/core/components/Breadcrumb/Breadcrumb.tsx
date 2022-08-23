@@ -1,6 +1,5 @@
 import { NavLink } from '@core/components/NavLink';
 import s from './Breadcrumb.module.css';
-import { serverUrl } from '@core/routes';
 import cn from 'classnames';
 
 export interface BreadcrumbProps {
