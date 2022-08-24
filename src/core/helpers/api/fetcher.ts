@@ -1,5 +1,5 @@
 import axios from 'axios';
-const serverUrl = process.env.SERVER_URL || 'http://localhost:3000';
+const serverUrl = process.env.SERVER_URL || process.env.NEXT_PUBLIC_SERVER_URL;
 
 export const fetchApi = async (
   url: string,
@@ -10,7 +10,11 @@ export const fetchApi = async (
   } = {}
 ) => {
   try {
-    const { headers, token, ...others } = opts;
+    let { headers, token, ...others } = opts;
+
+    if (token) {
+      headers = { Authorization: `Bearer ${token}`, ...headers };
+    }
 
     const res = await axios
       .request({
@@ -18,7 +22,6 @@ export const fetchApi = async (
         baseURL: serverUrl,
         headers: {
           Accept: 'application/json',
-          Authorization: token ? `Bearer ${token}` : '',
           ...headers,
         },
         ...others,
@@ -39,8 +42,9 @@ export const fetchApi = async (
         }
       });
 
-    if (res) return await res.data;
+    return await res.data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };

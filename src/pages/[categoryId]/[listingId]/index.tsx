@@ -1,7 +1,7 @@
 import React from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import { Listing } from '@core/components/Listing';
-import { fetchApi } from '@core/helpers';
+import { fetchApi } from '@core/helpers/api/fetcher';
 import { ApiRoutes } from '@core/routes';
 import { ListingProps } from '@core/components/Listing/Listing';
 import { CategoryProps } from '@core/components/Category/Category';

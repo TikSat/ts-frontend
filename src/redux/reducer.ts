@@ -1,7 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import { profileReducer } from '@core/store/profile/slice';
+import { userReducer } from '@core/store/user/slice';
 
 export const rootReducer = combineReducers({
-  profile: profileReducer,
+  user: userReducer,
 });

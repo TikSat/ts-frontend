@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import { GetServerSideProps, NextPage } from 'next';
 import { ListingList } from '@core/components/ListingList';
-import { fetchApi } from '@core/helpers';
+import { fetchApi } from '@core/helpers/api/fetcher';
 import { ApiRoutes } from '@core/routes';
 import { ListingProps } from '@core/components/Listing/Listing';
 import { CategoryList } from '@core/components/CategoryList';
@@ -12,7 +12,6 @@ import { FavoritesListPreview } from '@core/components/FavoritesListPreview';
 import { CategoryProps } from '@core/components/Category/Category';
 import { BreadcrumbProps } from '@core/components/Breadcrumb/Breadcrumb';
 import { BreadcrumbList } from '@core/components/BreadcrumbList';
-import s from '/src/styles/HomePage.module.css';
 
 interface CategoryPageProps {
   listings: ListingProps[];
@@ -34,10 +33,10 @@ const CategoryPage: NextPage<CategoryPageProps> = ({
       </Head>
 
       <CategoryList categories={categories}></CategoryList>
-      <div className={s.root}>
+      <div>
         <ListingsContainer>
           <BreadcrumbList breadcrumbs={breadcrumbs} />
-          <h1 className={s.header}>{category.name}</h1>
+          <h1>{category.name}</h1>
           <ListingList listings={listings}></ListingList>
         </ListingsContainer>
         <Sidebar>
