@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import { Input } from '@core/components/Input';
 import { Button } from '@core/components/Button';
 import { ApiRoutes } from '@core/routes';
-import { fetchApi } from '@core/helpers';
+import { fetchApi } from '@core/helpers/api/fetcher';
 import { FormEvent } from 'react';
 import React from 'react';
 import { useRouter } from 'next/router';

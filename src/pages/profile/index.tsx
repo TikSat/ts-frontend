@@ -1,46 +1,32 @@
 import { NextPage } from 'next';
 import React, { useEffect, useState } from 'react';
-import { fetchApi } from '@core/helpers';
+import { fetchApi } from '@core/helpers/api/fetcher';
 import { ApiRoutes } from '@core/routes';
+import { useActions } from '@core/hooks/useActions';
+import { useTypedSelectors } from '@core/hooks/useTypedSelectors';
+import { Profile } from '@core/components/pages/Profile/Profile';
 import { useRouter } from 'next/router';
-import Head from 'next/head';
 
 const ProfilePage: NextPage = () => {
   const router = useRouter();
-
-  const [user, setUser] = useState({
-    email: undefined,
-  });
-  const [isLoading, setLoading] = useState(false);
+  const { setUser } = useActions();
+  const { user } = useTypedSelectors((state) => state.user);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
+    if (!user) {
+      fetchApi(ApiRoutes({}).profile, {
+        token: window.localStorage.getItem('token'),
+      }).then((res) => setUser(res));
+    }
+    setLoading(false);
 
-    const fetchData = async () => {
-      return fetchApi(ApiRoutes({}).profile, { token: window.localStorage.getItem('token') });
-    };
+    if (!user && !loading) {
+      router.push('/sign_in');
+    }
+  }, [user]);
 
-    fetchData().then((res) => {
-      setUser(res);
-      setLoading(false);
-    });
-  }, []);
-
-  if (isLoading) return <p>Loading...</p>;
-  if (!user) {
-    router.push('/sign_in');
-    return <React.Fragment />;
-  }
-
-  return (
-    <React.Fragment>
-      <Head>
-        <title>My profile</title>
-      </Head>
-      <h1 className={'header'}>Profile</h1>
-      <h2>{user.email}</h2>
-    </React.Fragment>
-  );
+  return <Profile {...user} />;
 };
 
 export default ProfilePage;

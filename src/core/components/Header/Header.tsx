@@ -1,11 +1,12 @@
 import { Button } from '../Button';
-import { Container } from '../Container';
 import { NavLink } from '../NavLink';
 import { Icon } from '@core/components/Icon';
+import { useTypedSelectors } from '@core/hooks/useTypedSelectors';
 import s from './Header.module.css';
 
-export const Header = ({ isLogged = true }) => {
-  // const isLogged = !!window.localStorage.getItem('token')
+export const Header = () => {
+  const { user } = useTypedSelectors((state) => state.user);
+  const isLogged = !!user;
 
   return (
     <header>

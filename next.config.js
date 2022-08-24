@@ -20,6 +20,10 @@ const nextConfig = {
   devIndicators: {
     autoPrerender: true
   },
+  sentry: {
+    disableServerWebpackPlugin: (process.env.NODE_ENV !== 'production'),
+    disableClientWebpackPlugin: (process.env.NODE_ENV !== 'production'),
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

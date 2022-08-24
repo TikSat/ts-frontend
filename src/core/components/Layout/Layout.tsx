@@ -1,6 +1,4 @@
 import * as React from 'react';
-
-import { Button } from '../Button';
 import { Container } from '../Container';
 import { Header } from '../Header';
 import s from './Layout.module.css';
