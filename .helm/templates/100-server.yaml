@@ -56,6 +56,8 @@ spec:
               value: "{{ $.Values.branch }}"
             - name: SERVER_URL
               value: "https://{{ $.Values.branch }}.{{ $.Values.backendDomain }}"
+            - name: NEXT_PUBLIC_SERVER_URL
+              value: "https://{{ $.Values.branch }}.{{ $.Values.backendDomain }}"
           envFrom:
             - configMapRef:
                 name: {{ $.Values.appType }}-default-env-{{ include "apps-frontend.branch" . }}
