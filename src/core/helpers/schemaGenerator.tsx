@@ -20,12 +20,13 @@ class SchemaGenerator {
       itemListElement: items,
     });
   };
+
   generateListingSchema = (listing: ListingProps) => {
     const data = {
       '@context': 'https://schema.org/',
       '@type': 'Product',
       name: listing.title,
-      image: 'http://www.example.com/anvil_executive.jpg',
+      image: 'https://www.example.com/anvil_executive.jpg',
       description:
         "Sleeker than ACME's Classic Anvil, the Executive Anvil is perfect for the business traveler looking for something to drop from a height.",
       mpn: '925872',
@@ -43,8 +44,8 @@ class SchemaGenerator {
         priceCurrency: 'USD',
         price: '119.99',
         priceValidUntil: '2020-11-05',
-        itemCondition: 'http://schema.org/UsedCondition',
-        availability: 'http://schema.org/InStock',
+        itemCondition: 'https://schema.org/UsedCondition',
+        availability: 'https://schema.org/InStock',
         seller: {
           '@type': 'Organization',
           name: 'Executive Objects',

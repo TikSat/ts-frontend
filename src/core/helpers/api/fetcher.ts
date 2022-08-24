@@ -1,5 +1,5 @@
 import axios from 'axios';
-const serverUrl = process.env.SERVER_URL || process.env.NEXT_PUBLIC_SERVER_URL;
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || process.env.SERVER_URL;
 
 export const fetchApi = async (
   url: string,
