@@ -5,10 +5,13 @@ import { ApiRoutes } from '@core/routes';
 import { fetchApi } from '@core/helpers/api/fetcher';
 import { FormEvent } from 'react';
 import React from 'react';
-import { useRouter } from 'next/router';
+import { useActions } from '@core/hooks/useActions';
+import { useTypedSelectors } from '@core/hooks/useTypedSelectors';
 
 const SignUpPage: NextPage = () => {
-  const router = useRouter();
+  const { user } = useTypedSelectors((state) => state.user);
+  const { setUser } = useActions();
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -32,12 +35,14 @@ const SignUpPage: NextPage = () => {
     if (res && res.token && res.refresh_token) {
       window.localStorage.setItem('token', res.token);
       window.localStorage.setItem('refreshToken', res.refresh_token);
-      router.push('/profile');
+      fetchApi(ApiRoutes({}).profile, {
+        token: window.localStorage.getItem('token'),
+      }).then((res) => setUser(res));
     }
   };
 
   // TODO: handle errors and show
-  return (
+  return !user ? (
     <React.Fragment>
       <h1 className={'header'}>Registration</h1>
       <form onSubmit={handleSubmit}>
@@ -47,6 +52,8 @@ const SignUpPage: NextPage = () => {
         <Button type="submit">Sign Up</Button>
       </form>
     </React.Fragment>
+  ) : (
+    <div>Already signed in</div>
   );
 };
 
