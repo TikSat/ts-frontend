@@ -1,26 +1,46 @@
-import { serverUrl } from '@core/routes';
+import axios from 'axios';
+const serverUrl = process.env.SERVER_URL || 'http://localhost:3000';
 
 export const fetchApi = async (
   url: string,
-  opts = {
-    headers: {},
-    method: '',
-    token: '',
-  }
+  opts: {
+    headers?: any;
+    method?: string;
+    token?: string | null;
+  } = {}
 ) => {
   try {
-    const res = await fetch(serverUrl + url, {
-      method: opts?.method || 'GET',
-      headers: {
-        Authorization: `Bearer ${opts?.token || ''}`,
-        'Cache-Control': 'public; max-age=3600',
-        ...opts?.headers,
-      },
-    });
-    return await res.json();
+    const { headers, token, ...others } = opts;
+
+    const res = await axios
+      .request({
+        url: url,
+        baseURL: serverUrl,
+        headers: {
+          Accept: 'application/json',
+          Authorization: token ? `Bearer ${token}` : '',
+          ...headers,
+        },
+        ...others,
+      })
+      .catch((error) => {
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          return error.response.data;
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          return;
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          throw new Error(error);
+        }
+      });
+
+    if (res) return await res.data;
   } catch (error) {
-    return {
-      notFound: true,
-    };
+    throw error;
   }
 };

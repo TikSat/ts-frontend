@@ -1,5 +1,3 @@
-export const serverUrl = process.env.SERVER_URL;
-
 interface ApiProps {
   categoryId?: string | string[];
   listingId?: string | string[];

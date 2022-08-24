@@ -1,0 +1,42 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 12px 0;
+
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+
+  &.xs {
+    padding: var(--spacing-4);
+  }
+
+  &.sm {
+    padding: var(--spacing-4);
+  }
+
+  &.md {
+    padding: var(--spacing-8);
+  }
+
+  &.lg {
+    padding: var(--spacing-12)
+  }
+
+  &.xl {
+    padding: var(--spacing-20);
+  }
+
+  &.primary {
+    &:focus {
+      border: 1px solid var(--brand-primary-400);
+    }
+  }
+
+  &.secondary {
+    &:focus {
+      border: 1px solid var(--gray-400);
+    }
+  }
+}

@@ -48,7 +48,7 @@ const CategoryPage: NextPage<CategoryPageProps> = ({
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
   const routes = ApiRoutes({ categoryId: params?.categoryId });
   const category = await fetchApi(routes.category);
   const listings = await fetchApi(routes.listings);
@@ -77,7 +77,12 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     },
   ];
 
-  return { props: { listings, categories, category, breadcrumbs } };
+  if (!categories || !listings || !breadcrumbs || !category) {
+    res.statusCode = 500;
+    throw new Error('Internal Server Error');
+  } else {
+    return { props: { listings, categories, category, breadcrumbs } };
+  }
 };
 
 export default CategoryPage;

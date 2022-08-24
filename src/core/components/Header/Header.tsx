@@ -4,7 +4,9 @@ import { NavLink } from '../NavLink';
 import { Icon } from '@core/components/Icon';
 import s from './Header.module.css';
 
-export const Header = () => {
+export const Header = ({ isLogged = true }) => {
+  // const isLogged = !!window.localStorage.getItem('token')
+
   return (
     <header>
       <div className={s.secondary}>
@@ -62,15 +64,15 @@ export const Header = () => {
           </div>
         </div>
         <div className={s.right}>
-          <NavLink href="/" theme="silent" withIcon>
+          <NavLink href={isLogged ? '/profile' : '/sign_up'} theme="silent" withIcon>
             <Icon name="heart"></Icon>
             Favorite
           </NavLink>
-          <NavLink href="/" theme="silent" withIcon>
+          <NavLink href={isLogged ? '/profile' : '/sign_up'} theme="silent" withIcon>
             <Icon name="message"></Icon>
             Messages
           </NavLink>
-          <NavLink href="/" theme="silent" withIcon>
+          <NavLink href={isLogged ? '/profile' : '/sign_up'} theme="silent" withIcon>
             <Icon name="user"></Icon>
             My profile
           </NavLink>
