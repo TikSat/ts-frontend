@@ -6,6 +6,7 @@ import s from './Button.module.css';
 interface ButtonProps {
   children: React.ReactNode;
 
+  onClick?: () => void;
   className?: string;
   type?: 'button' | 'submit';
   size?: 'sm' | 'md' | 'lg' | 'xl';
@@ -20,13 +21,14 @@ interface ButtonProps {
 
 export const Button = ({
   children,
+  onClick,
   className,
   type = 'button',
   size = 'sm',
   theme = 'primary',
 }: ButtonProps) => {
   return (
-    <button className={cn(s.root, s[size], s[theme], className)} type={type}>
+    <button onClick={onClick} className={cn(s.root, s[size], s[theme], className)} type={type}>
       {children}
     </button>
   );
