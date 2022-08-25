@@ -17,7 +17,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       categories: categories || null,
-      listing: listings || null,
+      listings: listings || null,
       breadcrumbs: breadcrumbs || null,
     },
     revalidate: 30,
