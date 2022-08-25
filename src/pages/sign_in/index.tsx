@@ -31,9 +31,9 @@ const SignInPage: NextPage = () => {
 
     const res = await fetch(ApiRoutes({}).signIn, options);
 
-    if (res.token && res.refresh_token) {
-      window.localStorage.setItem('token', res.token);
-      window.localStorage.setItem('refreshToken', res.refresh_token);
+    if (res?.data.token && res.data.refresh_token) {
+      window.localStorage.setItem('token', res.data.token);
+      window.localStorage.setItem('refreshToken', res.data.refresh_token);
       fetch(ApiRoutes({}).profile, {
         token: window.localStorage.getItem('token'),
       }).then((res) => setUser(res));

@@ -6,6 +6,7 @@ interface ApiProps {
 export const ApiRoutes = ({ categoryId, listingId }: ApiProps) => {
   return {
     categories: '/api/categories',
+    categoriesIds: '/api/categories/ids',
     category: `/api/categories/${categoryId}`,
     subcategories: `/api/categories/${categoryId}/subcategories`,
     recommended: '/api/listings/recommended',

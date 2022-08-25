@@ -5,35 +5,31 @@ import { Icon } from '@core/components/Icon';
 import Link from 'next/link';
 import React from 'react';
 import cn from 'classnames';
+import image from '/public/img_1.png';
 import s from './ListingCardPreview.module.css';
 
-export const ListingCardPreview = ({ category, id, title, url = '/', slug }: ListingProps) => {
-  const isAd = slug === 'ad';
+export const ListingCardPreview = (listing: ListingProps) => {
+  const { category, id, title, url = '/' } = listing;
   const path = category ? `${category.id}/${id}` : url;
-  const image = isAd ? '/ad.png' : '/img_1.png';
 
   return (
     <NavLink href={path}>
       <div className={cn(s.root)}>
         <div className={s.image}>
-          <Image src={image} layout="fill"></Image>
+          <Image src={image.src} layout="fill"></Image>
         </div>
-        {!isAd ? (
-          <React.Fragment>
-            <Link href={'/'}>
-              <div className={s.favorite}>
-                <Icon name={'heart'} size={'xs'} />
-              </div>
-            </Link>
-            <div className={s.text}>
-              <span className={s.price}>$100 000</span>
-              <span className={s.title}>{title}</span>
-              <span className={s.location}>Moscow, Tchaikovskogo street</span>
+        <React.Fragment>
+          <Link href={'/'}>
+            <div className={s.favorite}>
+              <Icon name={'heart'} size={'xs'} />
             </div>
-          </React.Fragment>
-        ) : (
-          <div></div>
-        )}
+          </Link>
+          <div className={s.text}>
+            <span className={s.price}>$100 000</span>
+            <span className={s.title}>{title}</span>
+            <span className={s.location}>Moscow, Arbat street</span>
+          </div>
+        </React.Fragment>
       </div>
     </NavLink>
   );

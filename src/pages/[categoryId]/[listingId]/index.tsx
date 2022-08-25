@@ -26,12 +26,17 @@ const ListingPage: NextPageWithLayout<ListingPageProps> = ({ listing, breadcrumb
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const routes = ApiRoutes({ categoryId: params?.categoryId, listingId: params?.listingId });
-  const listing = await fetch(routes.listing);
-  const category = await fetch(routes.category);
+
+  const listingData = await fetch(routes.listing);
+  const categoryData = await fetch(routes.category);
+  const category = categoryData?.data;
+  const listing = listingData?.data;
+
   let parentCategory = null;
   // TODO: create category tree endpoint on backend
   if (category?.parent_id) {
-    parentCategory = await fetch(ApiRoutes({ categoryId: category.parent_id }).category);
+    const parentCategoryData = await fetch(ApiRoutes({ categoryId: category.parent_id }).category);
+    parentCategory = parentCategoryData?.data;
   }
 
   const breadcrumbs = [
@@ -69,40 +74,19 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 export async function getStaticPaths() {
   let routes = ApiRoutes({});
-  const categoryIds = await fetch(routes.categories, {
-    params: {
-      response: { include: ['id'] },
-      pagination: false,
-    },
-  });
+  const categoryIds = await fetch(routes.categoriesIds);
+  const paths: { params: { categoryId: any; listingId: any } }[] = [];
 
-  const buildPaths = async () => {
-    const paths: { params: { categoryId: string; listingId: string } }[] = [];
-
-    if (categoryIds) {
-      for (const { id: categoryId } of categoryIds) {
-        let routes = ApiRoutes({ categoryId });
-
-        const listingIds = await fetch(routes.listings, {
-          params: {
-            pagination: false,
-            response: {
-              include: ['id'],
-            },
-          },
-        });
-
-        for (const { id: listingId } of listingIds) {
-          paths.push({ params: { categoryId, listingId } });
-        }
+  if (categoryIds) {
+    for (const { category_id: categoryId, listings_ids: listingIds } of categoryIds.data) {
+      for (const listingId of listingIds) {
+        paths.push({ params: { categoryId, listingId } });
       }
     }
-
-    return paths;
-  };
+  }
 
   return {
-    paths: await buildPaths(),
+    paths: paths,
     fallback: true,
   };
 }

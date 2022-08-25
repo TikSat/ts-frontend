@@ -22,7 +22,7 @@ export const Layout = ({ children }: LayoutProps) => {
     if (!user && token) {
       fetch(ApiRoutes({}).profile, {
         token: window.localStorage.getItem('token'),
-      }).then((res) => setUser(res));
+      }).then((res) => setUser(res?.data));
     }
   });
 

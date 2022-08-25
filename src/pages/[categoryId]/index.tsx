@@ -41,13 +41,16 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const routes = ApiRoutes({ categoryId: params?.categoryId });
-  const category = await fetch(routes.category);
-  const listings = await fetch(routes.listings);
+  const categoryData = await fetch(routes.category);
+  const listingsData = await fetch(routes.listings);
+
+  const category = categoryData?.data;
   const categories = category?.subcategories;
-  let parentCategory = null;
+  let parentCategory;
 
   if (category?.parent_id) {
-    parentCategory = await fetch(ApiRoutes({ categoryId: category.parent_id }).category);
+    const parentCategoryData = await fetch(ApiRoutes({ categoryId: category.parent_id }).category);
+    parentCategory = parentCategoryData?.data;
   }
 
   const breadcrumbs = [
@@ -70,10 +73,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: {
-      listings: listings || null,
-      categories: categories || null,
-      category: category || null,
-      breadcrumbs: breadcrumbs || null,
+      listings: listingsData?.data || [],
+      categories: categories || [],
+      category: category || [],
+      breadcrumbs: breadcrumbs || [],
     },
     revalidate: 30,
   };
@@ -82,16 +85,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 export async function getStaticPaths() {
   const paths = [];
   const routes = ApiRoutes({});
-  const ids = await fetch(routes.categories, {
-    params: {
-      response: { include: ['id'] },
-      pagination: false,
-    },
-  });
+  const ids = await fetch(routes.categoriesIds);
 
   if (ids) {
-    for (const { id } of ids) {
-      paths.push({ params: { categoryId: id } });
+    for (const { category_id: categoryId } of ids.data) {
+      paths.push({ params: { categoryId } });
     }
   }
 

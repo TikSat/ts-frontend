@@ -1,13 +1,14 @@
 import axios, { AxiosRequestConfig } from 'axios';
-const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || process.env.SERVER_URL;
+const serverUrl =
+  process.env.NEXT_PUBLIC_SERVER_URL ||
+  process.env.SERVER_URL ||
+  'https://master.backend.tiksat.bid';
 // @ts-ignore
 import Qs from 'qs';
 
 type FetcherConfig = AxiosRequestConfig & { token?: string | null };
 
 export const fetch = async (url: string, config: FetcherConfig = {}) => {
-  //TODO: remove it after debug
-  console.log(serverUrl, process.env.NEXT_PUBLIC_SERVER_URL, process.env.SERVER_URL);
   try {
     config.paramsSerializer = function (params) {
       return Qs.stringify(params, {
@@ -49,7 +50,11 @@ export const fetch = async (url: string, config: FetcherConfig = {}) => {
       });
 
     if (res) {
-      return await res.data;
+      return {
+        data: res.data,
+        headers: res.headers,
+        status: res.status,
+      };
     }
   } catch (error) {
     console.log(error);
