@@ -1,16 +1,20 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL || process.env.SERVER_URL;
+// @ts-ignore
+import Qs from 'qs';
 
-export const fetchApi = async (
-  url: string,
-  opts: {
-    headers?: any;
-    method?: string;
-    token?: string | null;
-  } = {}
-) => {
+type FetcherConfig = AxiosRequestConfig & { token?: string | null };
+
+export const fetch = async (url: string, config: FetcherConfig = {}) => {
   try {
-    let { headers, token, ...others } = opts;
+    config.paramsSerializer = function (params) {
+      return Qs.stringify(params, {
+        arrayFormat: 'brackets',
+        encode: false,
+      });
+    };
+
+    let { headers, token, ...others } = config;
 
     if (token) {
       headers = { Authorization: `Bearer ${token}`, ...headers };

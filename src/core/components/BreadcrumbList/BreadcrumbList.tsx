@@ -9,7 +9,8 @@ interface BreadcrumbListProps {
 }
 
 export const BreadcrumbList = ({ breadcrumbs }: BreadcrumbListProps) => {
-  const list = breadcrumbs.filter((el) => el.title != null);
+  const list = breadcrumbs?.filter((el) => el.title != null);
+
   const generator = new SchemaGenerator();
   return (
     <React.Fragment>
@@ -23,7 +24,7 @@ export const BreadcrumbList = ({ breadcrumbs }: BreadcrumbListProps) => {
       </Head>
 
       <ol className={s.root}>
-        {list.map((breadcrumb, index) => {
+        {list?.map((breadcrumb, index) => {
           return <Breadcrumb key={index} {...breadcrumb} />;
         })}
       </ol>

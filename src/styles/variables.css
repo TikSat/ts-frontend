@@ -2,6 +2,7 @@
   /* COLORS */
   --white: #fff;
   --black: #000;
+  --red: #db4e4e;
   --gray-25: #fcfcfd;
   --gray-50: #f9fafb;
   --gray-100: #f2f4f7;
@@ -31,7 +32,6 @@
   --container-md: 768px;
   --container-lg: 1024px;
   --container-xl: 1224px;
-  --container-full: 90%;
 
   /* Spacings */
   --spacing-4: 4px;

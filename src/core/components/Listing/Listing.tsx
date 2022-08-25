@@ -7,7 +7,8 @@ export interface ListingProps {
   id: string;
   title: string;
   slug: string;
-  category: CategoryProps;
+  category?: CategoryProps;
+  url?: string;
 }
 // TODO: add schema.org Product markup json+ld
 

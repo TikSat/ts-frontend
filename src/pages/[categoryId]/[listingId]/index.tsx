@@ -1,12 +1,13 @@
 import React from 'react';
-import { GetServerSideProps, NextPage } from 'next';
+import { GetStaticProps } from 'next';
 import { Listing } from '@core/components/Listing';
-import { fetchApi } from '@core/helpers/api/fetcher';
+import { fetch } from '@core/helpers/api/fetcher';
 import { ApiRoutes } from '@core/routes';
 import { ListingProps } from '@core/components/Listing/Listing';
 import { CategoryProps } from '@core/components/Category/Category';
 import { BreadcrumbProps } from '@core/components/Breadcrumb/Breadcrumb';
 import { BreadcrumbList } from '@core/components/BreadcrumbList';
+import { NextPageWithLayout } from 'src/pages/_app';
 
 interface ListingPageProps {
   listing: ListingProps;
@@ -14,7 +15,7 @@ interface ListingPageProps {
   breadcrumbs: BreadcrumbProps[];
 }
 
-const ListingPage: NextPage<ListingPageProps> = ({ listing, category, breadcrumbs }) => {
+const ListingPage: NextPageWithLayout<ListingPageProps> = ({ listing, breadcrumbs }) => {
   return (
     <React.Fragment>
       <BreadcrumbList breadcrumbs={breadcrumbs} />
@@ -23,14 +24,14 @@ const ListingPage: NextPage<ListingPageProps> = ({ listing, category, breadcrumb
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ params, res }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const routes = ApiRoutes({ categoryId: params?.categoryId, listingId: params?.listingId });
-  const listing = await fetchApi(routes.listing);
-  const category = await fetchApi(routes.category);
+  const listing = await fetch(routes.listing);
+  const category = await fetch(routes.category);
   let parentCategory = null;
   // TODO: create category tree endpoint on backend
   if (category.parent_id) {
-    parentCategory = await fetchApi(ApiRoutes({ categoryId: category.parent_id }).category);
+    parentCategory = await fetch(ApiRoutes({ categoryId: category.parent_id }).category);
   }
 
   const breadcrumbs = [
@@ -56,12 +57,45 @@ export const getServerSideProps: GetServerSideProps = async ({ params, res }) =>
     },
   ];
 
-  if (!category || !listing || !breadcrumbs) {
-    res.statusCode = 500;
-    throw new Error('Internal Server Error');
-  } else {
-    return { props: { listing, category, breadcrumbs } };
-  }
+  return { props: { listing, category, breadcrumbs }, revalidate: 30 };
 };
+
+export async function getStaticPaths() {
+  let routes = ApiRoutes({});
+  const categoryIds = await fetch(routes.categories, {
+    params: {
+      response: { include: ['id'] },
+      pagination: false,
+    },
+  });
+
+  const buildPaths = async () => {
+    const paths: { params: { categoryId: string; listingId: string } }[] = [];
+
+    for (const { id: categoryId } of categoryIds) {
+      let routes = ApiRoutes({ categoryId });
+
+      const listingIds = await fetch(routes.listings, {
+        params: {
+          pagination: false,
+          response: {
+            include: ['id'],
+          },
+        },
+      });
+
+      for (const { id: listingId } of listingIds) {
+        paths.push({ params: { categoryId, listingId } });
+      }
+    }
+
+    return paths;
+  };
+
+  return {
+    paths: await buildPaths(),
+    fallback: true,
+  };
+}
 
 export default ListingPage;

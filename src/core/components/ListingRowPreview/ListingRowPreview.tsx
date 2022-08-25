@@ -6,7 +6,7 @@ import s from './ListingRowPreview.module.css';
 
 export const ListingRowPreview = ({ category, id, title }: ListingProps) => {
   return (
-    <NavLink href={`${category.id}/${id}`}>
+    <NavLink href={`${category?.id}/${id}`}>
       <div className={s.root}>
         <div className={s.image}>
           <Image src="/img_1.png" layout="fill"></Image>

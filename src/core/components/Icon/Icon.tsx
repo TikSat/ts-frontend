@@ -3,13 +3,12 @@ import cn from 'classnames';
 import s from './Icon.module.css';
 
 interface IconProps {
-  name: string;
+  name: 'heart' | 'menu' | 'logo' | 'user' | 'message' | 'location';
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'logo';
   theme?: 'primary' | 'secondary' | 'silent';
 }
 
 export const Icon = ({ name, size = 'sm', theme = 'silent' }: IconProps) => {
-  // @ts-ignore
   const IconTag = iconList[name];
   if (IconTag) {
     return (

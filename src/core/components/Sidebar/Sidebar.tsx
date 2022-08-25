@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import s from './Sidebar.module.css';
 
 interface ContainerProps {

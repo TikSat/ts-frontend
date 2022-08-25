@@ -4,16 +4,14 @@ const DOMAIN = 'https://tiksat.bid';
 
 class SchemaGenerator {
   generateBreadcrumbsSchema = (breadcrumbs: BreadcrumbProps[]) => {
-    const items = breadcrumbs
-      .filter((el) => el.title != null)
-      .map((breadcrumb, index) => {
-        return {
-          '@type': 'ListItem',
-          position: index,
-          name: breadcrumb.title,
-          item: DOMAIN + breadcrumb.url,
-        };
-      });
+    const items = breadcrumbs?.map((breadcrumb, index) => {
+      return {
+        '@type': 'ListItem',
+        position: index,
+        name: breadcrumb.title,
+        item: DOMAIN + breadcrumb.url,
+      };
+    });
     return JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',

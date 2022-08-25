@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Container } from '../Container';
 import { Header } from '../Header';
-import s from './Layout.module.css';
 import { useTypedSelectors } from '@core/hooks/useTypedSelectors';
 import { useActions } from '@core/hooks/useActions';
-import { fetchApi } from '@core/helpers/api/fetcher';
+import { fetch } from '@core/helpers/api/fetcher';
 import { ApiRoutes } from '@core/routes';
 import { useEffect } from 'react';
+import s from './Layout.module.css';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -20,7 +20,7 @@ export const Layout = ({ children }: LayoutProps) => {
     const token = window.localStorage.getItem('token');
 
     if (!user && token) {
-      fetchApi(ApiRoutes({}).profile, {
+      fetch(ApiRoutes({}).profile, {
         token: window.localStorage.getItem('token'),
       }).then((res) => setUser(res));
     }

@@ -1,1 +1,1 @@
-export { ListingsContainer } from './ListingsContainer';
+export { ContainerWithSidebar } from './ContainerWithSidebar';

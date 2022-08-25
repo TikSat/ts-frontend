@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import { Input } from '@core/components/Input';
 import { Button } from '@core/components/Button';
 import { ApiRoutes } from '@core/routes';
-import { fetchApi } from '@core/helpers/api/fetcher';
+import { fetch } from '@core/helpers/api/fetcher';
 import { FormEvent } from 'react';
 import React from 'react';
 import { useActions } from '@core/hooks/useActions';
@@ -30,12 +30,12 @@ const SignUpPage: NextPage = () => {
       data: JSON.stringify(data),
     };
 
-    const res = await fetchApi(ApiRoutes({}).signUp, options);
+    const res = await fetch(ApiRoutes({}).signUp, options);
 
     if (res && res.token && res.refresh_token) {
       window.localStorage.setItem('token', res.token);
       window.localStorage.setItem('refreshToken', res.refresh_token);
-      fetchApi(ApiRoutes({}).profile, {
+      fetch(ApiRoutes({}).profile, {
         token: window.localStorage.getItem('token'),
       }).then((res) => setUser(res));
     }
