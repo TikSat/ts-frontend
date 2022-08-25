@@ -9,7 +9,7 @@ interface BreadcrumbListProps {
 }
 
 export const BreadcrumbList = ({ breadcrumbs }: BreadcrumbListProps) => {
-  const list = breadcrumbs?.filter((el) => el.title != null);
+  const list = breadcrumbs?.filter((el) => el.title != null || el.title != undefined);
 
   const generator = new SchemaGenerator();
   return (

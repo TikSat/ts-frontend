@@ -14,11 +14,14 @@ export const getStaticProps: GetStaticProps = async () => {
   const listings = await fetch(routes.recommended);
   const breadcrumbs = [{ title: 'Istanbul', url: '/', current: true }];
 
-  if (!categories || !listings || !breadcrumbs) {
-    throw new Error('Internal Server Error');
-  } else {
-    return { props: { categories, listings, breadcrumbs }, revalidate: 30 };
-  }
+  return {
+    props: {
+      categories: categories || null,
+      listing: listings || null,
+      breadcrumbs: breadcrumbs || null,
+    },
+    revalidate: 30,
+  };
 };
 
 export default HomePage;

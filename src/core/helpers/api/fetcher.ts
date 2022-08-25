@@ -46,7 +46,9 @@ export const fetch = async (url: string, config: FetcherConfig = {}) => {
         }
       });
 
-    return await res.data;
+    if (res) {
+      return await res.data;
+    }
   } catch (error) {
     console.log(error);
     throw error;

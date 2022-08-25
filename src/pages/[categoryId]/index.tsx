@@ -43,10 +43,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const routes = ApiRoutes({ categoryId: params?.categoryId });
   const category = await fetch(routes.category);
   const listings = await fetch(routes.listings);
-  const categories = category.subcategories;
+  const categories = category?.subcategories;
   let parentCategory = null;
 
-  if (category.parent_id) {
+  if (category?.parent_id) {
     parentCategory = await fetch(ApiRoutes({ categoryId: category.parent_id }).category);
   }
 
@@ -62,16 +62,25 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       current: false,
     },
     {
-      title: category.name,
-      url: `/${category.id}`,
+      title: category?.name || null,
+      url: `/${category?.id}`,
       current: true,
     },
   ];
 
-  return { props: { listings, categories, category, breadcrumbs }, revalidate: 30 };
+  return {
+    props: {
+      listings: listings || null,
+      categories: categories || null,
+      category: category || null,
+      breadcrumbs: breadcrumbs || null,
+    },
+    revalidate: 30,
+  };
 };
 
 export async function getStaticPaths() {
+  const paths = [];
   const routes = ApiRoutes({});
   const ids = await fetch(routes.categories, {
     params: {
@@ -80,9 +89,12 @@ export async function getStaticPaths() {
     },
   });
 
-  const paths = ids.map(({ id }: CategoryProps) => {
-    return { params: { categoryId: id } };
-  });
+  if (ids) {
+    for (const { id } of ids) {
+      paths.push({ params: { categoryId: id } });
+    }
+  }
+
   return {
     paths: paths,
     fallback: true,
