@@ -6,6 +6,8 @@ import Qs from 'qs';
 type FetcherConfig = AxiosRequestConfig & { token?: string | null };
 
 export const fetch = async (url: string, config: FetcherConfig = {}) => {
+  //TODO: remove it after debug
+  console.log(serverUrl, process.env.NEXT_PUBLIC_SERVER_URL, process.env.SERVER_URL);
   try {
     config.paramsSerializer = function (params) {
       return Qs.stringify(params, {

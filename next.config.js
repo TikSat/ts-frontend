@@ -20,6 +20,9 @@ const nextConfig = {
   devIndicators: {
     autoPrerender: true
   },
+  env: {
+    SERVER_URL: process.env.SERVER_URL
+  },
   sentry: {
     disableServerWebpackPlugin: (process.env.NODE_ENV !== 'production'),
     disableClientWebpackPlugin: (process.env.NODE_ENV !== 'production'),
