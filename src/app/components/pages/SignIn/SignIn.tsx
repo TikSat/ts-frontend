@@ -37,7 +37,7 @@ export const SignIn = () => {
         window.localStorage.setItem('refreshToken', res.data.refresh_token);
         fetch(ApiRoutes({}).profile, {
           token: window.localStorage.getItem('token'),
-        }).then((res) => setUser(res));
+        }).then((res) => setUser(res?.data));
       }
     } else {
       setError(true);

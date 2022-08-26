@@ -12,7 +12,7 @@ export const FavoritesListPreview = ({ listings }: ListingListProps) => {
       {arr?.map((listing) => (
         <ListingRow key={`${listing.id}`} {...listing}></ListingRow>
       ))}
-      <Button theme={'silent'} className={s.button}>
+      <Button theme={'silent'} className={'fullWidth'}>
         See all
       </Button>
     </div>
