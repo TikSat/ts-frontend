@@ -22,20 +22,6 @@ export const Modal = ({ children, isOpen, handleClose, classNames = {}, title }:
   const nodeRef = React.useRef(null);
 
   React.useEffect(() => {
-    const bodyElement = document.getElementsByTagName('body')[0];
-
-    if (isOpen) {
-      bodyElement.setAttribute('style', 'overflow: overlay');
-    }
-
-    if (!isOpen) {
-      bodyElement.setAttribute('style', '');
-    }
-
-    return () => bodyElement.setAttribute('style', '');
-  }, [isOpen]);
-
-  React.useEffect(() => {
     const closeOnEscapeKey = (e: KeyboardEvent) => (e.key === 'Escape' ? handleClose() : null);
     document.body.addEventListener('keydown', closeOnEscapeKey);
     return () => {

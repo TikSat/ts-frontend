@@ -39,7 +39,7 @@ export const Header = () => {
             Location:
             <NavLink href="/">
               <span>Moscow, Russia</span>
-              <Icon name="location" size={'xs'} theme={'secondary'} />
+              <Icon name="location" size={'sm'} theme={'secondary'} />
             </NavLink>
           </div>
         </div>

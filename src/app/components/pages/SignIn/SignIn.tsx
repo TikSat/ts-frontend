@@ -61,7 +61,7 @@ export const SignIn = () => {
         <NavLink href={'#'}> I forgot my password </NavLink>
       </span>
       <hr />
-      <Button type="submit" form={'signIn'} size={'lg'} className={'fullWidth'}>
+      <Button type="submit" form={'signIn'} size={'lg'} className={'w-100'}>
         Login
       </Button>
       <div className={s.help}>

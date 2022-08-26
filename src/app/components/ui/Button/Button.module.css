@@ -19,13 +19,9 @@
   &.initial {
     height: min-content;
     min-width: min-content;
-    padding: 6px;
+    padding: var(--spacing-4);
 
     border: 0;
-  }
-
-  &.fullWidth {
-    width: 100%;
   }
 
   &.sm {
