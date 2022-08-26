@@ -49,3 +49,15 @@ a {
   font-weight: 600;
   line-height: 28px;
 }
+
+hr {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+
+  border: 1px solid var(--gray-100);
+}
+
+.muted {
+  color: var(--gray-400);
+}

@@ -5,7 +5,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "paths": {
-      "@core/*": ["src/core/*"],
+      "@app/*": ["src/app/*"],
       "src/*": ["src/*"]
     },
     "allowJs": true,

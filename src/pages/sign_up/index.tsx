@@ -1,14 +1,14 @@
-import { NextPage } from 'next';
-import { Input } from '@core/components/Input';
-import { Button } from '@core/components/Button';
-import { ApiRoutes } from '@core/routes';
-import { fetch } from '@core/helpers/api/fetcher';
 import { FormEvent } from 'react';
 import React from 'react';
-import { useActions } from '@core/hooks/useActions';
-import { useTypedSelectors } from '@core/hooks/useTypedSelectors';
+import { NextPageWithLayout } from 'src/pages/_app';
+import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
+import { useActions } from '@app/hooks/useActions';
+import { ApiRoutes } from '@app/routes';
+import { fetch } from 'src/lib/api/fetcher';
+import { Input } from '@app/components/ui/Input';
+import { Button } from '@app/components/ui/Button';
 
-const SignUpPage: NextPage = () => {
+const SignUpPage: NextPageWithLayout = () => {
   const { user } = useTypedSelectors((state) => state.user);
   const { setUser } = useActions();
 

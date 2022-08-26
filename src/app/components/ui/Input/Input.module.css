@@ -1,0 +1,55 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+
+  &.xs {
+    padding: var(--spacing-4);
+  }
+
+  &.sm {
+    padding: var(--spacing-4) var(--spacing-8);
+  }
+
+  &.md {
+    padding: var(--spacing-8) var(--spacing-12);
+  }
+
+  &.lg {
+    padding: var(--spacing-12) var(--spacing-16);
+  }
+
+  &.xl {
+    padding: var(--spacing-20) var(--spacing-24);
+  }
+
+  .fullWidth {
+    width: 100%;
+  }
+
+  &.primary {
+    &:focus {
+      border: 1px solid var(--brand-primary-400);
+    }
+  }
+
+  &.secondary {
+    &:focus {
+      border: 1px solid var(--gray-400);
+    }
+  }
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 16px;
+}

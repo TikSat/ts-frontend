@@ -1,9 +1,8 @@
 import type { GetStaticProps } from 'next';
-import { fetch } from '@core/helpers/api/fetcher';
-import { ApiRoutes } from '@core/routes';
-import { Main, MainPageProps } from '@core/components/pages/Main';
+import { fetch } from 'src/lib/api/fetcher';
+import { ApiRoutes } from '@app/routes';
+import { Main, MainPageProps } from '@app/components/pages/Main';
 import { NextPageWithLayout } from 'src/pages/_app';
-import categoryId from 'src/pages/[categoryId]';
 
 const HomePage: NextPageWithLayout<MainPageProps> = (props) => {
   return <Main {...props} />;
