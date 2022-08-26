@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
-import { ReactElement, ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import { store } from 'src/redux/store';
 
@@ -9,7 +8,7 @@ import 'src/styles/globals.css';
 import { Layout } from '@app/components/containers/Layout';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode;
+  setLayout?: () => string;
 };
 
 type AppPropsWithLayout = AppProps & {
@@ -17,10 +16,15 @@ type AppPropsWithLayout = AppProps & {
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.getLayout ?? ((page) => page);
-  return getLayout(
+  const layout =
+    Component.setLayout ??
+    (() => {
+      return 'user';
+    });
+
+  return (
     <Provider store={store}>
-      <Layout>
+      <Layout layoutType={layout}>
         <Component {...pageProps} />
       </Layout>
     </Provider>

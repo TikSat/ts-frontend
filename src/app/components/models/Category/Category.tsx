@@ -7,6 +7,7 @@ export interface CategoryProps {
   name: string;
   slug: string;
   image_small: string;
+  desc: string;
 }
 
 export const Category = (category: CategoryProps) => {
