@@ -1,4 +1,3 @@
-import { Layout } from '@core/components/Layout';
 import { ReactElement, ReactNode } from 'react';
 
 const Backend = () => {

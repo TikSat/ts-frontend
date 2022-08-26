@@ -1,13 +1,12 @@
 import React from 'react';
 import { GetStaticProps } from 'next';
-import { Listing } from '@core/components/Listing';
-import { fetch } from '@core/helpers/api/fetcher';
-import { ApiRoutes } from '@core/routes';
-import { ListingProps } from '@core/components/Listing/Listing';
-import { CategoryProps } from '@core/components/Category/Category';
-import { BreadcrumbProps } from '@core/components/Breadcrumb/Breadcrumb';
-import { BreadcrumbList } from '@core/components/BreadcrumbList';
+import { fetch } from 'src/lib/api/fetcher';
 import { NextPageWithLayout } from 'src/pages/_app';
+import { Listing, ListingProps } from '@app/components/models/Listing';
+import { CategoryProps } from '@app/components/models/Category';
+import { BreadcrumbProps } from '@app/components/models/Breadcrumb';
+import { BreadcrumbList } from '@app/components/containers/BreadcrumbList';
+import { ApiRoutes } from '@app/routes';
 
 interface ListingPageProps {
   listing: ListingProps;

@@ -1,8 +1,0 @@
-.root {
-  width: 100%;
-  max-width: var(--container-xl);
-  padding-right: var(--spacing-12);
-  padding-left: var(--spacing-12);
-  margin-right: auto;
-  margin-left: auto;
-}

@@ -1,0 +1,7 @@
+.root {
+  width: 100%;
+  max-width: var(--container-xl);
+  padding: 0;
+  margin-right: auto;
+  margin-left: auto;
+}

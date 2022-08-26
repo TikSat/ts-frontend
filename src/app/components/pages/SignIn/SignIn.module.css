@@ -1,0 +1,18 @@
+.root {
+  display: flex;
+}
+
+.help {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-4);
+  width: 100%;
+
+  font-size: 16px;
+}
+
+.error {
+  color: var(--red);
+}
