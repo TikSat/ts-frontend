@@ -1,5 +1,6 @@
-import { BreadcrumbProps } from 'app/components/Breadcrumb/Breadcrumb';
-import { ListingProps } from 'app/components/Listing/Listing';
+import { BreadcrumbProps } from '@app/components/models/Breadcrumb';
+import { ListingProps } from '@app/components/models/Listing';
+
 const DOMAIN = 'https://tiksat.bid';
 
 class SchemaGenerator {
