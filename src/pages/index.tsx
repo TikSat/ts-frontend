@@ -11,7 +11,12 @@ const HomePage: NextPageWithLayout<MainPageProps> = (props) => {
 export const getStaticProps: GetStaticProps = async () => {
   let routes = ApiRoutes({});
 
-  const categoriesData = await fetch(routes.categories, { params: { root: true } });
+  const categoriesData = await fetch(routes.categories, {
+    params: {
+      root: true,
+      response: { include: ['id', 'name', 'slug'] },
+    },
+  });
   const listingsData = await fetch(routes.recommended);
 
   const categories = categoriesData?.data;
