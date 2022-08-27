@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { createPortal } from 'react-dom';
+import { useEffect, useState } from 'react';
 
 interface PortalProps {
   children: React.ReactNode;
@@ -14,9 +15,9 @@ const createWrapperAndAppendToBody = (wrapperId: string) => {
 };
 
 export const ReactPortal = ({ children, wrapperId = 'react-portal-wrapper' }: PortalProps) => {
-  const [wrapperElement, setWrapperElement] = React.useState<HTMLElement | null>(null);
+  const [wrapperElement, setWrapperElement] = useState<HTMLElement | null>(null);
 
-  React.useLayoutEffect(() => {
+  useEffect(() => {
     let element = document.getElementById(wrapperId);
     let systemCreated = false;
     if (!element) {

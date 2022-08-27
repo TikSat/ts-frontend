@@ -9,8 +9,8 @@ import { Icon } from '@app/components/ui/Icon';
 import s from './ListingCard.module.css';
 
 export const ListingCard = (listing: ListingProps) => {
-  const { category, id, title, url = '/' } = listing;
-  const path = category ? `${category.id}/${id}` : url;
+  const { category, id, title, url = '/', slug } = listing;
+  const path = category ? `${category.slug}/${slug}` : url;
 
   return (
     <NavLink href={path}>

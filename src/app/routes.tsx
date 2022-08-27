@@ -15,5 +15,6 @@ export const ApiRoutes = ({ categoryId, listingId }: ApiProps) => {
     listing: `/api/categories/${categoryId}/listings/${listingId}`,
     signIn: '/api/sign_in',
     signUp: '/api/sign_up',
+    tokens: '/api/tokens',
   };
 };

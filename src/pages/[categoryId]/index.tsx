@@ -49,7 +49,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   let parentCategory;
 
   if (category?.parent_id) {
-    const parentCategoryData = await fetch(ApiRoutes({ categoryId: category.parent_id }).category);
+    const parentCategoryData = await fetch(
+      ApiRoutes({ categoryId: category.parent_slug }).category
+    );
     parentCategory = parentCategoryData?.data;
   }
 
@@ -61,12 +63,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
     {
       title: parentCategory ? parentCategory.name : null,
-      url: parentCategory ? `/${parentCategory.id}` : null,
+      url: parentCategory ? `/${parentCategory.slug}` : null,
       current: false,
     },
     {
       title: category?.name || null,
-      url: `/${category?.id}`,
+      url: `/${category?.slug}`,
       current: true,
     },
   ];

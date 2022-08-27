@@ -32,11 +32,16 @@ export const SignIn = () => {
     const res = await fetch(ApiRoutes({}).signIn, options);
 
     if (res?.status == 200) {
-      if (res?.data.token) {
-        window.localStorage.setItem('token', res.data.token);
-        window.localStorage.setItem('refreshToken', res.data.refresh_token);
+      const token = res.data.token;
+      const refresh_token = res.data.refresh_token;
+
+      if (token && refresh_token) {
+        window.localStorage.setItem('token', token);
+        window.localStorage.setItem('refreshToken', refresh_token);
+
         fetch(ApiRoutes({}).profile, {
-          token: window.localStorage.getItem('token'),
+          token: token,
+          refresh_token: refresh_token,
         }).then((res) => setUser(res?.data));
       }
     } else {

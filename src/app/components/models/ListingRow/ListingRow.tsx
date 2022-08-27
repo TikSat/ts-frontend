@@ -4,9 +4,9 @@ import { NavLink } from '@app/components/ui/NavLink';
 import { ListingProps } from '@app/components/models/Listing';
 import s from './ListingRow.module.css';
 
-export const ListingRow = ({ category, id, title }: ListingProps) => {
+export const ListingRow = ({ category, slug, title }: ListingProps) => {
   return (
-    <NavLink href={`${category?.id}/${id}`}>
+    <NavLink href={`${category?.slug}/${slug}`}>
       <div className={s.root}>
         <div className={s.image}>
           <Image src="/img_1.png" layout="fill"></Image>
