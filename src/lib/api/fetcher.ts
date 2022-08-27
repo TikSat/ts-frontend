@@ -6,7 +6,7 @@ const serverUrl =
 // @ts-ignore
 import Qs from 'qs';
 
-type FetcherConfig = AxiosRequestConfig & { token?: string | null };
+type FetcherConfig = AxiosRequestConfig & { token?: string | null; refresh_token?: string | null };
 
 export const fetch = async (url: string, config: FetcherConfig = {}) => {
   try {
@@ -17,10 +17,11 @@ export const fetch = async (url: string, config: FetcherConfig = {}) => {
       });
     };
 
-    let { headers, token, ...others } = config;
+    let { headers, token, refresh_token, ...others } = config;
 
-    if (token) {
+    if (token && refresh_token) {
       headers = { Authorization: `Bearer ${token}`, ...headers };
+      headers = { 'Refresh-Token': refresh_token, ...headers };
     }
 
     const res = await axios

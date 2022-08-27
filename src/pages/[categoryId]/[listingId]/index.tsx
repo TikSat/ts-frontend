@@ -33,7 +33,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   let parentCategory = null;
   // TODO: create category tree endpoint on backend
-  if (category?.parent_id) {
+  if (category?.parent_slug) {
     const parentCategoryData = await fetch(
       ApiRoutes({ categoryId: category.parent_slug }).category
     );
@@ -47,8 +47,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       current: false,
     },
     {
-      title: parentCategory ? parentCategory.name : null,
-      url: parentCategory ? `/${parentCategory.slug}` : null,
+      title: parentCategory ? parentCategory?.name : null,
+      url: parentCategory ? `/${parentCategory?.slug}` : null,
       current: false,
     },
     {
