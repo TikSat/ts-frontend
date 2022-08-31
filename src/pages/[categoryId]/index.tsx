@@ -66,7 +66,7 @@ export async function getStaticPaths() {
   const routes = ApiRoutes({});
   const ids = await fetch(routes.categoriesIds);
 
-  if (ids) {
+  if (ids && ids.status == 200) {
     for (const arrays of ids.data) {
       paths.push({ params: { categoryId: arrays[1] } });
     }

@@ -55,7 +55,7 @@ export async function getStaticPaths() {
   const categoryIds = await fetch(routes.categoriesIds);
   const paths: { params: { categoryId: any; listingId: any } }[] = [];
 
-  if (categoryIds?.data) {
+  if (categoryIds && categoryIds.status == 200) {
     for (const arrays of categoryIds.data) {
       let categoryId = arrays[1];
       for (const listingId of arrays[0]) {
