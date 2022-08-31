@@ -8,6 +8,7 @@ import { ListingProps } from '@app/components/models/Listing';
 import { CategoryProps } from '@app/components/models/Category';
 import { BreadcrumbProps } from '@app/components/models/Breadcrumb';
 import { Main } from '@app/components/pages/Main';
+import { buildBreadcrumbs } from 'src/lib/api/breadcrumbs';
 
 interface CategoryPageProps {
   listings: ListingProps[];
@@ -46,39 +47,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const category = categoryData?.data;
   const categories = category?.subcategories;
-  let parentCategory;
 
-  if (category?.parent_id) {
-    const parentCategoryData = await fetch(
-      ApiRoutes({ categoryId: category.parent_slug }).category
-    );
-    parentCategory = parentCategoryData?.data;
-  }
-
-  const breadcrumbs = [
-    {
-      title: 'Istanbul',
-      url: '/',
-      current: false,
-    },
-    {
-      title: parentCategory ? parentCategory.name : null,
-      url: parentCategory ? `/${parentCategory.slug}` : null,
-      current: false,
-    },
-    {
-      title: category?.name || null,
-      url: `/${category?.slug}`,
-      current: true,
-    },
-  ];
+  let breadcrumbs = await buildBreadcrumbs(params?.categoryId);
 
   return {
     props: {
       listings: listingsData?.data || [],
       categories: categories || [],
       category: category || [],
-      breadcrumbs: breadcrumbs || [],
+      breadcrumbs: breadcrumbs,
     },
     revalidate: 30,
   };
@@ -89,9 +66,9 @@ export async function getStaticPaths() {
   const routes = ApiRoutes({});
   const ids = await fetch(routes.categoriesIds);
 
-  if (ids) {
-    for (const { category_id: categoryId } of ids.data) {
-      paths.push({ params: { categoryId } });
+  if (ids && ids.status == 200) {
+    for (const arrays of ids.data) {
+      paths.push({ params: { categoryId: arrays[1] } });
     }
   }
 

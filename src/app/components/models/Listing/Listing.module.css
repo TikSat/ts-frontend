@@ -1,3 +1,17 @@
 .root {
   max-width: 100%;
 }
+
+.image {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  height: 100%;
+
+  span {
+    border-radius: 11px 11px 0 0;
+  }
+}

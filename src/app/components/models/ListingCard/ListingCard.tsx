@@ -7,16 +7,18 @@ import { ListingProps } from '@app/components/models/Listing';
 import { NavLink } from '@app/components/ui/NavLink';
 import { Icon } from '@app/components/ui/Icon';
 import s from './ListingCard.module.css';
+import { serverUrl } from 'src/lib/api/fetcher';
+import { format } from 'src/lib/api/currencyFormatter';
 
 export const ListingCard = (listing: ListingProps) => {
-  const { category, id, title, url = '/', slug } = listing;
+  const { category, title, url = '/', slug, image_url, price } = listing;
   const path = category ? `${category.slug}/${slug}` : url;
-
+  const image_src = !!image_url ? serverUrl + image_url : image.src;
   return (
     <NavLink href={path}>
       <div className={cn(s.root)}>
         <div className={s.image}>
-          <Image src={image.src} layout="fill"></Image>
+          <Image src={image_src} layout="fill" alt={listing.title}></Image>
         </div>
         <Link href={'/'}>
           <div className={s.favorite}>
@@ -24,7 +26,7 @@ export const ListingCard = (listing: ListingProps) => {
           </div>
         </Link>
         <div className={s.text}>
-          <span className={s.price}>$100 000</span>
+          <span className={s.price}>{format('tr-TR', 'TRY', price || 0)}</span>
           <span className={s.title}>{title}</span>
           <span className={s.location}>Moscow, Arbat street</span>
         </div>
