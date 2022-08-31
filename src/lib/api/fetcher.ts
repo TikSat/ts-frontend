@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-const serverUrl =
+export const serverUrl =
   process.env.NEXT_PUBLIC_SERVER_URL ||
   process.env.SERVER_URL ||
   'https://master.backend.tiksat.bid';
