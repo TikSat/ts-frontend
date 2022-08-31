@@ -32,11 +32,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const category = categoryData?.data;
   const listing = listingData?.data;
 
-  let breadcrumbs = await buildBreadcrumbs(listing.category.slug, true);
+  let breadcrumbs = await buildBreadcrumbs(params?.categoryId, true);
 
   breadcrumbs.push({
     title: listing.title,
-    url: `/${category.slug}/${listing.slug}`,
+    url: `/${category?.slug}/${listing?.slug}`,
     current: true,
   });
 
@@ -55,9 +55,10 @@ export async function getStaticPaths() {
   const categoryIds = await fetch(routes.categoriesIds);
   const paths: { params: { categoryId: any; listingId: any } }[] = [];
 
-  if (categoryIds) {
-    for (const { category_id: categoryId, listings_ids: listingIds } of categoryIds.data) {
-      for (const listingId of listingIds) {
+  if (categoryIds?.data) {
+    for (const arrays of categoryIds.data) {
+      let categoryId = arrays[1];
+      for (const listingId of arrays[0]) {
         paths.push({ params: { categoryId, listingId } });
       }
     }

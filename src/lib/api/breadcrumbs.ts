@@ -16,8 +16,9 @@ export const buildBreadcrumbs = async (
     current: false,
   });
 
-  if (data) {
+  if (slugs?.status == 200 && slugs?.data) {
     const last = data[data.length - 1];
+
     data.forEach((crumb: 2[]) => {
       breadcrumbs.push({
         title: crumb[0],
