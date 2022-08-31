@@ -53,13 +53,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 export async function getStaticPaths() {
   let routes = ApiRoutes({});
   const categoryIds = await fetch(routes.categoriesIds);
-  const paths: { params: { categoryId: any; listingId: any } }[] = [];
+  const paths: { params: { categoryId: string; listingId: string } }[] = [];
 
   if (categoryIds && categoryIds.status == 200) {
     for (const arrays of categoryIds.data) {
       let categoryId = arrays[1];
       for (const listingId of arrays[0]) {
-        paths.push({ params: { categoryId, listingId } });
+        if (categoryId && listingId) {
+          paths.push({ params: { categoryId, listingId } });
+        }
       }
     }
   }

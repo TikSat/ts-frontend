@@ -68,7 +68,9 @@ export async function getStaticPaths() {
 
   if (ids && ids.status == 200) {
     for (const arrays of ids.data) {
-      paths.push({ params: { categoryId: arrays[1] } });
+      if (arrays[1]) {
+        paths.push({ params: { categoryId: arrays[1] } });
+      }
     }
   }
 
