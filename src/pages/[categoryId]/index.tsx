@@ -50,15 +50,27 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   let breadcrumbs = await buildBreadcrumbs(params?.categoryId);
 
-  return {
-    props: {
-      listings: listingsData?.data || [],
-      categories: categories || [],
-      category: category || [],
-      breadcrumbs: breadcrumbs,
-    },
-    revalidate: 30,
-  };
+  if (categoryData?.status == 200 && listingsData?.status == 200) {
+    return {
+      props: {
+        listings: listingsData?.data || [],
+        categories: categories || [],
+        category: category || [],
+        breadcrumbs: breadcrumbs,
+      },
+      revalidate: 30,
+    };
+  } else {
+    return {
+      props: {
+        listings: [],
+        categories: [],
+        category: [],
+        breadcrumbs: [],
+      },
+      revalidate: 30,
+    };
+  }
 };
 
 export async function getStaticPaths() {

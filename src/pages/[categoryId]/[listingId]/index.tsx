@@ -39,15 +39,25 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     url: `/${category?.slug}/${listing?.slug}`,
     current: true,
   });
-
-  return {
-    props: {
-      listing: listing || null,
-      category: category || null,
-      breadcrumbs: breadcrumbs,
-    },
-    revalidate: 30,
-  };
+  if (listingData?.status == 200 && categoryData?.status == 200) {
+    return {
+      props: {
+        listing: listing || null,
+        category: category || null,
+        breadcrumbs: breadcrumbs,
+      },
+      revalidate: 30,
+    };
+  } else {
+    return {
+      props: {
+        listing: [],
+        category: null,
+        breadcrumbs: [],
+      },
+      revalidate: 30,
+    };
+  }
 };
 
 export async function getStaticPaths() {

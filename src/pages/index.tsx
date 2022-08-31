@@ -24,14 +24,25 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const breadcrumbs = [{ title: 'Istanbul', url: '/', current: true }];
 
-  return {
-    props: {
-      categories: categories || [],
-      listings: listings || [],
-      breadcrumbs: breadcrumbs || [],
-    },
-    revalidate: 30,
-  };
+  if (listingsData?.status == 200 && categoriesData?.status == 200) {
+    return {
+      props: {
+        categories: categories || [],
+        listings: listings || [],
+        breadcrumbs: breadcrumbs || [],
+      },
+      revalidate: 30,
+    };
+  } else {
+    return {
+      props: {
+        categories: [],
+        listings: [],
+        breadcrumbs: [],
+      },
+      revalidate: 30,
+    };
+  }
 };
 
 export default HomePage;

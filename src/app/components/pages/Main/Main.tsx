@@ -27,6 +27,7 @@ export const Main: FC<MainPageProps> = (pageProps) => {
     title = 'Istanbul',
     header = 'Your Recommendations',
   } = pageProps;
+
   const { user } = useTypedSelectors((state) => state.user);
 
   const pageTitle = `${title} | Tiksat`;
