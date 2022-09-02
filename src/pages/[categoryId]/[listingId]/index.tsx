@@ -5,7 +5,6 @@ import { NextPageWithLayout } from 'src/pages/_app';
 import { Listing, ListingProps } from '@app/components/models/Listing';
 import { CategoryProps } from '@app/components/models/Category';
 import { BreadcrumbProps } from '@app/components/models/Breadcrumb';
-import { BreadcrumbList } from '@app/components/containers/BreadcrumbList';
 import { ApiRoutes } from '@app/routes';
 import { buildBreadcrumbs } from 'src/lib/api/breadcrumbs';
 
@@ -16,12 +15,7 @@ interface ListingPageProps {
 }
 
 const ListingPage: NextPageWithLayout<ListingPageProps> = ({ listing, breadcrumbs }) => {
-  return (
-    <React.Fragment>
-      <BreadcrumbList breadcrumbs={breadcrumbs} />
-      <Listing {...listing}></Listing>
-    </React.Fragment>
-  );
+  return <Listing breadcrumbs={breadcrumbs} listing={listing} />;
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {

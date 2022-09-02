@@ -2,7 +2,7 @@
   display: flex;
 
   &.xs {
-    width: 14px;
+    width: 16px;
     height: 14px;
   }
 
@@ -46,5 +46,15 @@
   &.silent {
     color: var(--gray-700);
     stroke: var(--gray-700);
+  }
+
+  &.muted {
+    color: var(--gray-400);
+    stroke: var(--gray-400);
+  }
+
+  &.star {
+    color: #ffb319;
+    stroke: #ffb319;
   }
 }

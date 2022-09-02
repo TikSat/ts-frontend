@@ -1,0 +1,28 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+
+  .fieldName {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+
+    color: #999ca0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  .fieldValue {
+    display: flex;
+    align-items: center;
+
+    color: #202026;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
