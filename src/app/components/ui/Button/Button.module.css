@@ -17,8 +17,6 @@
   transition: all linear 0.2s;
 
   &.initial {
-    height: min-content;
-    min-width: min-content;
     padding: var(--spacing-4);
 
     border: 0;
@@ -57,13 +55,9 @@
   }
 
   &.secondary {
-    color: var(--brand-primary-700);
+    color: var(--brand-primary-50);
 
-    background-color: var(--brand-primary-50);
-
-    &:hover {
-      background-color: var(--brand-primary-100);
-    }
+    background-color: #4cbdb5;
   }
 
   &.silent {

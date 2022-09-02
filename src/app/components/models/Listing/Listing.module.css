@@ -1,5 +1,170 @@
 .root {
-  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  width: 100%;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+
+  .fields {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+  }
+}
+
+.images {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 8px;
+
+  .subInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 52px;
+
+    .date {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      color: var(--gray-400);
+      font-size: 12px;
+    }
+  }
+}
+
+.cta {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 12px;
+
+  border: 1px solid #ebebeb;
+  border-radius: 12px;
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .price {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 12px;
+      width: 100%;
+
+      button {
+        flex-grow: 2;
+      }
+    }
+
+    .profileInfo {
+      display: flex;
+      flex-direction: row;
+      flex-grow: 2;
+      justify-content: flex-end;
+      gap: 12px;
+      width: 100%;
+
+      .profileName {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        flex-grow: 2;
+
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 24px;
+
+        .role {
+          font-weight: 400;
+        }
+
+        .name {
+          display: flex;
+          flex-direction: row;
+
+          &::before {
+            content: '';
+
+            display: flex;
+            width: 8px;
+            height: 8px;
+            margin-top: 8px;
+            margin-right: 2px;
+
+            line-height: 24px;
+
+            background: #4ad15f;
+            border: 1px solid #ebebeb;
+            border-radius: 100px;
+
+            box-sizing: border-box;
+          }
+        }
+      }
+
+      .profileRating {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        flex-grow: 1;
+        justify-content: end;
+        align-items: center;
+        gap: 8px;
+
+        .stars {
+          display: flex;
+          flex-direction: row;
+        }
+
+        .reviews {
+          display: flex;
+          flex-direction: row;
+
+          .totalRating {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
 }
 
 .image {
@@ -8,10 +173,10 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  width: 100%;
-  height: 100%;
+  width: 600px;
+  height: 450px;
 
   span {
-    border-radius: 11px 11px 0 0;
+    border-radius: 11px;
   }
 }

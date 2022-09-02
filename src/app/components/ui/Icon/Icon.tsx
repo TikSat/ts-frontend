@@ -1,11 +1,11 @@
-import iconList from 'src/lib/iconList';
 import cn from 'classnames';
 import s from './Icon.module.css';
+import iconList from '@app/components/ui/Icon/iconList';
 
 interface IconProps {
-  name: 'heart' | 'menu' | 'logo' | 'user' | 'message' | 'location' | 'close';
+  name: 'heart' | 'menu' | 'logo' | 'user' | 'message' | 'location' | 'close' | 'star' | 'calendar';
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'logo';
-  theme?: 'primary' | 'secondary' | 'silent';
+  theme?: 'primary' | 'secondary' | 'silent' | 'star' | 'muted';
   onClick?: () => void;
 }
 
