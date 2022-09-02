@@ -3,7 +3,18 @@ import s from './Icon.module.css';
 import iconList from '@app/components/ui/Icon/iconList';
 
 interface IconProps {
-  name: 'heart' | 'menu' | 'logo' | 'user' | 'message' | 'location' | 'close' | 'star' | 'calendar';
+  name:
+    | 'heart'
+    | 'menu'
+    | 'logo'
+    | 'user'
+    | 'message'
+    | 'location'
+    | 'close'
+    | 'star'
+    | 'calendar'
+    | 'eye'
+    | 'hashtag';
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'logo';
   theme?: 'primary' | 'secondary' | 'silent' | 'star' | 'muted';
   onClick?: () => void;

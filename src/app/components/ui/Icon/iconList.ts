@@ -7,6 +7,8 @@ import LocationIcon from 'public/icons/location.svg';
 import CloseIcon from 'public/icons/close.svg';
 import StarIcon from 'public/icons/star.svg';
 import CalendarIcon from 'public/icons/calendar.svg';
+import EyeIcon from 'public/icons/eye.svg';
+import HashtagIcon from 'public/icons/hashtag.svg';
 
 const iconList = {
   menu: MenuIcon,
@@ -18,6 +20,8 @@ const iconList = {
   close: CloseIcon,
   star: StarIcon,
   calendar: CalendarIcon,
+  eye: EyeIcon,
+  hashtag: HashtagIcon,
 };
 
 export default iconList;

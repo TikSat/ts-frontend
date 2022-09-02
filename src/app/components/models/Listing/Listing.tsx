@@ -8,12 +8,13 @@ import Image from 'next/image';
 import { format } from 'src/lib/api/currencyFormatter';
 import { ListingImage } from '@app/components/models/ListingImage';
 import image from '/public/img_1.png';
-import s from './Listing.module.css';
 import { BreadcrumbList } from '@app/components/containers/BreadcrumbList';
 import { BreadcrumbProps } from '@app/components/models/Breadcrumb';
 import { Button } from '@app/components/ui/Button';
 import cn from 'classnames';
 import { Icon } from '@app/components/ui/Icon';
+import { NavLink } from '@app/components/ui/NavLink';
+import s from './Listing.module.css';
 
 interface ListingComponentProps {
   breadcrumbs: BreadcrumbProps[];
@@ -38,8 +39,11 @@ export interface ListingProps {
 }
 // TODO: add schema.org Product markup json+ld
 export const Listing: FC<ListingComponentProps> = ({ breadcrumbs, listing }) => {
+  if (!listing) return <></>;
+
   const { id, image_url, title, slug, category, images, price, fields, author, updated_at } =
     listing;
+
   const image_src = !!image_url ? serverUrl + image_url : image.src;
   const generator = new SchemaGenerator();
 
@@ -78,9 +82,6 @@ export const Listing: FC<ListingComponentProps> = ({ breadcrumbs, listing }) => 
         <div className={s.info}>
           <BreadcrumbList breadcrumbs={breadcrumbs} />
           <h1 className={'h1'}>{title}</h1>
-          <span className={'muted'}>
-            Turkey, Istanbul, Rami Yeni, Yalnızcık Sk. 11-1, 34055 Eyüpsultan
-          </span>
           <div className={s.cta}>
             <div className={s.left}>
               <span className={s.price}>{format('tr-TR', 'TRY', price || 0)}</span>
@@ -121,6 +122,44 @@ export const Listing: FC<ListingComponentProps> = ({ breadcrumbs, listing }) => 
               <Icon size={'xs'} name={'calendar'} theme={'muted'} />
               {listingDate}
             </span>
+            <span className={s.date}>
+              <Icon size={'xs'} name={'eye'} theme={'muted'} />
+              342+4
+            </span>
+            <span className={s.date}>
+              <Icon size={'xs'} name={'hashtag'} theme={'muted'} />
+              116302
+            </span>
+            <span className={s.favorite}>
+              <NavLink href={'#'}>
+                <Icon size={'xs'} name={'heart'} />
+                Add to favorite
+              </NavLink>
+            </span>
+          </div>
+          <div className={s.tabs}>
+            <div className={cn(s.tab, s.active)}>Main information</div>
+            <div className={s.tab}>
+              <NavLink href={'#'}>Location</NavLink>
+            </div>
+            <div className={s.tab}>
+              <NavLink href={'#'}>Details</NavLink>
+            </div>
+            <div className={s.tab}>
+              <NavLink href={'#'}>Description</NavLink>
+            </div>
+            <div className={s.tab}>
+              <NavLink href={'#'}>Seller info</NavLink>
+            </div>
+            <div className={s.tab}>
+              <NavLink href={'#'}>Price analyses</NavLink>
+            </div>
+            <div className={s.tab}>
+              <NavLink href={'#'}>Mortgage</NavLink>
+            </div>
+            <div className={s.tab}>
+              <NavLink href={'#'}>Location</NavLink>
+            </div>
           </div>
           <div className={s.main}>
             <h3>Main information</h3>

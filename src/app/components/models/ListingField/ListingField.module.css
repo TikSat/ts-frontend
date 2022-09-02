@@ -7,8 +7,8 @@
 
   .fieldName {
     display: flex;
-    flex-grow: 1;
     align-items: center;
+    width: 50%;
 
     color: #999ca0;
     font-size: 16px;
