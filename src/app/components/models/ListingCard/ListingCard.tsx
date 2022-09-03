@@ -7,13 +7,12 @@ import { ListingProps } from '@app/components/models/Listing';
 import { NavLink } from '@app/components/ui/NavLink';
 import { Icon } from '@app/components/ui/Icon';
 import s from './ListingCard.module.css';
-import { serverUrl } from 'src/lib/api/fetcher';
 import { format } from 'src/lib/api/currencyFormatter';
 
 export const ListingCard = (listing: ListingProps) => {
   const { category, title, url = '/', slug, image_url, price } = listing;
   const path = category ? `${category.slug}/${slug}` : url;
-  const image_src = !!image_url ? serverUrl + image_url : image.src;
+  const image_src = image_url ? image_url : image.src;
   return (
     <NavLink href={path}>
       <div className={cn(s.root)}>

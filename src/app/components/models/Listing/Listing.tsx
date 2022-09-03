@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { CategoryProps } from '@app/components/models/Category';
 import SchemaGenerator from 'src/lib/schemaGenerator';
 import { ListingField, ListingFieldProps } from '@app/components/models/ListingField';
-import { serverUrl } from 'src/lib/api/fetcher';
 import Image from 'next/image';
 import { format } from 'src/lib/api/currencyFormatter';
 import { ListingImage } from '@app/components/models/ListingImage';
@@ -44,7 +43,7 @@ export const Listing: FC<ListingComponentProps> = ({ breadcrumbs, listing }) => 
   const { id, image_url, title, slug, category, images, price, fields, author, updated_at } =
     listing;
 
-  const image_src = !!image_url ? serverUrl + image_url : image.src;
+  const image_src = !!image_url ? image_url : image.src;
   const generator = new SchemaGenerator();
 
   let options = {

@@ -1,7 +1,6 @@
 import s from '@app/components/models/Listing/Listing.module.css';
 import Image from 'next/image';
 import React from 'react';
-import { serverUrl } from 'src/lib/api/fetcher';
 import image from '/public/img_1.png';
 
 export interface ListingImageProps {
@@ -10,7 +9,7 @@ export interface ListingImageProps {
 }
 
 export const ListingImage = ({ image_url, alt }: ListingImageProps) => {
-  const image_src = !!image_url ? serverUrl + image_url : image.src;
+  const image_src = !!image_url ? image_url : image.src;
 
   return (
     <div className={s.image}>
