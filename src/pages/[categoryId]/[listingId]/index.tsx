@@ -33,6 +33,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     url: `/${category?.slug}/${listing?.slug}`,
     current: true,
   });
+
   if (listingData?.status == 200 && categoryData?.status == 200) {
     return {
       props: {
@@ -40,7 +41,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         category: category || null,
         breadcrumbs: breadcrumbs,
       },
-      revalidate: 30,
+      revalidate: 60,
     };
   } else {
     return {
@@ -49,30 +50,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         category: null,
         breadcrumbs: [],
       },
-      revalidate: 30,
+      revalidate: 60,
     };
   }
 };
 
 export async function getStaticPaths() {
-  let routes = ApiRoutes({});
-  const categoryIds = await fetch(routes.categoriesIds);
-  const paths: { params: { categoryId: string; listingId: string } }[] = [];
-
-  if (categoryIds && categoryIds.status == 200) {
-    for (const arrays of categoryIds.data) {
-      let categoryId = arrays[1];
-      for (const listingId of arrays[0]) {
-        if (categoryId && listingId) {
-          paths.push({ params: { categoryId, listingId } });
-        }
-      }
-    }
-  }
-
   return {
-    paths: paths,
-    fallback: true,
+    paths: [],
+    fallback: 'blocking',
   };
 }
 
