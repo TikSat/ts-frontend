@@ -81,7 +81,7 @@ export async function getStaticPaths() {
   if (ids && ids.status == 200) {
     for (const categoryId of ids.data) {
       if (categoryId) {
-        paths.push({ params: { categoryId } });
+        paths.push({ params: { categoryId: categoryId.toString() } });
       }
     }
   }
