@@ -79,9 +79,9 @@ export async function getStaticPaths() {
   const ids = await fetch(routes.categoriesIds);
 
   if (ids && ids.status == 200) {
-    for (const id of ids.data) {
-      if (!!id) {
-        paths.push({ params: { categoryId: id } });
+    for (const categoryId of ids.data) {
+      if (categoryId) {
+        paths.push({ params: { categoryId } });
       }
     }
   }
