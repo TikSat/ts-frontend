@@ -27,7 +27,10 @@ export interface ListingProps {
   category?: CategoryProps;
   url?: string;
   fields?: [];
-  image_url?: string;
+  image_small?: string;
+  image_medium?: string;
+  image_large?: string;
+  image_extra_small?: string;
   price?: number;
   images?: { id: string; image_url: string }[];
   created_at?: string;
@@ -40,10 +43,10 @@ export interface ListingProps {
 export const Listing: FC<ListingComponentProps> = ({ breadcrumbs, listing }) => {
   if (!listing) return <></>;
 
-  const { id, image_url, title, slug, category, images, price, fields, author, updated_at } =
+  const { id, image_large, title, slug, category, images, price, fields, author, updated_at } =
     listing;
 
-  const image_src = !!image_url ? image_url : image.src;
+  const image_src = !!image_large ? image_large : image.src;
   const generator = new SchemaGenerator();
 
   let options = {

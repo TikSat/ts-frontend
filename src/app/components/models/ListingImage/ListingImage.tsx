@@ -4,12 +4,15 @@ import React from 'react';
 import image from '/public/img_1.png';
 
 export interface ListingImageProps {
-  image_url?: string;
+  image_small?: string;
+  image_medium?: string;
+  image_large?: string;
+  image_extra_small?: string;
   alt?: string;
 }
 
-export const ListingImage = ({ image_url, alt }: ListingImageProps) => {
-  const image_src = !!image_url ? image_url : image.src;
+export const ListingImage = ({ image_large, alt }: ListingImageProps) => {
+  const image_src = !!image_large ? image_large : image.src;
 
   return (
     <div className={s.image}>

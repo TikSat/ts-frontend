@@ -6,8 +6,8 @@ import s from './ListingRow.module.css';
 import { serverUrl } from 'src/lib/api/fetcher';
 import image from '/public/img_1.png';
 
-export const ListingRow = ({ category, slug, title, image_url }: ListingProps) => {
-  const image_src = !!image_url ? serverUrl + image_url : image.src;
+export const ListingRow = ({ category, slug, title, image_extra_small }: ListingProps) => {
+  const image_src = !!image_extra_small ? serverUrl + image_extra_small : image.src;
   return (
     <NavLink href={`${category?.slug}/${slug}`}>
       <div className={s.root}>

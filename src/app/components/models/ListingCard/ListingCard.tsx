@@ -10,9 +10,9 @@ import s from './ListingCard.module.css';
 import { format } from 'src/lib/api/currencyFormatter';
 
 export const ListingCard = (listing: ListingProps) => {
-  const { category, title, url = '/', slug, image_url, price } = listing;
+  const { category, title, url = '/', slug, image_medium, price } = listing;
   const path = category ? `${category.slug}/${slug}` : url;
-  const image_src = image_url ? image_url : image.src;
+  const image_src = image_medium ? image_medium : image.src;
   return (
     <NavLink href={path}>
       <div className={cn(s.root)}>
