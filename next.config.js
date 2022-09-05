@@ -21,7 +21,7 @@ const nextConfig = {
     autoPrerender: true
   },
   images: {
-    domains: ['localhost', 'tiksat.bid', 'master.backend.tiksat.bid']
+    domains: ['localhost', 'tiksat.bid', 'master.backend.tiksat.bid', 'tiksat-prod.fra1.digitaloceanspaces.com', 'tiksat-dev.fra1.digitaloceanspaces.com']
   },
   sentry: {
     disableServerWebpackPlugin: (process.env.NODE_ENV !== 'production'),

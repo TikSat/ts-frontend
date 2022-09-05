@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { CategoryProps } from '@app/components/models/Category';
 import SchemaGenerator from 'src/lib/schemaGenerator';
 import { ListingField, ListingFieldProps } from '@app/components/models/ListingField';
-import { serverUrl } from 'src/lib/api/fetcher';
 import Image from 'next/image';
 import { format } from 'src/lib/api/currencyFormatter';
 import { ListingImage } from '@app/components/models/ListingImage';
@@ -28,7 +27,10 @@ export interface ListingProps {
   category?: CategoryProps;
   url?: string;
   fields?: [];
-  image_url?: string;
+  image_small?: string;
+  image_medium?: string;
+  image_large?: string;
+  image_extra_small?: string;
   price?: number;
   images?: { id: string; image_url: string }[];
   created_at?: string;
@@ -41,10 +43,10 @@ export interface ListingProps {
 export const Listing: FC<ListingComponentProps> = ({ breadcrumbs, listing }) => {
   if (!listing) return <></>;
 
-  const { id, image_url, title, slug, category, images, price, fields, author, updated_at } =
+  const { id, image_large, title, slug, category, images, price, fields, author, updated_at } =
     listing;
 
-  const image_src = !!image_url ? serverUrl + image_url : image.src;
+  const image_src = !!image_large ? image_large : image.src;
   const generator = new SchemaGenerator();
 
   let options = {

@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { NavLink } from '@app/components/ui/NavLink';
 import s from './Category.module.css';
-import { serverUrl } from 'src/lib/api/fetcher';
 
 export interface CategoryProps {
   id: string;
@@ -13,7 +12,7 @@ export interface CategoryProps {
 }
 
 export const Category = ({ name, slug, image_small, listings_count }: CategoryProps) => {
-  const image_src = !!image_small ? serverUrl + image_small : '/img.png';
+  const image_src = image_small ? image_small : '/img.png';
 
   const listingName = !!listings_count ? (
     <span className={s.title}>
