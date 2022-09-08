@@ -3,6 +3,7 @@ import { fetch } from 'src/lib/api/fetcher';
 import { ApiRoutes } from '@app/routes';
 import { Main, MainPageProps } from '@app/components/pages/Main';
 import { NextPageWithLayout } from 'src/pages/_app';
+import { buildBreadcrumbs } from 'src/lib/api/breadcrumbs';
 
 const HomePage: NextPageWithLayout<MainPageProps> = (props) => {
   return <Main {...props} />;
@@ -17,20 +18,16 @@ export const getStaticProps: GetStaticProps = async () => {
       response: { include: ['id', 'name', 'slug', 'image_small', 'listings_count'] },
     },
   });
+
   const listingsData = await fetch(routes.recommended);
 
   const categories = categoriesData?.data;
   const listings = listingsData?.data;
-
-  const breadcrumbs = [{ title: 'Istanbul', url: '/', current: true }];
+  const breadcrumbs = await buildBreadcrumbs({});
 
   if (listingsData?.status == 200 && categoriesData?.status == 200) {
     return {
-      props: {
-        categories: categories || [],
-        listings: listings || [],
-        breadcrumbs: breadcrumbs || [],
-      },
+      props: { categories, listings, breadcrumbs },
       revalidate: 30,
     };
   } else {

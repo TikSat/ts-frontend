@@ -17,17 +17,17 @@ export type MainPageProps = {
   breadcrumbs: BreadcrumbProps[];
   title: string;
   header: string;
+  category?: CategoryProps;
 };
 
-export const Main: FC<MainPageProps> = (pageProps) => {
-  const {
-    categories,
-    breadcrumbs,
-    listings,
-    title = 'Istanbul',
-    header = 'Your Recommendations',
-  } = pageProps;
-
+export const Main: FC<MainPageProps> = ({
+  categories,
+  breadcrumbs,
+  listings,
+  title = 'Istanbul',
+  header = 'Your Recommendations',
+  category,
+}) => {
   const { user } = useTypedSelectors((state) => state.user);
 
   const pageTitle = `${title} | Tiksat`;
@@ -36,6 +36,7 @@ export const Main: FC<MainPageProps> = (pageProps) => {
       {/*Injects to head*/}
       <Head>
         <title>{pageTitle}</title>
+        {category && category.desc && <meta name={'description'} content={category?.desc} />}
       </Head>
       <CategoryList categories={categories}></CategoryList>
 
@@ -46,7 +47,7 @@ export const Main: FC<MainPageProps> = (pageProps) => {
           <ListingList listings={listings}></ListingList>
         </div>
         <Sidebar>
-          {user ? <FavoritesListPreview listings={listings}></FavoritesListPreview> : <div></div>}
+          {user && <FavoritesListPreview listings={listings}></FavoritesListPreview>}
         </Sidebar>
       </ContainerWithSidebar>
     </React.Fragment>

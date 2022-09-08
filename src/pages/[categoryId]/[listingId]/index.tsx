@@ -14,8 +14,8 @@ interface ListingPageProps {
   breadcrumbs: BreadcrumbProps[];
 }
 
-const ListingPage: NextPageWithLayout<ListingPageProps> = ({ listing, breadcrumbs }) => {
-  return <Listing breadcrumbs={breadcrumbs} listing={listing} />;
+const ListingPage: NextPageWithLayout<ListingPageProps> = (props) => {
+  return <Listing {...props} />;
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -23,33 +23,19 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const listingData = await fetch(routes.listing);
   const categoryData = await fetch(routes.category);
-  const category = categoryData?.data;
-  const listing = listingData?.data;
-
-  let breadcrumbs = await buildBreadcrumbs(params?.categoryId, true);
-
-  breadcrumbs.push({
-    title: listing.title,
-    url: `/${category?.slug}/${listing?.slug}`,
-    current: true,
-  });
+  const breadcrumbs = await buildBreadcrumbs({ categoryId: params?.categoryId, listing: true });
 
   if (listingData?.status == 200 && categoryData?.status == 200) {
+    const category = categoryData?.data;
+    const listing = listingData?.data;
+
     return {
-      props: {
-        listing: listing || null,
-        category: category || null,
-        breadcrumbs: breadcrumbs,
-      },
+      props: { listing, category, breadcrumbs },
       revalidate: 60,
     };
   } else {
     return {
-      props: {
-        listing: [],
-        category: null,
-        breadcrumbs: [],
-      },
+      props: { listing: [], category: null, breadcrumbs: [] },
       revalidate: 60,
     };
   }

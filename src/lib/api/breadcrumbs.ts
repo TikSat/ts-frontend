@@ -1,13 +1,15 @@
 import { fetch } from 'src/lib/api/fetcher';
 import { ApiRoutes } from '@app/routes';
 
-export const buildBreadcrumbs = async (
-  categoryId: string | string[] | undefined,
-  listing = false
-) => {
+export const buildBreadcrumbs = async ({
+  categoryId = null,
+  listing = false,
+}: {
+  categoryId?: string | string[] | undefined | null;
+  listing?: boolean;
+}): Promise<any> => {
   let breadcrumbs = [];
-  const slugs = await fetch(ApiRoutes({ categoryId: categoryId }).breadcrumbs);
-  const data = slugs?.data;
+  const slugs = await fetch(ApiRoutes({ categoryId }).breadcrumbs);
 
   // add location first
   breadcrumbs.push({
@@ -17,6 +19,7 @@ export const buildBreadcrumbs = async (
   });
 
   if (slugs?.status == 200 && slugs?.data) {
+    const data = slugs?.data;
     const last = data[data.length - 1];
 
     data.forEach((crumb: 2[]) => {

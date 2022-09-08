@@ -1,43 +1,17 @@
 import React from 'react';
-import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import { fetch } from 'src/lib/api/fetcher';
 import { NextPageWithLayout } from 'src/pages/_app';
 import { ApiRoutes } from '@app/routes';
-import { ListingProps } from '@app/components/models/Listing';
 import { CategoryProps } from '@app/components/models/Category';
-import { BreadcrumbProps } from '@app/components/models/Breadcrumb';
-import { Main } from '@app/components/pages/Main';
+import { Main, MainPageProps } from '@app/components/pages/Main';
 import { buildBreadcrumbs } from 'src/lib/api/breadcrumbs';
 
-interface CategoryPageProps {
-  listings: ListingProps[];
-  categories: CategoryProps[];
-  category: CategoryProps;
-  breadcrumbs: BreadcrumbProps[];
-}
+type CategoryPageProps = MainPageProps & { category: CategoryProps };
 
-const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
-  listings,
-  categories,
-  category,
-  breadcrumbs,
-}) => {
-  return (
-    <React.Fragment>
-      <Head>
-        <title>{category?.name}</title>
-      </Head>
-
-      <Main
-        breadcrumbs={breadcrumbs}
-        categories={categories}
-        listings={listings}
-        title={category?.name}
-        header={category?.name}
-      />
-    </React.Fragment>
-  );
+const CategoryPage: NextPageWithLayout<CategoryPageProps> = (props) => {
+  const { category } = props;
+  return <Main {...props} title={category.name} header={category.name} />;
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -47,27 +21,18 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const category = categoryData?.data;
   const categories = category?.subcategories;
+  const listings = listingsData?.data;
 
-  let breadcrumbs = await buildBreadcrumbs(params?.categoryId);
+  let breadcrumbs = await buildBreadcrumbs({ categoryId: params?.categoryId });
 
   if (categoryData?.status == 200 && listingsData?.status == 200) {
     return {
-      props: {
-        listings: listingsData?.data || [],
-        categories: categories || [],
-        category: category || [],
-        breadcrumbs: breadcrumbs,
-      },
+      props: { listings, categories, category, breadcrumbs },
       revalidate: 30,
     };
   } else {
     return {
-      props: {
-        listings: [],
-        categories: [],
-        category: [],
-        breadcrumbs: [],
-      },
+      props: { listings: [], categories: [], category: [], breadcrumbs: [] },
       revalidate: 30,
     };
   }

@@ -1,9 +1,9 @@
 interface ApiProps {
-  categoryId?: string | string[];
-  listingId?: string | string[];
+  categoryId?: string | string[] | null;
+  listingId?: string | string[] | null;
 }
 
-export const ApiRoutes = ({ categoryId, listingId }: ApiProps) => {
+export const ApiRoutes = ({ categoryId = null, listingId = null }: ApiProps) => {
   return {
     categories: '/api/categories',
     categoriesIds: '/api/categories/ids',
