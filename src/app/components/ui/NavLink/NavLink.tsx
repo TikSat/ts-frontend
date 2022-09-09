@@ -1,24 +1,23 @@
 import * as React from 'react';
 import cn from 'classnames';
 import Link, { LinkProps } from 'next/link';
+import { BaseSyntheticEvent, Fragment, useEffect, useState } from 'react';
 import s from './NavLink.module.css';
+import { SignIn } from '@app/components/pages/SignIn';
+import { useActions } from '@app/hooks/useActions';
+import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
 
-// interface LinkProps {
-//   children: React.ReactNode;
-//   onClick?: () => void;
-//   withIcon?: boolean;
-//   className?: string;
-//   href: string;
-//   as?: string;
-//   theme?: 'primary' | 'secondary' | 'silent';
-//   props?: {};
-// }
+const callAll =
+  (...fns: any[]) =>
+  (...args: any) =>
+    fns.forEach((fn) => fn && fn(...args));
 
 export type NavLinkProps = LinkProps & {
   children: React.ReactNode;
   withIcon?: boolean;
   className?: string;
   theme?: 'primary' | 'secondary' | 'silent';
+  authRequired?: boolean;
 };
 
 export const NavLink = ({
@@ -29,15 +28,30 @@ export const NavLink = ({
   theme = 'primary',
   href,
   as,
+  authRequired = false,
   ...rest
 }: NavLinkProps) => {
   const icon = withIcon ? s.withIcon : s.withoutIcon;
+  const { setModal } = useActions();
+  const { user } = useTypedSelectors((state) => state.user);
+
+  authRequired = !user && authRequired;
+
+  const showModal = (e: BaseSyntheticEvent) => {
+    e.preventDefault();
+    setModal({ name: 'SignIn' });
+  };
 
   return (
-    <Link href={href} as={as} {...rest}>
-      <a className={cn(s.root, s[theme], className, icon)} onClick={onClick}>
-        {children}
-      </a>
-    </Link>
+    <Fragment>
+      <Link href={href} as={as} {...rest}>
+        <a
+          className={cn(s.root, s[theme], className, icon)}
+          onClick={authRequired ? showModal : onClick}
+        >
+          {children}
+        </a>
+      </Link>
+    </Fragment>
   );
 };

@@ -25,7 +25,8 @@ const nextConfig = {
   },
   sentry: {
     disableServerWebpackPlugin: (process.env.NODE_ENV !== 'production'),
-    disableClientWebpackPlugin: (process.env.NODE_ENV !== 'production')
+    disableClientWebpackPlugin: (process.env.NODE_ENV !== 'production'),
+    hideSourceMaps: true
   },
   webpack(config) {
     config.module.rules.push({

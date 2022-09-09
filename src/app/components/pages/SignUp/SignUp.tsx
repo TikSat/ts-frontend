@@ -5,27 +5,25 @@ import { Button } from '@app/components/ui/Button';
 import { fetch } from 'src/lib/api/fetcher';
 import { ApiRoutes } from '@app/routes';
 import { useActions } from '@app/hooks/useActions';
+
+import s from './SignUp.module.css';
 import { Modal } from '@app/components/ui/Modal';
 import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
 
-import s from './SignIn.module.css';
-
-export const SignIn = () => {
-  const { setUser } = useActions();
+export const SignUp = () => {
+  const { setUser, setModal } = useActions();
   const [error, setError] = useState(false);
   const { modal } = useTypedSelectors((state) => state.modal);
-  const { setModal } = useActions();
-  const isOpen = modal?.name === 'SignIn';
-
-  console.log('SignIn');
+  const isOpen = modal?.name === 'SignUp';
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const { email, password } = event.currentTarget;
+    const { email, password, password_confirmation } = event.currentTarget;
     const data = {
       email: email.value,
       password: password.value,
+      password_confirmation: password_confirmation.value,
     };
 
     const options = {
@@ -36,7 +34,7 @@ export const SignIn = () => {
       data: JSON.stringify(data),
     };
 
-    const res = await fetch(ApiRoutes({}).signIn, options);
+    const res = await fetch(ApiRoutes({}).signUp, options);
 
     if (res && res.status == 200) {
       const token = res.data.token;
@@ -57,8 +55,8 @@ export const SignIn = () => {
   };
 
   return (
-    <Modal title={'Sign In'} isOpen={isOpen}>
-      <form onSubmit={handleSubmit} id={'signIn'}>
+    <Modal title={'Sign Up'} isOpen={isOpen}>
+      <form onSubmit={handleSubmit} id={'signUp'}>
         <Input placeholder="Email" name={'email'} size={'lg'} label="Email" />
         <Input
           placeholder="Password"
@@ -67,25 +65,32 @@ export const SignIn = () => {
           size={'lg'}
           label="Password"
         />
+        <Input
+          placeholder="Password confirmation"
+          type={'password'}
+          name={'password_confirmation'}
+          size={'lg'}
+          label="Password confirmation"
+        />
       </form>
       {error ? <div className={s.error}>Your email or password is incorrect.</div> : null}
-      <span className={s.help}>
-        <NavLink href={'#'}> I forgot my password </NavLink>
-      </span>
+      {/*<span className={s.help}>*/}
+      {/*  <NavLink href={'#'}> I forgot my password </NavLink>*/}
+      {/*</span>*/}
       <hr />
-      <Button type="submit" form={'signIn'} size={'lg'} className={'w-100'}>
-        Login
+      <Button type="submit" form={'signUp'} size={'lg'} className={'w-100'}>
+        Sign Up
       </Button>
       <div className={s.help}>
-        <span className={'muted'}>New to Tiksat?</span>
+        <span className={'muted'}>Already have an account?</span>
         <NavLink
           href={'#'}
           onClick={() => {
-            setModal({ name: 'SignUp' });
+            setModal({ name: 'SignIn' });
           }}
         >
           {' '}
-          Create an account{' '}
+          Sign in{' '}
         </NavLink>
       </div>
     </Modal>

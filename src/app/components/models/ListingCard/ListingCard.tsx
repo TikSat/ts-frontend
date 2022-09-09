@@ -17,7 +17,7 @@ export const ListingCard = (listing: ListingProps) => {
     <NavLink href={path}>
       <div className={cn(s.root)}>
         <div className={s.image}>
-          <Image src={image_src} layout="fill" alt={listing.title}></Image>
+          <Image src={image_src} layout="fill" alt={listing.title} priority={true}></Image>
         </div>
         <Link href={'/'}>
           <div className={s.favorite}>

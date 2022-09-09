@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NextPageWithLayout } from 'src/pages/_app';
 import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
-import { NavLink } from '@app/components/ui/NavLink';
 import { Profile } from '@app/components/models/Profile';
+import { useRouter } from 'next/router';
 
 const ProfilePage: NextPageWithLayout = () => {
   const { user } = useTypedSelectors((state) => state.user);
+  const router = useRouter();
 
-  return user ? <Profile {...user} /> : <NavLink href={'/sign_in'}> Sign in </NavLink>;
+  useEffect(() => {
+    if (!user) {
+      router.push('/');
+    }
+  }, [user, router]);
+
+  return user ? <Profile {...user} /> : <div>You have to sign in first. Redirecting...</div>;
 };
 
 export default ProfilePage;

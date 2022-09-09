@@ -1,32 +1,9 @@
-import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
 import { NavLink } from '@app/components/ui/NavLink';
 import { Icon } from '@app/components/ui/Icon';
 import { Button } from '@app/components/ui/Button';
-import { useRouter } from 'next/router';
-import { Modal } from '@app/components/ui/Modal';
-import React, { useState } from 'react';
-import { SignIn } from '@app/components/pages/SignIn';
-
 import s from './Header.module.css';
 
 export const Header = () => {
-  const { user } = useTypedSelectors((state) => state.user);
-  const isLogged = !!user;
-  const router = useRouter();
-
-  const [modalOpen, setModalOpen] = useState(false);
-  const handleModalClose = () => setModalOpen(false);
-
-  const showModal = (e: Event & { currentTarget: { href: string } }): void => {
-    e.preventDefault();
-
-    if (isLogged) {
-      router.push(e.currentTarget?.href || '/');
-    } else {
-      setModalOpen(true);
-    }
-  };
-
   return (
     <header>
       <div className={s.secondary}>
@@ -84,26 +61,21 @@ export const Header = () => {
           </div>
         </div>
         <div className={s.right}>
-          <NavLink href={'/profile'} theme="silent" withIcon onClick={showModal}>
+          <NavLink href={'/profile'} theme="silent" withIcon authRequired>
             <Icon name="heart"></Icon>
             Favorite
           </NavLink>
-          <NavLink href={'/profile'} theme="silent" withIcon onClick={showModal}>
+          <NavLink href={'/profile'} theme="silent" withIcon authRequired>
             <Icon name="message"></Icon>
             Messages
           </NavLink>
-          <NavLink href={'/profile'} theme="silent" withIcon onClick={showModal}>
+          <NavLink href={'/profile'} theme="silent" withIcon authRequired>
             <Icon name="user"></Icon>
             My profile
           </NavLink>
-
           <Button>Post Free Ad</Button>
         </div>
       </div>
-
-      <Modal isOpen={modalOpen} handleClose={handleModalClose} title={'Sign In'}>
-        <SignIn />
-      </Modal>
     </header>
   );
 };
