@@ -1,9 +1,8 @@
-import * as React from 'react';
-
 import s from './Container.module.css';
+import { ReactNode } from 'react';
 
 interface ContainerProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export const Container = ({ children }: ContainerProps) => {

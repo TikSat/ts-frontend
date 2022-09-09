@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC, Fragment } from 'react';
 import Head from 'next/head';
 import { CategoryProps } from '@app/components/models/Category/Category';
 import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
@@ -32,7 +32,7 @@ export const Main: FC<MainPageProps> = ({
 
   const pageTitle = `${title} | Tiksat`;
   return (
-    <React.Fragment>
+    <Fragment>
       {/*Injects to head*/}
       <Head>
         <title>{pageTitle}</title>
@@ -46,10 +46,10 @@ export const Main: FC<MainPageProps> = ({
           <h1 className={'h1'}>{header}</h1>
           <ListingList listings={listings}></ListingList>
         </div>
-        <Sidebar>
-          {user && <FavoritesListPreview listings={listings}></FavoritesListPreview>}
-        </Sidebar>
+        {/*<Sidebar>*/}
+        {/*  {user && <FavoritesListPreview listings={listings}></FavoritesListPreview>}*/}
+        {/*</Sidebar>*/}
       </ContainerWithSidebar>
-    </React.Fragment>
+    </Fragment>
   );
 };

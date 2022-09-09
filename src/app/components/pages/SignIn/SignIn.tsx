@@ -17,8 +17,6 @@ export const SignIn = () => {
   const { setModal } = useActions();
   const isOpen = modal?.name === 'SignIn';
 
-  console.log('SignIn');
-
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 

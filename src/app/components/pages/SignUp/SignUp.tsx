@@ -5,10 +5,10 @@ import { Button } from '@app/components/ui/Button';
 import { fetch } from 'src/lib/api/fetcher';
 import { ApiRoutes } from '@app/routes';
 import { useActions } from '@app/hooks/useActions';
-
-import s from './SignUp.module.css';
 import { Modal } from '@app/components/ui/Modal';
 import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
+
+import s from './SignUp.module.css';
 
 export const SignUp = () => {
   const { setUser, setModal } = useActions();

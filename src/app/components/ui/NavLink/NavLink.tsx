@@ -1,16 +1,11 @@
 import * as React from 'react';
 import cn from 'classnames';
 import Link, { LinkProps } from 'next/link';
-import { BaseSyntheticEvent, Fragment, useEffect, useState } from 'react';
+import { BaseSyntheticEvent, Fragment } from 'react';
 import s from './NavLink.module.css';
 import { SignIn } from '@app/components/pages/SignIn';
 import { useActions } from '@app/hooks/useActions';
 import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
-
-const callAll =
-  (...fns: any[]) =>
-  (...args: any) =>
-    fns.forEach((fn) => fn && fn(...args));
 
 export type NavLinkProps = LinkProps & {
   children: React.ReactNode;
