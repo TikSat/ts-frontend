@@ -38,10 +38,10 @@ export const Main: FC<MainPageProps> = ({
         <title>{pageTitle}</title>
         {category && category.desc && <meta name={'description'} content={category?.desc} />}
       </Head>
-      <CategoryList categories={categories}></CategoryList>
+      {categories.length > 0 && <CategoryList categories={categories}></CategoryList>}
 
       <ContainerWithSidebar>
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <BreadcrumbList breadcrumbs={breadcrumbs} />
           <h1 className={'h1'}>{header}</h1>
           <ListingList listings={listings}></ListingList>

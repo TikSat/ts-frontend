@@ -14,7 +14,9 @@ interface IconProps {
     | 'star'
     | 'calendar'
     | 'eye'
-    | 'hashtag';
+    | 'hashtag'
+    | 'home'
+    | 'plusCircle';
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'logo';
   theme?: 'primary' | 'secondary' | 'silent' | 'star' | 'muted';
   onClick?: () => void;

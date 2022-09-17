@@ -1,3 +1,9 @@
+@use 'src/styles/mediaQueries.scss' as *;
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
 .secondary {
   display: flex;
   flex-direction: row;
@@ -8,6 +14,9 @@
 
   font-size: 14px;
   line-height: 24px;
+  @include xs {
+    display: none;
+  }
 }
 
 .muted {
@@ -21,6 +30,12 @@
   align-items: center;
   padding-top: 12px;
   padding-bottom: 12px;
+
+  @include xs {
+    background: linear-gradient(268.65deg, #4e46b4 1.44%, #746ce1 89.18%);
+    padding-right: 14px;
+    padding-left: 14px;
+  }
 }
 
 .logo {
@@ -29,11 +44,28 @@
   align-items: center;
   gap: 12px;
   padding: 0;
+  svg {
+    color: var(--brand-primary-600);
+    fill: var(--brand-primary-600);
+    stroke: var(--brand-primary-600);
+  }
+
+  @include xs {
+    svg {
+      fill: white;
+      stroke: white;
+      color: white;
+    }
+  }
 }
 
 .icon {
   color: var(--brand-primary-600);
   line-height: 6px;
+  @include xs {
+    fill: white;
+    stroke: white;
+  }
 }
 
 .companyName {
@@ -51,6 +83,9 @@
   align-items: center;
   gap: 4px;
   padding: 0;
+  @include xs {
+    display: none;
+  }
 }
 
 .search {
@@ -89,6 +124,9 @@
   align-items: center;
   gap: 16px;
   padding: 0;
+  @include xs {
+    display: none;
+  }
 }
 
 .options {

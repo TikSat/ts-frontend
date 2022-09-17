@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import { NavLink } from '@app/components/ui/NavLink';
 import { Icon } from '@app/components/ui/Icon';
 import { Button } from '@app/components/ui/Button';
-import s from './Header.module.css';
+import s from './Header.module.scss';
 
 export const DesktopHeader = () => {
   return (

@@ -1,0 +1,25 @@
+@use 'src/styles/mediaQueries.scss' as *;
+
+.root {
+  position: fixed;
+  bottom: 0;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+
+  background: white;
+  @include gt-md {
+    display: none;
+  }
+
+  a {
+    gap: 4px;
+
+    color: var(--gray-700) !important;
+    font-size: 12px;
+  }
+}

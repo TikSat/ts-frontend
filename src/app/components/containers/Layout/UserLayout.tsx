@@ -5,7 +5,7 @@ import { Fragment } from 'react';
 import { SignIn } from '@app/components/pages/SignIn';
 import { SignUp } from '@app/components/pages/SignUp';
 import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
-
+import { MobileMenu } from '@app/components/containers/MobileMenu';
 import s from './Layout.module.css';
 
 export const UserLayout = ({ children }: ChildLayoutProps) => {
@@ -25,6 +25,7 @@ export const UserLayout = ({ children }: ChildLayoutProps) => {
           <Header />
           {children}
         </Container>
+        <MobileMenu />
       </main>
       {modals}
     </div>

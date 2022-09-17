@@ -9,6 +9,8 @@ import StarIcon from 'public/icons/star.svg';
 import CalendarIcon from 'public/icons/calendar.svg';
 import EyeIcon from 'public/icons/eye.svg';
 import HashtagIcon from 'public/icons/hashtag.svg';
+import HomeIcon from 'public/icons/home.svg';
+import plusCircle from 'public/icons/plusCircle.svg';
 
 const iconList = {
   menu: MenuIcon,
@@ -22,6 +24,8 @@ const iconList = {
   calendar: CalendarIcon,
   eye: EyeIcon,
   hashtag: HashtagIcon,
+  home: HomeIcon,
+  plusCircle: plusCircle,
 };
 
 export default iconList;

@@ -1,12 +1,13 @@
 import { fetch } from 'src/lib/api/fetcher';
 import { ApiRoutes } from '@app/routes';
+import { ListingProps } from '@app/components/models/Listing';
 
 export const buildBreadcrumbs = async ({
   categoryId = null,
-  listing = false,
+  listing,
 }: {
   categoryId?: string | string[] | undefined | null;
-  listing?: boolean;
+  listing?: ListingProps;
 }): Promise<any> => {
   let breadcrumbs = [];
   const slugs = await fetch(ApiRoutes({ categoryId }).breadcrumbs);
@@ -26,10 +27,20 @@ export const buildBreadcrumbs = async ({
       breadcrumbs.push({
         title: crumb[0],
         url: `/${crumb[1]}`,
-        current: crumb == last && !listing,
+        current: false,
       });
     });
   }
+
+  if (listing) {
+    breadcrumbs.push({
+      title: listing?.title,
+      url: '/',
+      current: false,
+    });
+  }
+
+  breadcrumbs[breadcrumbs.length - 1].current = true;
 
   return breadcrumbs;
 };

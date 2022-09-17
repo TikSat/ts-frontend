@@ -23,11 +23,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const listingData = await fetch(routes.listing);
   const categoryData = await fetch(routes.category);
-  const breadcrumbs = await buildBreadcrumbs({ categoryId: params?.categoryId, listing: true });
 
   if (listingData?.status == 200 && categoryData?.status == 200) {
     const category = categoryData?.data;
     const listing = listingData?.data;
+    const breadcrumbs = await buildBreadcrumbs({
+      categoryId: params?.categoryId,
+      listing: listing,
+    });
 
     return {
       props: { listing, category, breadcrumbs },

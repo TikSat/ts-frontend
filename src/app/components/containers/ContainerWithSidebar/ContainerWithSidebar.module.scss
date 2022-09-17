@@ -1,0 +1,11 @@
+@use 'src/styles/mediaQueries.scss' as *;
+
+.root {
+  display: flex;
+  flex-direction: row;
+  gap: 22px;
+  @include xs {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+}

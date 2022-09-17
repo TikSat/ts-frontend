@@ -3,6 +3,5 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 16px;
-  padding-bottom: 36px;
-  overflow: hidden;
+  overflow: scroll;
 }
