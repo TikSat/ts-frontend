@@ -24,8 +24,8 @@ export const UserLayout = ({ children }: ChildLayoutProps) => {
         <Container>
           <Header />
           {children}
+          <MobileMenu />
         </Container>
-        <MobileMenu />
       </main>
       {modals}
     </div>
