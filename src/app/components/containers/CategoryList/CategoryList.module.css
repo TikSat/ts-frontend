@@ -3,5 +3,12 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 16px;
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
 }
