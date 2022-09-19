@@ -11,7 +11,7 @@ export type NavLinkProps = LinkProps & {
   children: React.ReactNode;
   withIcon?: boolean;
   className?: string;
-  theme?: 'primary' | 'secondary' | 'silent';
+  theme?: 'primary' | 'secondary' | 'silent' | 'white';
   authRequired?: boolean;
 };
 

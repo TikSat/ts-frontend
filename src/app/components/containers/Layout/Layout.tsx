@@ -5,7 +5,6 @@ import { useActions } from '@app/hooks/useActions';
 import { ApiRoutes } from '@app/routes';
 import { fetch } from 'src/lib/api/fetcher';
 import { UserLayout } from './UserLayout';
-import { AdminLayout } from './AdminLayout';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -33,10 +32,6 @@ export const Layout = ({ children, layoutType }: LayoutProps) => {
   // it is working ONLY per page
   // need to investigate how to define layout per route
   switch (layoutType()) {
-    case 'user':
-      return <UserLayout> {children} </UserLayout>;
-    case 'admin':
-      return <AdminLayout>{children}</AdminLayout>;
     default:
       return <UserLayout> {children} </UserLayout>;
   }

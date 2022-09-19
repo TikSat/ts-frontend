@@ -62,11 +62,11 @@ export const DesktopHeader = () => {
           </div>
         </div>
         <div className={s.right}>
-          <NavLink href={'/profile'} theme="silent" withIcon authRequired>
+          <NavLink href={'/favorites'} theme="silent" withIcon authRequired>
             <Icon name="heart"></Icon>
             Favorite
           </NavLink>
-          <NavLink href={'/profile'} theme="silent" withIcon authRequired>
+          <NavLink href={'/messages'} theme="silent" withIcon authRequired>
             <Icon name="message"></Icon>
             Messages
           </NavLink>
@@ -74,7 +74,11 @@ export const DesktopHeader = () => {
             <Icon name="user"></Icon>
             My profile
           </NavLink>
-          <Button>Post Free Ad</Button>
+          <Button>
+            <NavLink href="/listings/add" theme={'white'}>
+              Post Free Ad
+            </NavLink>
+          </Button>
         </div>
       </div>
     </Fragment>

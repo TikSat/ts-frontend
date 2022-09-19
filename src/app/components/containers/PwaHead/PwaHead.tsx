@@ -10,7 +10,7 @@ export const PwaHead = () => {
       <meta name="description" content="Best PWA App in the world" />
       <meta name="format-detection" content="telephone=no" />
       <meta name="mobile-web-app-capable" content="yes" />
-      <meta name="theme-color" content="#000000" />
+      <meta name="theme-color" content="#5a51c2" />
       <link rel="apple-touch-icon" href="/icon.png" />
       <link rel="apple-touch-icon" sizes="152x152" href="/icon.png" />
       <link rel="apple-touch-icon" sizes="180x180" href="/icon.png" />
@@ -18,7 +18,7 @@ export const PwaHead = () => {
       <link rel="icon" type="image/png" sizes="32x32" href="/icon.png" />
       <link rel="icon" type="image/png" sizes="16x16" href="/icon.png" />
       <link rel="manifest" href="/manifest.json" />
-      <link rel="mask-icon" href="/icon.png" color="#5bbad5" />
+      <link rel="mask-icon" href="/icon.png" color="#5a51c2" />
       <link rel="shortcut icon" href="/favicon.ico" />
       <meta
         name="viewport"
