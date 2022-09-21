@@ -9,6 +9,7 @@ import { Modal } from '@app/components/ui/Modal';
 import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
 
 import s from './SignIn.module.css';
+import b from '@app/components/ui/Button/Button.module.scss';
 
 export const SignIn = () => {
   const { setUser } = useActions();
@@ -71,7 +72,7 @@ export const SignIn = () => {
         <NavLink href={'#'}> I forgot my password </NavLink>
       </span>
       <hr />
-      <Button type="submit" form={'signIn'} size={'lg'} className={'w-100'}>
+      <Button type="submit" form={'signIn'} size={'lg'} className={b.w100}>
         Login
       </Button>
       <div className={s.help}>

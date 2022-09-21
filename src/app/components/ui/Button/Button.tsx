@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cn from 'classnames';
 
-import s from './Button.module.css';
+import s from './Button.module.scss';
 import { ButtonHTMLAttributes, FC } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<any> {

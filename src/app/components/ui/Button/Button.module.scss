@@ -1,9 +1,11 @@
+@use 'src/styles/mediaQueries.scss' as *;
+
 .root {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 105px;
-  padding: 0;
+  width: max-content;
+  padding: var(--spacing-4);
   margin: 0;
 
   font-weight: 500;
@@ -70,5 +72,9 @@
 
       background-color: var(--gray-50);
     }
+  }
+
+  &.w100 {
+    width: 100%;
   }
 }

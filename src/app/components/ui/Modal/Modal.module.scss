@@ -1,11 +1,41 @@
+@use 'src/styles/mediaQueries.scss' as *;
+
 .overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
 
   background-color: rgb(0 0 0 / 30%);
+}
+
+.modal {
+  opacity: 1;
+}
+
+.modal-enter {
+  opacity: 0;
+
+  transform: scale(0.9);
+}
+
+.modal-enter-active {
+  opacity: 1;
+
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.modal-exit {
+  opacity: 1;
+}
+
+.modal-exit-active {
+  opacity: 0;
+
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
 }
 
 .root {
@@ -29,6 +59,13 @@
   border-radius: 12px;
 
   transform: translate(-50%, -50%);
+
+  @include xs {
+    height: 100vh;
+    min-width: 100%;
+
+    border-radius: 0;
+  }
 }
 
 .content {
@@ -39,10 +76,14 @@
   width: 100%;
   padding: 16px 24px;
 
+  @include xs {
+    gap: 24px;
+  }
+
   form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 24px;
     width: 100%;
 
     input {
@@ -59,6 +100,10 @@
   gap: 16px;
   width: 100%;
   padding: 16px;
+  @include xs {
+    justify-content: space-between;
+    padding: 0;
+  }
 
   .holder {
     display: flex;

@@ -5,7 +5,7 @@ import { Icon } from '@app/components/ui/Icon';
 import { Button } from '@app/components/ui/Button';
 import { Fragment, ReactNode, useEffect, useRef } from 'react';
 import { useActions } from '@app/hooks/useActions';
-import s from './Modal.module.css';
+import s from './Modal.module.scss';
 
 interface ModalProps {
   children: ReactNode;
@@ -32,9 +32,21 @@ export const Modal = ({ isOpen = false, classNames = {}, title, children }: Moda
 
   return (
     <ReactPortal wrapperId="react-portal-modal-container">
-      <CSSTransition in={isOpen} out={!isOpen} timeout={100} unmountOnExit nodeRef={nodeRef}>
+      <CSSTransition
+        in={isOpen}
+        out={!isOpen}
+        timeout={500}
+        unmountOnExit
+        nodeRef={nodeRef}
+        classNames={{
+          enter: s['modal-enter'],
+          enterActive: s['modal-enter-active'],
+          exit: s['modal-exit'],
+          exitActive: s['modal-exit-active'],
+        }}
+      >
         <Fragment>
-          <div className={cn(s.root, classNames.root)} ref={nodeRef}>
+          <div className={cn(s.root, s.modal)} ref={nodeRef}>
             <div className={s.header}>
               <div className={s.holder}>
                 <h2>{title}</h2>
