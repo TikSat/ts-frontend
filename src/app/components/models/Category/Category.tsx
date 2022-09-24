@@ -15,9 +15,7 @@ export const Category = ({ name, slug, image_small, listings_count }: CategoryPr
   const image_src = image_small ? image_small : '/img.png';
 
   const listingName = !!listings_count ? (
-    <span className={s.title}>
-      {name} ({listings_count})
-    </span>
+    <span className={s.title}>{name}</span>
   ) : (
     <span className={s.title}>{name}</span>
   );
