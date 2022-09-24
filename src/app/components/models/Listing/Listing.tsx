@@ -159,9 +159,6 @@ export const Listing: FC<ListingComponentProps> = ({ breadcrumbs, listing }) => 
             <div className={s.tab}>
               <NavLink href={'#'}>Mortgage</NavLink>
             </div>
-            <div className={s.tab}>
-              <NavLink href={'#'}>Location</NavLink>
-            </div>
           </div>
           <div className={s.main}>
             <h3>Main information</h3>

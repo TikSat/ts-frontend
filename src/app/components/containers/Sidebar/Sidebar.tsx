@@ -1,5 +1,5 @@
 import * as React from 'react';
-import s from './Sidebar.module.css';
+import s from './Sidebar.module.scss';
 
 interface ContainerProps {
   children: React.ReactNode;

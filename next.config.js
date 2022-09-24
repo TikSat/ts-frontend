@@ -40,7 +40,8 @@ const nextConfig = {
 }
 
 const withPWA = require('next-pwa')({
-  dest: 'public'
+  dest: 'public',
+  disable: process.env.NODE_ENV !== 'production'
 })
 
 module.exports = withSentryConfig(withPWA(nextConfig), sentryWebpackPluginOptions)

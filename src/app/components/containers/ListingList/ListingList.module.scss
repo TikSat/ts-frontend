@@ -1,0 +1,24 @@
+.root {
+  display: flex;
+  flex-shrink: 1;
+  justify-content: space-between;
+  align-items: start;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+
+  box-sizing: border-box;
+  flex-flow: row wrap;
+
+  [class*='infinite-scroll'] {
+    display: flex;
+    flex-flow: row wrap;
+
+    flex-shrink: 1;
+    justify-content: space-between;
+    align-items: start;
+    gap: 12px;
+    width: 100%;
+    padding: 0;
+  }
+}

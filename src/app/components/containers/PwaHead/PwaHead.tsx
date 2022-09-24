@@ -7,7 +7,7 @@ export const PwaHead = () => {
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       <meta name="apple-mobile-web-app-title" content="Tiksat" />
-      <meta name="description" content="Best PWA App in the world" />
+      <meta name="description" content="Tiksat" />
       <meta name="format-detection" content="telephone=no" />
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="theme-color" content="#5a51c2" />
@@ -22,7 +22,7 @@ export const PwaHead = () => {
       <link rel="shortcut icon" href="/favicon.ico" />
       <meta
         name="viewport"
-        content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
+        content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
       />
     </Head>
   );

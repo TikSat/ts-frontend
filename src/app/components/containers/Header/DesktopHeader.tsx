@@ -64,7 +64,7 @@ export const DesktopHeader = () => {
         <div className={s.right}>
           <NavLink href={'/favorites'} theme="silent" withIcon authRequired>
             <Icon name="heart"></Icon>
-            Favorite
+            Favorites
           </NavLink>
           <NavLink href={'/messages'} theme="silent" withIcon authRequired>
             <Icon name="message"></Icon>

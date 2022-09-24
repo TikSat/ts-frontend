@@ -10,7 +10,7 @@ export const buildBreadcrumbs = async ({
   listing?: ListingProps;
 }): Promise<any> => {
   let breadcrumbs = [];
-  const slugs = await fetch(ApiRoutes({ categoryId }).breadcrumbs);
+  const slugs = categoryId ? await fetch(ApiRoutes({ categoryId }).breadcrumbs) : null;
 
   // add location first
   breadcrumbs.push({
@@ -21,8 +21,6 @@ export const buildBreadcrumbs = async ({
 
   if (slugs?.status == 200 && slugs?.data) {
     const data = slugs?.data;
-    const last = data[data.length - 1];
-
     data.forEach((crumb: 2[]) => {
       breadcrumbs.push({
         title: crumb[0],

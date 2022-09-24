@@ -19,10 +19,10 @@
   }
 
   &.silent {
-    color: var(--gray-400);
+    color: var(--gray-500);
 
     &:hover {
-      color: var(--gray-500);
+      color: var(--gray-900);
     }
   }
 

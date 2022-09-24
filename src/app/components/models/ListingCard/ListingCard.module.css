@@ -71,14 +71,14 @@
   align-items: center;
 
   color: #000;
-  font-size: 12px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 16px;
 }
 
 .location {
-  color: var(--gray-400);
+  color: var(--gray-500);
   font-size: 12px;
   font-style: normal;
   font-weight: 600;

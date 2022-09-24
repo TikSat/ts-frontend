@@ -1,0 +1,10 @@
+@use 'src/styles/mediaQueries.scss' as *;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  min-width: 288px;
+  @include xs {
+    display: none;
+  }
+}

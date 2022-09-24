@@ -3,17 +3,16 @@ import Head from 'next/head';
 import { CategoryProps } from '@app/components/models/Category/Category';
 import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
 import { BreadcrumbProps } from '@app/components/models/Breadcrumb';
-import { ListingProps } from '@app/components/models/Listing';
 import { CategoryList } from '@app/components/containers/CategoryList';
 import { ContainerWithSidebar } from '@app/components/containers/ContainerWithSidebar';
 import { BreadcrumbList } from '@app/components/containers/BreadcrumbList';
-import { ListingList } from '@app/components/containers/ListingList';
+import { ListingList, ListingListProps } from '@app/components/containers/ListingList';
 import { Sidebar } from '@app/components/containers/Sidebar';
 import { FavoritesListPreview } from '@app/components/containers/FavoritesListPreview';
 
 export type MainPageProps = {
   categories: CategoryProps[];
-  listings: ListingProps[];
+  listingList: ListingListProps;
   breadcrumbs: BreadcrumbProps[];
   title: string;
   header: string;
@@ -23,13 +22,12 @@ export type MainPageProps = {
 export const Main: FC<MainPageProps> = ({
   categories,
   breadcrumbs,
-  listings,
+  listingList,
   title = 'Istanbul',
   header = 'Your Recommendations',
   category,
 }) => {
   const { user } = useTypedSelectors((state) => state.user);
-
   const pageTitle = `${title} | Tiksat`;
   return (
     <Fragment>
@@ -44,11 +42,11 @@ export const Main: FC<MainPageProps> = ({
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <BreadcrumbList breadcrumbs={breadcrumbs} />
           <h1 className={'h1'}>{header}</h1>
-          <ListingList listings={listings}></ListingList>
+          <ListingList {...listingList}></ListingList>
         </div>
-        {/*<Sidebar>*/}
-        {/*  {user && <FavoritesListPreview listings={listings}></FavoritesListPreview>}*/}
-        {/*</Sidebar>*/}
+        <Sidebar>
+          <FavoritesListPreview {...listingList}></FavoritesListPreview>
+        </Sidebar>
       </ContainerWithSidebar>
     </Fragment>
   );
