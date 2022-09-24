@@ -20,7 +20,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const categoryData = await fetch(routes.category);
   const listingsData = await fetch(routes.listings, {
     params: {
-      response: { include: ['id', 'title', 'price', 'slug', 'image_medium', 'category'] },
+      response: {
+        include: ['id', 'title', 'price', 'slug', 'image_medium', 'image_extra_small', 'category'],
+      },
     },
   });
 
