@@ -49,6 +49,7 @@ export const SignIn = () => {
           token: token,
           refresh_token: refresh_token,
         }).then((res) => setUser(res?.data));
+        setModal(null);
       }
     } else {
       setError(true);
@@ -83,8 +84,7 @@ export const SignIn = () => {
             setModal({ name: 'SignUp' });
           }}
         >
-          {' '}
-          Create an account{' '}
+          Create an account
         </NavLink>
       </div>
     </Modal>

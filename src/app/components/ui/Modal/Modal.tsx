@@ -23,10 +23,12 @@ export const Modal = ({ isOpen = false, classNames = {}, title, children }: Moda
   const { setModal } = useActions();
 
   useEffect(() => {
+    isOpen && document.getElementsByTagName('main')[0].classList.add(s.overlay);
     const closeOnEscapeKey = (e: KeyboardEvent) => (e.key === 'Escape' ? setModal(null) : null);
     document.body.addEventListener('keydown', closeOnEscapeKey);
     return () => {
       document.body.removeEventListener('keydown', closeOnEscapeKey);
+      document.getElementsByTagName('main')[0].classList.remove(s.overlay);
     };
   }, [isOpen]);
 
@@ -64,7 +66,6 @@ export const Modal = ({ isOpen = false, classNames = {}, title, children }: Moda
             <hr />
             <div className={cn(s.content, classNames.content)}>{children}</div>
           </div>
-          <div className={s.overlay}></div>
         </Fragment>
       </CSSTransition>
     </ReactPortal>

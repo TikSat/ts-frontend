@@ -26,9 +26,9 @@ export const Icon = ({ name, size = 'sm', theme = 'silent', onClick }: IconProps
   const IconTag = iconList[name];
   if (IconTag) {
     return (
-      <span className={cn(s.root, s[size], s[theme])} onClick={onClick}>
+      <div className={cn(s.root, s[size], s[theme])} onClick={onClick}>
         <IconTag />
-      </span>
+      </div>
     );
   } else {
     return <svg width="0px" height="0px"></svg>;

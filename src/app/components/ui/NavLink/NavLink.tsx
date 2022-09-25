@@ -1,11 +1,11 @@
 import * as React from 'react';
 import cn from 'classnames';
 import Link, { LinkProps } from 'next/link';
-import { BaseSyntheticEvent, Fragment } from 'react';
-import s from './NavLink.module.css';
+import { BaseSyntheticEvent } from 'react';
 import { SignIn } from '@app/components/pages/SignIn';
 import { useActions } from '@app/hooks/useActions';
 import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
+import s from './NavLink.module.css';
 
 export type NavLinkProps = LinkProps & {
   children: React.ReactNode;
@@ -38,15 +38,13 @@ export const NavLink = ({
   };
 
   return (
-    <Fragment>
-      <Link href={href} as={as} {...rest}>
-        <a
-          className={cn(s.root, s[theme], className, icon)}
-          onClick={authRequired ? showModal : onClick}
-        >
-          {children}
-        </a>
-      </Link>
-    </Fragment>
+    <Link href={href} as={as} {...rest} passHref>
+      <a
+        className={cn(s.root, s[theme], className, icon)}
+        onClick={authRequired ? showModal : onClick}
+      >
+        {children}
+      </a>
+    </Link>
   );
 };

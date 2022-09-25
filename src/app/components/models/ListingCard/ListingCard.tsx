@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
 import image from '/public/img_1.png';
 import { ListingProps } from '@app/components/models/Listing';
@@ -27,16 +26,16 @@ export const ListingCard = (listing: ListingProps) => {
         </div>
 
         <div className={s.text}>
-          <div className={s.favorite}>
-            <Link href={'/'}>
-              <Icon name={'heart'} size={'xs'} />
-            </Link>
-          </div>
           <span className={s.price}>{format('tr-TR', 'TRY', price || 0)}</span>
           <span className={s.title}>{title}</span>
           <span className={s.location}>Moscow, Arbat street</span>
         </div>
       </NavLink>
+      <div className={s.favorite}>
+        <NavLink href={'/favorites'} authRequired>
+          <Icon name={'heart'} size={'xs'} />
+        </NavLink>
+      </div>
     </div>
   );
 };

@@ -17,6 +17,7 @@ export type MainPageProps = {
   title: string;
   header: string;
   category?: CategoryProps;
+  withSidebar: boolean;
 };
 
 export const Main: FC<MainPageProps> = ({
@@ -26,27 +27,29 @@ export const Main: FC<MainPageProps> = ({
   title = 'Istanbul',
   header = 'Your Recommendations',
   category,
+  withSidebar = true,
 }) => {
   const { user } = useTypedSelectors((state) => state.user);
   const pageTitle = `${title} | Tiksat`;
   return (
     <Fragment>
-      {/*Injects to head*/}
       <Head>
         <title>{pageTitle}</title>
         {category && category.desc && <meta name={'description'} content={category?.desc} />}
       </Head>
-      {categories.length > 0 && <CategoryList categories={categories}></CategoryList>}
+      {categories && categories.length > 0 && <CategoryList categories={categories}></CategoryList>}
 
       <ContainerWithSidebar>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <BreadcrumbList breadcrumbs={breadcrumbs} />
+          {breadcrumbs && <BreadcrumbList breadcrumbs={breadcrumbs} />}
           <h1 className={'h1'}>{header}</h1>
           <ListingList {...listingList}></ListingList>
         </div>
-        <Sidebar>
-          <FavoritesListPreview {...listingList}></FavoritesListPreview>
-        </Sidebar>
+        {withSidebar && (
+          <Sidebar>
+            {user && <FavoritesListPreview {...listingList}></FavoritesListPreview>}
+          </Sidebar>
+        )}
       </ContainerWithSidebar>
     </Fragment>
   );

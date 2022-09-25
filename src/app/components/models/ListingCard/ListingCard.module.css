@@ -1,11 +1,20 @@
 .root {
+  position: relative;
+
   display: flex;
-  flex: 1 1 auto;
 
   flex-direction: column;
   align-items: flex-start;
   gap: var(--spacing-4);
   width: calc(50% - 8px);
+
+  padding: 0 0 12px;
+
+  border: 1px solid #ebebeb;
+  border-radius: 12px;
+
+  box-sizing: border-box;
+  flex: 1 1 auto;
 
   a {
     flex-direction: column;
@@ -14,13 +23,6 @@
     height: 100%;
     flex: 1 1 auto;
   }
-
-  padding: 0 0 12px;
-
-  border: 1px solid #ebebeb;
-  border-radius: 12px;
-
-  box-sizing: border-box;
 
   @media only screen and (min-width: 992px) {
     gap: var(--spacing-8);
@@ -49,7 +51,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4px;
+  gap: var(--spacing-4);
   width: 100%;
   height: 100%;
   padding: 0 11px;
@@ -87,8 +89,8 @@
 
 .favorite {
   position: absolute;
-  top: -14%;
-  right: 14%;
+  top: 156px;
+  right: 14px;
 
   display: flex;
   flex-direction: row;
@@ -97,9 +99,15 @@
   width: var(--spacing-20);
   height: var(--spacing-20);
 
-  background: var(--white);
+  background: var(--gray-50);
   border: 1px solid var(--gray-50);
   border-radius: var(--spacing-4);
+
+  a {
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+  }
 
   &.added {
     svg {

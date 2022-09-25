@@ -1,10 +1,22 @@
-import { Fragment } from 'react';
+import { BaseSyntheticEvent, Fragment } from 'react';
 import { NavLink } from '@app/components/ui/NavLink';
 import { Icon } from '@app/components/ui/Icon';
 import { Button } from '@app/components/ui/Button';
 import s from './Header.module.scss';
+import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
+import { useActions } from '@app/hooks/useActions';
 
 export const DesktopHeader = () => {
+  const { user } = useTypedSelectors((state) => state.user);
+  const { setUser } = useActions();
+
+  const signOut = (e: BaseSyntheticEvent) => {
+    e.preventDefault();
+    setUser(null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+  };
+
   return (
     <Fragment>
       <div className={s.secondary}>
@@ -37,6 +49,13 @@ export const DesktopHeader = () => {
               Advertising
             </NavLink>
           </div>
+          {user && (
+            <div className={s.optionItem}>
+              <NavLink href="#" theme="silent" onClick={signOut}>
+                Sign Out
+              </NavLink>
+            </div>
+          )}
         </div>
       </div>
       <div className={s.main}>
