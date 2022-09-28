@@ -23,9 +23,11 @@ export const Input = ({
 }: InputProps) => {
   return (
     <div className={s.inputWrapper}>
-      <label className={s.label} htmlFor="">
-        {label}
-      </label>
+      {label && (
+        <label className={s.label} htmlFor="">
+          {label}
+        </label>
+      )}
       <input
         className={cn(s.root, s[size], s[theme], className)}
         type={type}

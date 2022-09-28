@@ -4,10 +4,10 @@
 
 .help {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: var(--spacing-4);
+  gap: var(--spacing-8);
   width: 100%;
 
   font-size: 16px;

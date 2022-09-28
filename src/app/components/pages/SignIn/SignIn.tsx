@@ -10,6 +10,7 @@ import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
 
 import s from './SignIn.module.css';
 import b from '@app/components/ui/Button/Button.module.scss';
+import l from '@app/components/ui/NavLink/NavLink.module.css';
 
 export const SignIn = () => {
   const { setUser } = useActions();
@@ -74,17 +75,21 @@ export const SignIn = () => {
       </span>
       <hr />
       <Button type="submit" form={'signIn'} size={'lg'} className={b.w100}>
-        Login
+        Sign In
       </Button>
+      <hr />
       <div className={s.help}>
         <span className={'muted'}>New to Tiksat?</span>
         <NavLink
           href={'#'}
+          className={l.w100}
           onClick={() => {
             setModal({ name: 'SignUp' });
           }}
         >
-          Create an account
+          <Button className={b.w100} theme={'secondary'}>
+            Create an account
+          </Button>
         </NavLink>
       </div>
     </Modal>

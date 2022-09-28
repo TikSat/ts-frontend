@@ -9,6 +9,7 @@ import { useActions } from '@app/hooks/useActions';
 export const DesktopHeader = () => {
   const { user } = useTypedSelectors((state) => state.user);
   const { setUser } = useActions();
+  const { setModal } = useActions();
 
   const signOut = (e: BaseSyntheticEvent) => {
     e.preventDefault();
@@ -27,9 +28,15 @@ export const DesktopHeader = () => {
           </div>
           <div className={s.optionItem}>
             Location:
-            <NavLink href="/">
+            <NavLink
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setModal({ name: 'UserLocation' });
+              }}
+            >
               <span>Moscow, Russia</span>
-              <Icon name="location" size={'sm'} theme={'secondary'} />
+              <Icon name="location" size={'xs'} theme={'secondary'} />
             </NavLink>
           </div>
         </div>

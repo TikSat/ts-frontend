@@ -5,7 +5,7 @@ import { ListingProps } from '@app/components/models/Listing';
 import { NavLink } from '@app/components/ui/NavLink';
 import { Icon } from '@app/components/ui/Icon';
 import { format } from 'src/lib/api/currencyFormatter';
-import s from './ListingCard.module.css';
+import s from './ListingCard.module.scss';
 
 export const ListingCard = (listing: ListingProps) => {
   const { category, title, url = '/', slug, image_medium, price } = listing;

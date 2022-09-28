@@ -6,6 +6,7 @@ import { SignIn } from '@app/components/pages/SignIn';
 import { SignUp } from '@app/components/pages/SignUp';
 import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
 import { MobileMenu } from '@app/components/containers/MobileMenu';
+import { UserLocation } from '@app/components/pages/Location';
 import s from './Layout.module.css';
 
 export const UserLayout = ({ children }: ChildLayoutProps) => {
@@ -15,6 +16,7 @@ export const UserLayout = ({ children }: ChildLayoutProps) => {
     <Fragment>
       {modal?.name === 'SignIn' && <SignIn />}
       {modal?.name === 'SignUp' && <SignUp />}
+      {modal?.name === 'UserLocation' && <UserLocation />}
     </Fragment>
   );
 

@@ -1,3 +1,5 @@
+@use 'src/styles/mediaQueries.scss' as *;
+
 .root {
   position: relative;
 
@@ -91,6 +93,10 @@
   position: absolute;
   top: 156px;
   right: 14px;
+
+  @include xs {
+    top: 122px;
+  }
 
   display: flex;
   flex-direction: row;

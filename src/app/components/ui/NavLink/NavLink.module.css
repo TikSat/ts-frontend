@@ -33,10 +33,10 @@
       color: var(--gray-50);
     }
   }
+}
 
-  &.w100 {
-    width: 100%;
-  }
+.w100 {
+  width: 100%;
 }
 
 .withIcon {

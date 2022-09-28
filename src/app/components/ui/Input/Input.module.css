@@ -27,10 +27,6 @@
     padding: var(--spacing-20) var(--spacing-24);
   }
 
-  .fullWidth {
-    width: 100%;
-  }
-
   &.primary {
     &:focus {
       border: 1px solid var(--brand-primary-400);
@@ -44,10 +40,15 @@
   }
 }
 
+.fullWidth {
+  width: 100%;
+}
+
 .inputWrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
 }
 
 .label {
