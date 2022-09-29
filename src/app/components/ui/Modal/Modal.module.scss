@@ -54,6 +54,10 @@
   min-width: 600px;
   overflow: hidden;
 
+  @include xs {
+    justify-content: flex-start;
+  }
+
   background-color: white;
 
   border: 1px solid #eaeaea;
@@ -75,7 +79,7 @@
   flex-direction: column;
   gap: 24px;
   width: 100%;
-  padding: 16px 24px;
+  padding: 16px;
 
   @include xs {
     gap: 24px;
@@ -102,8 +106,8 @@
   width: 100%;
   padding: 16px;
   @include xs {
-    justify-content: space-between;
-    padding: 0;
+    //justify-content: space-between;
+    //padding: 0;
   }
 
   .holder {
@@ -113,7 +117,6 @@
     align-items: center;
     gap: 12px;
     width: 100%;
-    padding: 0 24px;
 
     h2 {
       font-size: 20px;
