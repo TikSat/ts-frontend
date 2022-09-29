@@ -11,4 +11,7 @@
   @include gt-md {
     max-width: var(--container-xl);
   }
+  @include lt-lg {
+    padding-bottom: 80px;
+  }
 }

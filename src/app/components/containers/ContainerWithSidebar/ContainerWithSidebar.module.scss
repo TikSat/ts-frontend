@@ -4,8 +4,8 @@
   display: flex;
   flex-direction: row;
   gap: 22px;
-  @include xs {
-    padding-right: 14px;
-    padding-left: 14px;
+  @include lt-lg {
+    padding-right: 16px;
+    padding-left: 16px;
   }
 }

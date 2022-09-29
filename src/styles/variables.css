@@ -28,6 +28,7 @@
   --brand-logo: #5a51c2;
 
   /* Sizes */
+  --container-xs: 488px;
   --container-sm: 640px;
   --container-md: 768px;
   --container-lg: 1024px;
