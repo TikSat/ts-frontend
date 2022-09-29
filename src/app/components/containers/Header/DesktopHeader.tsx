@@ -88,23 +88,45 @@ export const DesktopHeader = () => {
           </div>
         </div>
         <div className={s.right}>
-          <NavLink href={'/favorites'} theme="silent" withIcon authRequired>
-            <Icon name="heart"></Icon>
-            Favorites
-          </NavLink>
-          <NavLink href={'/messages'} theme="silent" withIcon authRequired>
-            <Icon name="message"></Icon>
-            Messages
-          </NavLink>
-          <NavLink href={'/profile'} theme="silent" withIcon authRequired>
-            <Icon name="user"></Icon>
-            My profile
-          </NavLink>
-          <Button>
-            <NavLink href="/listings/add" theme={'white'}>
-              Post Free Ad
+          <div className={s.desktop}>
+            <NavLink href={'/favorites'} theme="silent" withIcon authRequired>
+              <Icon name="heart"></Icon>
+              Favorites
             </NavLink>
-          </Button>
+            <NavLink href={'/messages'} theme="silent" withIcon authRequired>
+              <Icon name="message"></Icon>
+              Messages
+            </NavLink>
+            <NavLink href={'/profile'} theme="silent" withIcon authRequired>
+              <Icon name="user"></Icon>
+              My profile
+            </NavLink>
+            <Button>
+              <NavLink href="/listings/add" theme={'white'}>
+                Post Free Ad
+              </NavLink>
+            </Button>
+          </div>
+          <div className={s.mobile}>
+            <NavLink
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setModal({ name: 'UserLocation' });
+              }}
+            >
+              <Icon name="search" size={'md'} theme={'primary'} className={'bordered'} />
+            </NavLink>
+            <NavLink
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setModal({ name: 'UserLocation' });
+              }}
+            >
+              <Icon name="location" size={'md'} theme={'primary'} className={'bordered'} />
+            </NavLink>
+          </div>
         </div>
       </div>
     </Fragment>

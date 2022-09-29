@@ -16,17 +16,25 @@ interface IconProps {
     | 'eye'
     | 'hashtag'
     | 'home'
-    | 'plusCircle';
+    | 'plusCircle'
+    | 'search';
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'logo';
   theme?: 'primary' | 'secondary' | 'silent' | 'star' | 'muted';
   onClick?: () => void;
+  className?: 'bordered' | 'unbordered';
 }
 
-export const Icon = ({ name, size = 'sm', theme = 'silent', onClick }: IconProps) => {
+export const Icon = ({
+  name,
+  size = 'sm',
+  theme = 'silent',
+  onClick,
+  className = 'unbordered',
+}: IconProps) => {
   const IconTag = iconList[name];
   if (IconTag) {
     return (
-      <div className={cn(s.root, s[size], s[theme])} onClick={onClick}>
+      <div className={cn(s.root, s[size], s[theme], s[className])} onClick={onClick}>
         <IconTag />
       </div>
     );

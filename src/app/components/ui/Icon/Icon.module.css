@@ -57,4 +57,16 @@
     color: #ffb319;
     stroke: #ffb319;
   }
+
+  &.bordered {
+    padding: 8px;
+
+    border: 1px solid white;
+    border-radius: 8px;
+  }
+
+  &.unbordered {
+    border: none;
+    border-radius: 0;
+  }
 }

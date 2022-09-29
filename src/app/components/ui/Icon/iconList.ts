@@ -11,6 +11,7 @@ import EyeIcon from 'public/icons/eye.svg';
 import HashtagIcon from 'public/icons/hashtag.svg';
 import HomeIcon from 'public/icons/home.svg';
 import plusCircle from 'public/icons/plusCircle.svg';
+import searchIcon from 'public/icons/search.svg';
 
 const iconList = {
   menu: MenuIcon,
@@ -26,6 +27,7 @@ const iconList = {
   hashtag: HashtagIcon,
   home: HomeIcon,
   plusCircle: plusCircle,
+  search: searchIcon,
 };
 
 export default iconList;
