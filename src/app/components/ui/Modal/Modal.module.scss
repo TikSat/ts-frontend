@@ -8,6 +8,7 @@
   left: 0;
 
   min-height: 100%;
+  overflow: hidden;
 
   opacity: 0;
   pointer-events: none;
@@ -52,11 +53,8 @@
   flex-direction: column;
   justify-content: center;
   min-width: 600px;
+  margin-top: 8px;
   overflow: hidden;
-
-  @include xs {
-    justify-content: flex-start;
-  }
 
   background-color: white;
 
@@ -67,9 +65,11 @@
   transform: translate(-50%, -50%);
 
   @include xs {
+    justify-content: flex-start;
     height: 100vh;
     min-width: 100%;
 
+    border: 0;
     border-radius: 0;
   }
 }
@@ -105,10 +105,6 @@
   gap: 16px;
   width: 100%;
   padding: 16px;
-  @include xs {
-    //justify-content: space-between;
-    //padding: 0;
-  }
 
   .holder {
     display: flex;
@@ -119,7 +115,7 @@
     width: 100%;
 
     h2 {
-      font-size: 20px;
+      font-size: 24px;
       font-style: normal;
       font-weight: 600;
       line-height: 32px;
