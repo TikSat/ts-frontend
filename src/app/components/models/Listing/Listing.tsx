@@ -6,13 +6,13 @@ import { ListingField, ListingFieldProps } from '@app/components/models/ListingF
 import Image from 'next/image';
 import { format } from 'src/lib/api/currencyFormatter';
 import { ListingImage } from '@app/components/models/ListingImage';
-import image from '/public/img_1.png';
 import { BreadcrumbList } from '@app/components/containers/BreadcrumbList';
 import { BreadcrumbProps } from '@app/components/models/Breadcrumb';
 import { Button } from '@app/components/ui/Button';
 import cn from 'classnames';
 import { Icon } from '@app/components/ui/Icon';
 import { NavLink } from '@app/components/ui/NavLink';
+import image from '/public/img_1.png';
 import s from './Listing.module.css';
 
 interface ListingComponentProps {
@@ -58,7 +58,7 @@ export const Listing: FC<ListingComponentProps> = ({ breadcrumbs, listing }) => 
 
   // @ts-ignore
   const listingDate = new Date(updated_at).toLocaleTimeString('tr-tr', options);
-
+  const pageTitle = `${title} | Tiksat`;
   return (
     <React.Fragment>
       <Head>
@@ -69,12 +69,12 @@ export const Listing: FC<ListingComponentProps> = ({ breadcrumbs, listing }) => 
             __html: generator.generateListingSchema({ id, slug, category, title }),
           }}
         ></script>
-        <title>{title}</title>
+        <title>{pageTitle}</title>
       </Head>
       <div className={s.root}>
         <div className={s.images}>
           <div className={s.image}>
-            <Image src={image_src} layout={'fill'} alt={title}></Image>
+            <Image src={image_src} layout={'fill'} alt={pageTitle}></Image>
           </div>
           {images?.map((image) => {
             const props = { alt: title, ...image };

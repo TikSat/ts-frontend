@@ -24,13 +24,15 @@ export const Main: FC<MainPageProps> = ({
   categories,
   breadcrumbs,
   listingList,
-  title = 'Istanbul',
+  title = '',
   header = 'Your Recommendations',
   category,
   withSidebar = true,
 }) => {
   const { user } = useTypedSelectors((state) => state.user);
-  const pageTitle = `${title} | Tiksat`;
+  const { preferences } = useTypedSelectors((state) => state.preferences);
+  const { location } = preferences;
+  const pageTitle = title ? `${title} in ${location} | Tiksat` : `${location} | Tiksat`;
   return (
     <Fragment>
       <Head>

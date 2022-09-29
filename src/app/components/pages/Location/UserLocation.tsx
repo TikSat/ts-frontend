@@ -6,6 +6,7 @@ import i from '@app/components/ui/Input/Input.module.css';
 import s from './UserLocation.module.scss';
 import { BaseSyntheticEvent } from 'react';
 import { useActions } from '@app/hooks/useActions';
+import { useRouter } from 'next/router';
 
 export const UserLocation = () => {
   const { modal } = useTypedSelectors((state) => state.modal);
@@ -13,6 +14,7 @@ export const UserLocation = () => {
 
   const { preferences } = useTypedSelectors((state) => state.preferences);
   const { location } = preferences;
+  const router = useRouter();
   const cities = ['Istanbul', 'London', 'New York', 'Sydney', 'Moscow', 'Paris', 'Tokio', 'Warsaw'];
   const countries = [
     'Russia',
@@ -31,6 +33,7 @@ export const UserLocation = () => {
     const newLocation = e.currentTarget.textContent;
     setLocation(newLocation);
     localStorage.setItem('location', newLocation);
+    router.push('/');
     setModal(null);
   };
 
