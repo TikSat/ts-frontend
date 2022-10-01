@@ -60,12 +60,12 @@ export const SignIn = () => {
   return (
     <Modal title={'Sign In'} isOpen={isOpen}>
       <form onSubmit={handleSubmit} id={'signIn'}>
-        <Input placeholder="Email" name={'email'} size={'lg'} label="Email" />
+        <Input placeholder="Email" name={'email'} inputSize={'lg'} label="Email" />
         <Input
           placeholder="Password"
           type={'password'}
           name={'password'}
-          size={'lg'}
+          inputSize={'lg'}
           label="Password"
         />
       </form>

@@ -1,25 +1,25 @@
-import React from 'react';
+import React, { InputHTMLAttributes } from 'react';
 import cn from 'classnames';
 import s from './Input.module.css';
 
-export interface InputProps {
-  type?: string;
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+interface InputProps extends InputHTMLAttributes<any> {
+  inputSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   theme?: 'primary' | 'secondary';
   className?: string;
   placeholder?: string;
-  name: string;
+  name?: string;
   label?: string;
 }
 
 export const Input = ({
   type = 'text',
-  size = 'md',
+  inputSize = 'md',
   theme = 'primary',
   className,
   placeholder = 'Type here...',
   name,
   label,
+  ...rest
 }: InputProps) => {
   return (
     <div className={s.inputWrapper}>
@@ -29,10 +29,11 @@ export const Input = ({
         </label>
       )}
       <input
-        className={cn(s.root, s[size], s[theme], className)}
+        className={cn(s.root, s[inputSize], s[theme], className)}
         type={type}
         placeholder={placeholder}
         name={name}
+        {...rest}
       />
     </div>
   );

@@ -4,6 +4,8 @@ import { Icon } from '@app/components/ui/Icon';
 import { Button } from '@app/components/ui/Button';
 import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
 import { useActions } from '@app/hooks/useActions';
+import Dropdown, { type Option } from 'react-dropdown';
+import cn from 'classnames';
 import s from './Header.module.scss';
 
 export const DesktopHeader = () => {
@@ -11,13 +13,21 @@ export const DesktopHeader = () => {
   const { setUser } = useActions();
   const { setModal } = useActions();
   const { setLocation } = useActions();
+  const { setLanguage } = useActions();
   const { preferences } = useTypedSelectors((state) => state.preferences);
   const { language, location } = preferences;
 
   useEffect(() => {
     const defaultLocation = localStorage.getItem('location') || location;
+    const defaultLanguage = localStorage.getItem('language') || language;
     setLocation(defaultLocation);
+    setLanguage(defaultLanguage);
   });
+
+  const chooseLanguage = (lang: Option) => {
+    setLanguage(lang.value);
+    localStorage.setItem('language', lang.value);
+  };
 
   const signOut = (e: BaseSyntheticEvent) => {
     e.preventDefault();
@@ -26,13 +36,26 @@ export const DesktopHeader = () => {
     localStorage.removeItem('refreshToken');
   };
 
+  const langs = [
+    { value: 'en', label: 'English', className: s.en },
+    { value: 'tr', label: 'Türkçe', className: s.tr },
+    { value: 'ru', label: 'Русский', className: s.ru },
+  ];
+
   return (
     <Fragment>
       <div className={s.secondary}>
         <div className={s.options}>
           <div className={s.optionItem}>
             Language:
-            <NavLink href="/">{language}</NavLink>
+            <Dropdown
+              menuClassName={s.dropdownMenu}
+              // @ts-ignore
+              placeholderClassName={cn(s.selected, s[language])}
+              options={langs}
+              value={language}
+              onChange={chooseLanguage}
+            />
           </div>
           <div className={s.optionItem}>
             Location:

@@ -10,7 +10,7 @@ type TypeInitialState = {
 };
 
 const initialState: TypeInitialState = {
-  preferences: { language: 'en', location: 'Istanbul, Turkey' },
+  preferences: { language: 'tr', location: 'Istanbul, Turkey' },
 };
 
 const slice = createSlice({

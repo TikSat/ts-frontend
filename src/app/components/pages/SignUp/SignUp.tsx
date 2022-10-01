@@ -59,26 +59,23 @@ export const SignUp = () => {
   return (
     <Modal title={'Sign Up'} isOpen={isOpen}>
       <form onSubmit={handleSubmit} id={'signUp'}>
-        <Input placeholder="Email" name={'email'} size={'lg'} label="Email" />
+        <Input placeholder="Email" name={'email'} inputSize={'lg'} label="Email" />
         <Input
           placeholder="Password"
           type={'password'}
           name={'password'}
-          size={'lg'}
+          inputSize={'lg'}
           label="Password"
         />
         <Input
           placeholder="Password confirmation"
           type={'password'}
           name={'password_confirmation'}
-          size={'lg'}
+          inputSize={'lg'}
           label="Password confirmation"
         />
       </form>
       {error ? <div className={s.error}>Your email or password is incorrect.</div> : null}
-      {/*<span className={s.help}>*/}
-      {/*  <NavLink href={'#'}> I forgot my password </NavLink>*/}
-      {/*</span>*/}
       <hr />
       <Button type="submit" form={'signUp'} size={'lg'} className={b.w100}>
         Sign Up
