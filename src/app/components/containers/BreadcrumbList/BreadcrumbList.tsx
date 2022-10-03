@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Head from 'next/head';
 import SchemaGenerator from 'src/lib/schemaGenerator';
 import { Breadcrumb, BreadcrumbProps } from '@app/components/models/Breadcrumb';
-import s from './BreadcrumbList.module.css';
 import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
+import s from './BreadcrumbList.module.css';
 
 export interface BreadcrumbListProps {
   breadcrumbs: BreadcrumbProps[];
@@ -14,6 +14,8 @@ export const BreadcrumbList = ({ breadcrumbs }: BreadcrumbListProps) => {
   const { location } = preferences;
 
   let list = breadcrumbs?.filter((el) => el.title != null || el.title != undefined);
+  if (list.length == 0) return <Fragment />;
+
   list[0].title = location;
   if (list.length === 1) {
     list = [];

@@ -7,6 +7,7 @@ import { CategoryProps } from '@app/components/models/Category';
 import { BreadcrumbProps } from '@app/components/models/Breadcrumb';
 import { ApiRoutes } from '@app/routes';
 import { buildBreadcrumbs } from 'src/lib/api/breadcrumbs';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 interface ListingPageProps {
   listing: ListingProps;
@@ -18,7 +19,7 @@ const ListingPage: NextPageWithLayout<ListingPageProps> = (props) => {
   return <Listing {...props} />;
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const routes = ApiRoutes({ categoryId: params?.categoryId, listingId: params?.listingId });
 
   const listingData = await fetch(routes.listing);
@@ -33,12 +34,22 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     });
 
     return {
-      props: { listing, category, breadcrumbs },
+      props: {
+        listing,
+        category,
+        breadcrumbs,
+        ...(await serverSideTranslations(locale as string)),
+      },
       revalidate: 60,
     };
   } else {
     return {
-      props: { listing: [], category: null, breadcrumbs: [] },
+      props: {
+        listing: [],
+        category: null,
+        breadcrumbs: [],
+        ...(await serverSideTranslations(locale as string)),
+      },
       revalidate: 60,
     };
   }

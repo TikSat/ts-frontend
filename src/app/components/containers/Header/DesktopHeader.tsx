@@ -6,23 +6,27 @@ import { useTypedSelectors } from '@app/hooks/useTypedSelectors';
 import { useActions } from '@app/hooks/useActions';
 import Dropdown, { type Option } from 'react-dropdown';
 import cn from 'classnames';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import s from './Header.module.scss';
 
 export const DesktopHeader = () => {
   const { user } = useTypedSelectors((state) => state.user);
-  const { setUser } = useActions();
-  const { setModal } = useActions();
-  const { setLocation } = useActions();
-  const { setLanguage } = useActions();
+  const { setUser, setModal } = useActions();
+  const { setLocation, setLanguage } = useActions();
   const { preferences } = useTypedSelectors((state) => state.preferences);
   const { language, location } = preferences;
+  const router = useRouter();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const defaultLocation = localStorage.getItem('location') || location;
     const defaultLanguage = localStorage.getItem('language') || language;
+
     setLocation(defaultLocation);
     setLanguage(defaultLanguage);
-  });
+    router.push(router.pathname, router.asPath, { locale: defaultLanguage });
+  }, [location, language]);
 
   const chooseLanguage = (lang: Option) => {
     setLanguage(lang.value);
@@ -47,7 +51,7 @@ export const DesktopHeader = () => {
       <div className={s.secondary}>
         <div className={s.options}>
           <div className={s.optionItem}>
-            Language:
+            {t('header.lang')}:
             <Dropdown
               menuClassName={s.dropdownMenu}
               // @ts-ignore
@@ -58,7 +62,7 @@ export const DesktopHeader = () => {
             />
           </div>
           <div className={s.optionItem}>
-            Location:
+            {t('header.loc')}:
             <NavLink
               href="#"
               onClick={(e) => {

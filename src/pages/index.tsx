@@ -5,21 +5,24 @@ import { Main, MainPageProps } from '@app/components/pages/Main';
 import { NextPageWithLayout } from 'src/pages/_app';
 import { buildBreadcrumbs } from 'src/lib/api/breadcrumbs';
 import { ListingListProps } from '@app/components/containers/ListingList';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const HomePage: NextPageWithLayout<MainPageProps> = (props) => {
   return <Main {...props} />;
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   let routes = ApiRoutes({});
   const categoriesData = await fetch(routes.categories, {
     params: {
+      locale: locale,
       root: true,
       response: { include: ['id', 'name', 'slug', 'image_small', 'listings_count'] },
     },
   });
   const listingsData = await fetch(routes.recommended, {
     params: {
+      locale: locale,
       response: {
         include: ['id', 'title', 'price', 'slug', 'image_medium', 'image_extra_small', 'category'],
       },
@@ -43,12 +46,12 @@ export const getStaticProps: GetStaticProps = async () => {
   const breadcrumbs = await buildBreadcrumbs({});
 
   if (listingsData?.status == 200 && categoriesData?.status == 200) {
-    // @ts-ignore
     return {
       props: {
         categories,
         listingList,
         breadcrumbs,
+        ...(await serverSideTranslations(locale as string)),
       },
       revalidate: 30,
     };
@@ -57,7 +60,8 @@ export const getStaticProps: GetStaticProps = async () => {
       props: {
         categories: [],
         listingList: [],
-        breadcrumbs: [],
+        breadcrumbs: breadcrumbs,
+        ...(await serverSideTranslations(locale as string)),
       },
       revalidate: 30,
     };

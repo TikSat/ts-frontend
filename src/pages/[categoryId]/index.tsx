@@ -7,6 +7,7 @@ import { CategoryProps } from '@app/components/models/Category';
 import { Main, MainPageProps } from '@app/components/pages/Main';
 import { buildBreadcrumbs } from 'src/lib/api/breadcrumbs';
 import { ListingListProps } from '@app/components/containers/ListingList';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 type CategoryPageProps = MainPageProps & { category: CategoryProps };
 
@@ -15,7 +16,7 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = (props) => {
   return <Main {...props} title={category.name} header={category.name} />;
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const routes = ApiRoutes({ categoryId: params?.categoryId });
   const categoryData = await fetch(routes.category);
   const listingsData = await fetch(routes.listings, {
@@ -44,12 +45,24 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   if (categoryData?.status == 200 && listingsData?.status == 200) {
     return {
-      props: { listingList, categories, category, breadcrumbs },
+      props: {
+        listingList,
+        categories,
+        category,
+        breadcrumbs,
+        ...(await serverSideTranslations(locale as string)),
+      },
       revalidate: 30,
     };
   } else {
     return {
-      props: { listingList: [], categories: [], category: [], breadcrumbs: [] },
+      props: {
+        listingList: [],
+        categories: [],
+        category: [],
+        breadcrumbs: [],
+        ...(await serverSideTranslations(locale as string)),
+      },
       revalidate: 30,
     };
   }
