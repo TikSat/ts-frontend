@@ -11,6 +11,8 @@ import { Fragment } from 'react';
 import i from '@app/components/ui/Input/Input.module.css';
 import s from './UserLocation.module.scss';
 
+const apiKey = process.env.NEXT_PUBLIC_GEOAPI_KEY || process.env.GEOAPI_KEY;
+
 interface LocationProps {
   city: string;
   country: string;
@@ -23,7 +25,6 @@ interface LocationsListProps {
 }
 
 const citiesAutocomplete = async (lang: string, text: string): Promise<LocationProps[] | []> => {
-  const apiKey = process.env.NEXT_PUBLIC_GEOAPI_KEY;
   const url = 'https://api.geoapify.com/v1/geocode/autocomplete';
   const res = await fetch(url, {
     params: {

@@ -22,13 +22,13 @@ export const UserLayout = ({ children }: ChildLayoutProps) => {
 
   return (
     <div className={s.root}>
-      <main>
-        <Container>
-          <Header />
+      <Container>
+        <Header />
+        <main>
           {children}
           <MobileMenu />
-        </Container>
-      </main>
+        </main>
+      </Container>
       {modals}
     </div>
   );

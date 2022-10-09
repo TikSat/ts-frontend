@@ -17,5 +17,6 @@ export const ApiRoutes = ({ categoryId = null, listingId = null }: ApiProps) => 
     signUp: '/api/sign_up',
     tokens: '/api/tokens',
     breadcrumbs: `/api/categories/${categoryId}/breadcrumbs`,
+    autocompleteListings: `/api/listings/autocomplete`,
   };
 };

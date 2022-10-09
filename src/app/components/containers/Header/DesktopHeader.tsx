@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, Fragment, useEffect } from 'react';
+import { BaseSyntheticEvent, Fragment, useEffect, useState } from 'react';
 import { NavLink } from '@app/components/ui/NavLink';
 import { Icon } from '@app/components/ui/Icon';
 import { Button } from '@app/components/ui/Button';
@@ -8,12 +8,113 @@ import Dropdown, { type Option } from 'react-dropdown';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import { Input } from '@app/components/ui/Input';
+import { ApiRoutes } from '@app/routes';
+import { fetch } from 'src/lib/api/fetcher';
+import { ListingProps } from '@app/components/models/Listing';
+
 import s from './Header.module.scss';
+
+interface MobileSearchProps {
+  visible: boolean;
+  setVisible: (boolean: boolean) => void;
+}
+
+const MobileSearch = ({ visible, setVisible }: MobileSearchProps) => {
+  const [results, setResults] = useState([]);
+
+  const showSearch = (e: BaseSyntheticEvent) => {
+    e.preventDefault();
+    document.getElementsByTagName('main')[0].classList.add('overlay');
+    setVisible(true);
+  };
+
+  const hideSearch = (e: BaseSyntheticEvent) => {
+    e.preventDefault();
+    hide();
+  };
+
+  const hide = () => {
+    document.getElementsByTagName('main')[0].classList.remove('overlay');
+    setVisible(false);
+    setResults([]);
+  };
+
+  const autocompleteListings = async (e: BaseSyntheticEvent) => {
+    e.preventDefault();
+    const input = e.currentTarget.value;
+    if (!input || input.length < 3) {
+      setResults([]);
+      return;
+    }
+
+    const route = ApiRoutes({}).autocompleteListings;
+    const results = await fetch(route, {
+      params: {
+        q: input,
+        items: 10,
+        response: { include: ['id', 'title', 'slug', 'category'] },
+      },
+    });
+    if (!results?.data) return;
+
+    setResults(results.data);
+  };
+
+  if (visible) {
+    return (
+      <Fragment>
+        <Input type={'search'} inputSize={'lg'} onChange={autocompleteListings}></Input>
+        <NavLink theme={'white'} href="#" onClick={hideSearch}>
+          Done
+        </NavLink>
+        <SearchResults results={results} hide={hide} />
+      </Fragment>
+    );
+  } else {
+    return (
+      <NavLink href="#" onClick={showSearch}>
+        <Icon name="search" size={'md'} theme={'primary'} className={'bordered'} />
+      </NavLink>
+    );
+  }
+};
+
+interface SearchResultsProps {
+  results: ListingProps[];
+  hide: () => void;
+}
+
+const SearchResults = ({ results, hide }: SearchResultsProps) => {
+  const router = useRouter();
+
+  return (
+    <div className={s.searchResults}>
+      <span className={'muted'}>Relevant Results</span>
+      <hr />
+      {results.length == 0 && <span>No results</span>}
+
+      {results.length > 0 &&
+        results.map((listing: ListingProps) => {
+          const path = `/${listing?.category?.slug}/${listing.slug}`;
+          return (
+            <div key={listing.id}>
+              <span className={'muted'}>{listing.category?.name}</span>
+              <NavLink href={'#'} onClick={() => router.push(path).then(hide)}>
+                {listing.title}
+              </NavLink>
+            </div>
+          );
+        })}
+    </div>
+  );
+};
 
 export const DesktopHeader = () => {
   const { user } = useTypedSelectors((state) => state.user);
   const { setUser, setModal } = useActions();
   const { setLocation, setLanguage } = useActions();
+  const [searchVisible, setSearchVisible] = useState(false);
   const { preferences } = useTypedSelectors((state) => state.preferences);
   const { language, location } = preferences;
   const router = useRouter();
@@ -101,14 +202,16 @@ export const DesktopHeader = () => {
         </div>
       </div>
       <div className={s.main}>
-        <div className={s.logo}>
-          <NavLink href={'/'}>
-            <Icon size={'lg'} theme={'secondary'} name={'menu'} />
-          </NavLink>
-          <NavLink href="/">
-            <Icon name={'logo'} size={'logo'} />
-          </NavLink>
-        </div>
+        {!searchVisible && (
+          <div className={s.logo}>
+            <NavLink href={'/'}>
+              <Icon size={'lg'} theme={'secondary'} name={'menu'} />
+            </NavLink>
+            <NavLink href="/">
+              <Icon name={'logo'} size={'logo'} />
+            </NavLink>
+          </div>
+        )}
         <div className={s.searchContainer}>
           <div className={s.search}>
             <div className={s.searchInput}>
@@ -143,18 +246,18 @@ export const DesktopHeader = () => {
             </Button>
           </div>
           <div className={s.mobile}>
-            <NavLink href="#">
-              <Icon name="search" size={'md'} theme={'primary'} className={'bordered'} />
-            </NavLink>
-            <NavLink
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                setModal({ name: 'UserLocation' });
-              }}
-            >
-              <Icon name="location" size={'md'} theme={'primary'} className={'bordered'} />
-            </NavLink>
+            <MobileSearch visible={searchVisible} setVisible={setSearchVisible} />
+            {!searchVisible && (
+              <NavLink
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setModal({ name: 'UserLocation' });
+                }}
+              >
+                <Icon name="location" size={'md'} theme={'primary'} className={'bordered'} />
+              </NavLink>
+            )}
           </div>
         </div>
       </div>
