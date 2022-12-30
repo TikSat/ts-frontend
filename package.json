@@ -10,7 +10,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.8.3",
+    "@reduxjs/toolkit": "^1.9.1",
     "@sentry/nextjs": "^7.11.1",
     "@sentry/tracing": "^7.11.1",
     "@types/react-transition-group": "^4.4.5",
