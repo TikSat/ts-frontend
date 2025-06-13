@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
-    "@sentry/nextjs": "^7.11.1",
+    "@sentry/nextjs": "^7.13.0",
     "@sentry/tracing": "^7.11.1",
     "@types/react-transition-group": "^4.4.5",
     "axios": "^0.27.2",
